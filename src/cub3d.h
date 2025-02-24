@@ -16,6 +16,15 @@
 # define WID 1280
 # define HEI 720
 # define PI 3.14159265359
+# define BLOCK 64 //what?
+
+# define RED 0xFF0000
+# define GRE 0x008000
+# define BLU 0x0000FF
+# define YEL 0xFFFF00
+# define VIO 0x800080
+# define WHI 0xFFFFFF
+# define BLA 0x000000
 
 typedef struct s_player
 {
@@ -38,11 +47,12 @@ typedef struct s_data
 	void		*win_ptr;
 	void		*img_ptr;
 
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
 
-	t_player player;
+	t_player	player;
+	char		**map;
 }	t_data;
 #endif
