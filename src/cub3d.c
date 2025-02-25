@@ -17,6 +17,7 @@ bool	touch(float px, float py, t_data *cub3d);
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i);
 float	distance(float x, float y);
 float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
+void	key_hooks(t_data *cub3d);
 
 int	main(int argc, char *argv[])
 {
@@ -28,9 +29,15 @@ int	main(int argc, char *argv[])
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
 	init_mlx(&cub3d);
-	mlx_hook(cub3d.win_ptr, KeyPress, KeyPressMask, key_press, &cub3d);
-	mlx_hook(cub3d.win_ptr, KeyRelease, KeyReleaseMask, key_release, &cub3d);
-	mlx_hook(cub3d.win_ptr, DestroyNotify, StructureNotifyMask, destroy, &cub3d);
+
+	key_hooks(&cub3d);
+	//mlx_hook(cub3d.win_ptr, KeyPress, KeyPressMask, key_press, &cub3d); //this may not work on mac
+	//mlx_hook(cub3d.win_ptr, KeyRelease, KeyReleaseMask, key_release, &cub3d); //this may not work on mac
+	//mlx_hook(cub3d.win_ptr, DestroyNotify, StructureNotifyMask, destroy, &cub3d); //this may not work on mac
+	//mlx_hook(cub3d.win_ptr, 2, 1L<<0, key_press, &cub3d); //hopefully works on mac (?)
+	//mlx_hook(cub3d.win_ptr, 3, 1L<<1, key_release, &cub3d); //hopefully works on mac (?)
+	//mlx_hook(cub3d.win_ptr, 17, 0, destroy, &cub3d); //hopefully works on mac (?)
+
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
 	mlx_loop(cub3d.mlx_ptr);
 	return (0);
@@ -54,38 +61,40 @@ void	init_mlx(t_data *cub3d)
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
 }
 
+//experiment with mac key mappings
 int	key_press(int keysym, t_data *cub3d)
 {
-	if (keysym == XK_Escape)
+	if (keysym == XK_Escape || keysym == ESC)
 		destroy(cub3d);
-	if (keysym == XK_W || keysym == XK_w)
+	if (keysym == XK_W || keysym == XK_w || keysym == W)
 		cub3d->player.key_down = true;
-	if (keysym == XK_S || keysym == XK_s)
+	if (keysym == XK_S || keysym == XK_s || keysym == S)
 		cub3d->player.key_up = true;
-	if (keysym == XK_A || keysym == XK_a)
+	if (keysym == XK_A || keysym == XK_a || keysym == A)
 		cub3d->player.key_right = true;
-	if (keysym == XK_D || keysym == XK_d)
+	if (keysym == XK_D || keysym == XK_d || keysym == D)
 		cub3d->player.key_left = true;
-	if (keysym == XK_Left)
+	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = true;
-	if (keysym == XK_Right)
+	if (keysym == XK_Right || keysym == RIGHT)
 		cub3d->player.right_rotate = true;
 	return (0);
 }
 
+//experiment with mac key mappings
 int	key_release(int keysym, t_data *cub3d)
 {
-	if (keysym == XK_W || keysym == XK_w)
+	if (keysym == XK_W || keysym == XK_w || keysym == W)
 		cub3d->player.key_down = false;
-	if (keysym == XK_S || keysym == XK_s)
+	if (keysym == XK_S || keysym == XK_s || keysym == S)
 		cub3d->player.key_up = false;
-	if (keysym == XK_A || keysym == XK_a)
+	if (keysym == XK_A || keysym == XK_a || keysym == A)
 		cub3d->player.key_right = false;
-	if (keysym == XK_D || keysym == XK_d)
+	if (keysym == XK_D || keysym == XK_d || keysym == D)
 		cub3d->player.key_left = false;
-	if (keysym == XK_Left)
+	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = false;
-	if (keysym == XK_Right)
+	if (keysym == XK_Right || keysym == RIGHT)
 		cub3d->player.right_rotate = false;
 	return (0);
 }
@@ -332,4 +341,17 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d)
 	float angle = atan2(delta_y, delta_x) - cub3d->player.angle;
 	float fix_dist = distance(delta_x, delta_y) * cos(angle);
 	return (fix_dist);
+}
+
+void	key_hooks(t_data *cub3d)
+{
+	#ifdef __APPLE__
+		mlx_hook(cub3d->win_ptr, 2, 1L<<0, key_press, cub3d);
+		mlx_hook(cub3d->win_ptr, 3, 1L<<1, key_release, cub3d);
+		mlx_hook(cub3d->win_ptr, 17, 0, destroy, cub3d);
+	#else
+		mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
+		mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
+		mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask, destroy, cub3d);
+	#endif
 }

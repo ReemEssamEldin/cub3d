@@ -26,6 +26,18 @@
 # define WHI 0xFFFFFF
 # define BLA 0x000000
 
+# define ESC			0xff1b
+//# define UP				0xff52
+//# define DOWN			0xff54
+# define LEFT			0xff51
+# define RIGHT			0xff53
+# define W				0x0077
+# define A				0x0061
+# define S				0x0073
+# define D				0x0064
+//# define Q				0x0071
+//# define E				0x0065
+
 typedef struct s_player
 {
 	float x;
