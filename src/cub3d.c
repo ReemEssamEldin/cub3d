@@ -59,13 +59,13 @@ int	key_press(int keysym, t_data *cub3d)
 	if (keysym == XK_Escape)
 		destroy(cub3d);
 	if (keysym == XK_W || keysym == XK_w)
-		cub3d->player.key_up = true;
-	if (keysym == XK_S || keysym == XK_s)
 		cub3d->player.key_down = true;
+	if (keysym == XK_S || keysym == XK_s)
+		cub3d->player.key_up = true;
 	if (keysym == XK_A || keysym == XK_a)
-		cub3d->player.key_left = true;
-	if (keysym == XK_D || keysym == XK_d)
 		cub3d->player.key_right = true;
+	if (keysym == XK_D || keysym == XK_d)
+		cub3d->player.key_left = true;
 	if (keysym == XK_Left)
 		cub3d->player.left_rotate = true;
 	if (keysym == XK_Right)
@@ -76,13 +76,13 @@ int	key_press(int keysym, t_data *cub3d)
 int	key_release(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_W || keysym == XK_w)
-		cub3d->player.key_up = false;
-	if (keysym == XK_S || keysym == XK_s)
 		cub3d->player.key_down = false;
+	if (keysym == XK_S || keysym == XK_s)
+		cub3d->player.key_up = false;
 	if (keysym == XK_A || keysym == XK_a)
-		cub3d->player.key_left = false;
-	if (keysym == XK_D || keysym == XK_d)
 		cub3d->player.key_right = false;
+	if (keysym == XK_D || keysym == XK_d)
+		cub3d->player.key_left = false;
 	if (keysym == XK_Left)
 		cub3d->player.left_rotate = false;
 	if (keysym == XK_Right)
@@ -206,10 +206,13 @@ int	draw_loop(t_data *cub3d)
 {
 	move_player(&cub3d->player);
 	clear_image(cub3d);
-	//draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
-	//draw_map(cub3d);
 
-	float fraction = PI /3 / WID;
+	//top-down
+	draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
+	draw_map(cub3d);
+
+	//1st-person
+/* 	float fraction = PI /3 / WID;
 	float start_x = cub3d->player.angle - PI / 6;
 	int i = 0;
 	while(i < WID)
@@ -217,7 +220,7 @@ int	draw_loop(t_data *cub3d)
 		draw_line(&cub3d->player, cub3d, start_x, i);
 		start_x += fraction;
 		i++;
-	}
+	} */
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
 	return(0);
 }
