@@ -112,3 +112,4 @@ valgrind-out.txt
 ## MLX
 lib/minilibx-linux.tgz
 lib/minilibx-linux/
+lib/mlx/

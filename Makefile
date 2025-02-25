@@ -4,13 +4,13 @@
 ## Preparation, set up MLX
 UNAME				= $(shell uname)
 ifeq ($(UNAME), Darwin)
-	MLXTAR		= minilibx_opengl
+	MLXTAR		= minilibx_opengl.tgz
 	MLXDIR		= ./lib/mlx/ 
 	MLXURL		= "https://cdn.intra.42.fr/document/document/30911/minilibx_opengl.tgz"
 	MLXFLAGS 	= -lmlx -framework OpenGL -framework AppKit 
 #	MLXGIT		= https://github.com/dannywillems/minilibx-mac-osx.git
 else ifeq ($(UNAME), Linux)
-	MLXTAR		= minilibx-linux
+	MLXTAR		= minilibx-linux.tgz
 	MLXDIR		= ./lib/mlx/
 	MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
 	MLXFLAGS 	= -lmlx -lXext -lX11 -lm

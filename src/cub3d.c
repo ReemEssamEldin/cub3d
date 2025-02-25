@@ -52,7 +52,6 @@ void	init_cub3d(t_data *cub3d)
 
 void	init_mlx(t_data *cub3d)
 {
-
 	cub3d->map = init_map();
 	cub3d->mlx_ptr = mlx_init();
 	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WID, HEI, "Prototype");
@@ -212,12 +211,12 @@ void	move_player(t_player *player)
 } */
 
 //top-down ,conical ray
-int	draw_loop(t_data *cub3d)
+/* int	draw_loop(t_data *cub3d)
 {
 	move_player(&cub3d->player);
 	clear_image(cub3d);
-	//draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d); //handles top-down view
-	//draw_map(cub3d); //handles top-down view
+	draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d); //handles top-down view
+	draw_map(cub3d); //handles top-down view
 
 	float fraction = PI /3 / WID;
 	float start_x = cub3d->player.angle - PI / 6;
@@ -230,9 +229,9 @@ int	draw_loop(t_data *cub3d)
 	}
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
 	return(0);
-}
+} */
 //first person
-/* int	draw_loop(t_data *cub3d)
+int	draw_loop(t_data *cub3d)
 {
 	move_player(&cub3d->player);
 	clear_image(cub3d);
@@ -253,7 +252,7 @@ int	draw_loop(t_data *cub3d)
 	}
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
 	return(0);
-} */
+}
 
 void	clear_image(t_data *cub3d)
 {
@@ -303,7 +302,7 @@ bool	touch(float px, float py, t_data *cub3d)
 
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 {
-	(void)i;
+	//(void)i;
 	float cos_angle = cos(start_x);
 	float sin_angle = sin(start_x);
 	float ray_x = player->x;
