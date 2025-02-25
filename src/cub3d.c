@@ -202,17 +202,15 @@ void	move_player(t_player *player)
 	return(0);
 } */
 
+//top-down ,conical ray
 int	draw_loop(t_data *cub3d)
 {
 	move_player(&cub3d->player);
 	clear_image(cub3d);
+	//draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d); //handles top-down view
+	//draw_map(cub3d); //handles top-down view
 
-	//top-down
-	draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
-	draw_map(cub3d);
-
-	//1st-person
-/* 	float fraction = PI /3 / WID;
+	float fraction = PI /3 / WID;
 	float start_x = cub3d->player.angle - PI / 6;
 	int i = 0;
 	while(i < WID)
@@ -220,10 +218,33 @@ int	draw_loop(t_data *cub3d)
 		draw_line(&cub3d->player, cub3d, start_x, i);
 		start_x += fraction;
 		i++;
-	} */
+	}
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
 	return(0);
 }
+//first person
+/* int	draw_loop(t_data *cub3d)
+{
+	move_player(&cub3d->player);
+	clear_image(cub3d);
+
+	//top-down
+	//draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
+	//draw_map(cub3d);
+
+	//1st-person
+	float fraction = PI /3 / WID;
+	float start_x = cub3d->player.angle - PI / 6;
+	int i = 0;
+	while(i < WID)
+	{
+		draw_line(&cub3d->player, cub3d, start_x, i);
+		start_x += fraction;
+		i++;
+	}
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
+	return(0);
+} */
 
 void	clear_image(t_data *cub3d)
 {
@@ -281,13 +302,14 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 
 	while(!touch(ray_x, ray_y, cub3d))
 	{
-		//put_pixel(ray_x, ray_y, 0xFF0000, cub3d);
+		//put_pixel(ray_x, ray_y, 0xFF0000, cub3d); //this line handles rays
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
 
-	float dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d);
-	//float dist = distance(ray_x - player->x, ray_y - player->y);
+	//this part handles 1st-person perspective
+	float dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d); //fix fish-eye
+	//float dist = distance(ray_x - player->x, ray_y - player->y); //fish-eye
 	float height = (BLOCK / dist) * (WID / 2);
 	int start_y = (HEI - height) / 2;
 	int end = start_y + height;

@@ -66,6 +66,11 @@ test:
 #re-bonus:			fclean bonus
 
 ##------------------------------------------------------------------##
+# Pattern rule
+%.o: %.c
+		@$(CC) $(CFLAGS) -I$(HEADER) -c $< -o $@
+
+##------------------------------------------------------------------##
 # Targets
 
 $(NAME-MLX):
@@ -79,6 +84,7 @@ $(NAME-MLX):
 		echo "$(YELLOW)Extracting minilibx.$(COLOFF)"; \
 		mkdir -p ${MLXDIR}; \
 		tar -xzvf ./lib/"${MLXTAR}" -C ${MLXDIR} --strip-components=1 > /dev/null; \
+		rm -rf ${MLXDIR}/.git/; \
 		fi
 		@echo "$(YELLOW)Making minilibx.$(COLOFF)"
 		@make -C ${MLXDIR} -s
@@ -94,7 +100,7 @@ $(NAME-C3): $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX) $(HEADERFILES)
 		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX) \
 		-L${MLXDIR} $(MLXFLAGS) -o $(NAME-C3)
 		@echo "$(GREEN)cub3d ready!$(COLOFF)"
-		
+
 #$(NAME-BONUS): $(SRC-BONUS) $(NAME-LIBFT) $(NAME-MLX) $(HEADERFILESB)
 #		@echo "$(YELLOW)Compiling so long bonus.$(COLOFF)"
 #		@$(CC) $(CFLAGS) $(HEADERB) $(SRC-BONUS) $(NAME-LIBFT) $(NAME-MLX) \
