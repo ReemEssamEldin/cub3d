@@ -323,7 +323,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	int end = start_y + height;
 	while(start_y < end)
 	{
-		put_pixel(i, start_y, 255, cub3d);
+		put_pixel(i, start_y, GRE, cub3d);
 		start_y++;
 	}
 }
