@@ -16,7 +16,7 @@
 # define WID 1280
 # define HEI 720
 # define PI 3.14159265359
-# define BLOCK 64 //what?
+# define BLOCK 20 //what?
 
 # define RED 0xFF0000
 # define GRE 0x008000
@@ -38,6 +38,17 @@
 //# define Q				0x0071
 //# define E				0x0065
 
+enum
+{
+	KEYPRESS = 2,
+	KEYRELEASE = 3,
+	MOUSEDOWN = 4,
+	MOUSEUP = 5,
+	MOUSEMOVE = 6,
+	EXPOSE = 12,
+	DESTROY = 17
+};
+
 typedef struct s_player
 {
 	float x;
@@ -58,6 +69,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
+	void		*img_ptr_mm;
 
 	char		*addr;
 	int			bpp;

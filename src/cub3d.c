@@ -136,9 +136,9 @@ void	draw_square(int x, int y, int size, int color, t_data *cub3d)
 
 void	init_player(t_player *player)
 {
-	player->x = WID / 2;
-	player->y = HEI / 2;
-	player->angle = PI / 2;
+	player->x = (WID / 5); //start pos
+	player->y = HEI / 5; //start pos
+	player->angle = PI; //facing which way?
 
 	player->key_up = false;
 	player->key_down = false;
@@ -237,11 +237,11 @@ int	draw_loop(t_data *cub3d)
 	clear_image(cub3d);
 
 	//top-down
-	//draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
-	//draw_map(cub3d);
+	draw_square(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
+	draw_map(cub3d);
 
 	//1st-person
-	float fraction = PI /3 / WID;
+	float fraction = PI / 3 / WID; //FOV width
 	float start_x = cub3d->player.angle - PI / 6;
 	int i = 0;
 	while(i < WID)
@@ -276,6 +276,33 @@ char	**init_map(void)
 	map[9] = "111111111111111";
 	map[10] = NULL;
 	return (map);
+/* 	char **map = malloc(sizeof(char *) * 25);
+	map[0] = "111111111111111111111111";
+	map[1] = "100000000000000000000001";
+	map[2] = "100000000000000000000001";
+	map[3] = "100000000000000000000001";
+	map[4] = "100000111110000101010001";
+	map[5] = "100000100010000000000001";
+	map[6] = "100000100010000100010001";
+	map[7] = "100000100010000000000001";
+	map[8] = "100000110110000101010001";
+	map[9] = "100000000000000000000001";
+	map[10] = "100000000000000000000001";
+	map[11] = "100000000000000000000001";
+	map[12] = "100000000000000000000001";
+	map[13] = "100000000000000000000001";
+	map[14] = "100000000000000000000001";
+	map[15] = "100000000000000000000001";
+	map[16] = "111111111000000000000001";
+	map[17] = "110100001000000000000001";
+	map[18] = "110000101000000000000001";
+	map[19] = "110100001000000000000001";
+	map[20] = "110111111000000000000001";
+	map[21] = "110000000000000000000001";
+	map[22] = "111111111000000000000001";
+	map[23] = "111111111111111111111111";
+	map[24] = NULL;
+	return (map); */
 }
 
 void	draw_map(t_data *cub3d)
@@ -302,7 +329,7 @@ bool	touch(float px, float py, t_data *cub3d)
 
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 {
-	//(void)i;
+	(void)i;
 	float cos_angle = cos(start_x);
 	float sin_angle = sin(start_x);
 	float ray_x = player->x;
@@ -310,7 +337,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 
 	while(!touch(ray_x, ray_y, cub3d))
 	{
-		//put_pixel(ray_x, ray_y, 0xFF0000, cub3d); //this line handles rays
+		put_pixel(ray_x, ray_y, RED, cub3d); //this line handles rays
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
@@ -321,12 +348,61 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	float height = (BLOCK / dist) * (WID / 2);
 	int start_y = (HEI - height) / 2;
 	int end = start_y + height;
+	
+	int color = GRE;
+	// if (cos_angle > 0) // Wall facing right
+	// 	color = (color >> 1) & 0x7F7F7F; // Darken the color
+	// else if (cos_angle < 0) // Wall facing left
+	// 	color = (color << 1) | 0x808080; // Lighten the color
+
 	while(start_y < end)
 	{
-		put_pixel(i, start_y, GRE, cub3d);
+		put_pixel(i, start_y, color, cub3d);
 		start_y++;
 	}
 }
+//shading based on distance
+// void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
+// {
+// 	(void)i;
+// 	float cos_angle = cos(start_x);
+// 	float sin_angle = sin(start_x);
+// 	float ray_x = player->x;
+// 	float ray_y = player->y;
+
+// 	while(!touch(ray_x, ray_y, cub3d))
+// 	{
+// 		put_pixel(ray_x, ray_y, RED, cub3d); //this line handles rays
+// 		ray_x += cos_angle;
+// 		ray_y += sin_angle;
+// 	}
+
+// 	//this part handles 1st-person perspective
+// 	float dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d); //fix fish-eye
+// 	//float dist = distance(ray_x - player->x, ray_y - player->y); //fish-eye
+// 	float height = (BLOCK / dist) * (WID / 2);
+// 	int start_y = (HEI - height) / 2;
+// 	int end = start_y + height;
+	
+// 	float shading_factor = 1.0 / (1.0 + dist * 0.1);
+//     if (shading_factor > 1.0)
+//         shading_factor = 1.0;
+//     if (shading_factor < 0.2)
+//         shading_factor = 0.2;
+
+//     // Apply shading to the color
+//     int color = GRE;
+//     int shaded_color = ((int)((color & 0xFF) * shading_factor) & 0xFF) |
+//                       (((int)(((color >> 8) & 0xFF) * shading_factor) & 0xFF) << 8) |
+//                       (((int)(((color >> 16) & 0xFF) * shading_factor) & 0xFF) << 16);
+
+// 	while(start_y < end)
+// 	{
+// 		//put_pixel(i, start_y, GRE, cub3d);
+// 		put_pixel(i, start_y, shaded_color, cub3d);
+// 		start_y++;
+// 	}
+// }
 
 float	distance(float x, float y)
 {
@@ -345,12 +421,12 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d)
 void	key_hooks(t_data *cub3d)
 {
 	#ifdef __APPLE__
-		mlx_hook(cub3d->win_ptr, 2, 1L<<0, key_press, cub3d);
-		mlx_hook(cub3d->win_ptr, 3, 1L<<1, key_release, cub3d);
-		mlx_hook(cub3d->win_ptr, 17, 0, destroy, cub3d);
+		mlx_hook(cub3d->win_ptr, KEYPRESS, 1L<<0, key_press, cub3d);
+		mlx_hook(cub3d->win_ptr, KEYRELEASE, 1L<<1, key_release, cub3d);
+		mlx_hook(cub3d->win_ptr, DESTROY, 0, destroy, cub3d);
 	#else
 		mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
 		mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
 		mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask, destroy, cub3d);
-	#endif
+		#endif
 }
