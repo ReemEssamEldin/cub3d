@@ -4,11 +4,7 @@
 ## Preparation, set up MLX
 UNAME				= $(shell uname)
 ifeq ($(UNAME), Darwin)
-	MLXTAR		= minilibx_opengl.tgz
-	MLXDIR		= ./lib/minilibx_opengl_20191021/ 
-	MLXURL		= "https://cdn.intra.42.fr/document/document/30911/minilibx_opengl.tgz"
-	MLXFLAGS 	= -lmlx -framework OpenGL -framework AppKit 
-	MLXGIT		= https://github.com/dannywillems/minilibx-mac-osx.git
+	MLXFLAGS 	= -I/usr/X11/include -lmlx -lX11 -L/usr/X11/lib -lXext
 else ifeq ($(UNAME), Linux)
 	MLXTAR		= minilibx-linux.tgz
 	MLXDIR		= ./lib/minilibx-linux/
@@ -19,15 +15,27 @@ endif
 
 ## Name(s)
 NAME-C3				= cub3d
-#NAME-BONUS			= so_long_bonus
 NAME-LIBFT			= ./lib/libft.a
+
+## Set MLX library based on OS
+ifeq ($(UNAME), Linux)
 NAME-MLX			= $(MLXDIR)libmlx.a
+else
+NAME-MLX			=
+endif
 
 ## Sources & headers & others
-SRC-C3				= ./src/cub3d.c\
+SRC-C3				= ./src/cub3d.c
 
 HEADER				= ./src/
 HEADERFILES			= ./src/cub3d.h
+
+# Determine dependencies based on OS
+ifeq ($(UNAME), Linux)
+C3-DEPS = $(SRC-C3) $(NAME-LIBFT) $(HEADERFILES) $(NAME-MLX)
+else
+C3-DEPS = $(SRC-C3) $(NAME-LIBFT) $(HEADERFILES)
+endif
 
 ## Compiler, flags, & other commands
 CC 					= cc
@@ -47,32 +55,28 @@ all:				$(NAME-MLX) $(NAME-LIBFT) $(NAME-C3)
 
 clean:
 					@$(RM) $(NAME-C3)
-					@$(RM) $(NAME-BONUS)
 					@echo "$(RED)cub3d's gone, baby, gone!$(COLOFF)"
 
 fclean:				clean
 					@make fclean -C ./lib
 					@echo "$(RED)Libft's gone, baby, gone!$(COLOFF)"
-					@$(RM) ./lib/$(MLXTAR)
-					@make clean -C ./lib/minilibx-linux
-					@rm -rf $(MLXDIR)
-					@echo "$(RED)Minilibx's gone, baby, gone!$(COLOFF)"
+					@if [ "$(UNAME)" = "Linux" ]; then \
+						$(RM) ./lib/$(MLXTAR); \
+						make clean -C ./lib/minilibx-linux; \
+						rm -rf $(MLXDIR); \
+						echo "$(RED)Minilibx's gone, baby, gone!$(COLOFF)"; \
+					fi
 
 re:					fclean all
 
 test:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME-SL)
 
-#re-bonus:			fclean bonus
-
 ##------------------------------------------------------------------##
 # Targets
 
+ifeq ($(UNAME), Linux)
 $(NAME-MLX):
-#		@if [ ! -d "${MLXDIR}" ]; then \
-#		echo "$(YELLOW)Cloning minilibx.$(COLOFF)"; \
-#		git clone "${MLXGIT}" "${MLXDIR}"; \
-#		fi
 		@if [ ! -d "${MLXDIR}" ]; then \
 		echo "$(YELLOW)Getting minilibx.$(COLOFF)"; \
 		curl -0 "${MLXURL}" --output ./lib/"${MLXTAR}"; \
@@ -82,24 +86,21 @@ $(NAME-MLX):
 		@echo "$(YELLOW)Making minilibx.$(COLOFF)"
 		@make -C ${MLXDIR} -s
 		@echo "$(GREEN)Minilibx ready!$(COLOFF)"
+endif
 
 $(NAME-LIBFT):
 		@echo "$(YELLOW)Making libft.$(COLOFF)"
 		@make -C./lib
 		@echo "$(GREEN)Libft ready!$(COLOFF)"
 
-$(NAME-C3): $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX) $(HEADERFILES)
+$(NAME-C3): $(C3-DEPS)
 		@echo "$(YELLOW)Compiling cub3d.$(COLOFF)"
-		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX) \
-		-L${MLXDIR} $(MLXFLAGS) -o $(NAME-C3)
+ifeq ($(UNAME), Darwin)
+		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) $(NAME-LIBFT) $(MLXFLAGS) -o $(NAME-C3)
+else
+		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX) -L${MLXDIR} $(MLXFLAGS) -o $(NAME-C3)
+endif
 		@echo "$(GREEN)cub3d ready!$(COLOFF)"
-		
-#$(NAME-BONUS): $(SRC-BONUS) $(NAME-LIBFT) $(NAME-MLX) $(HEADERFILESB)
-#		@echo "$(YELLOW)Compiling so long bonus.$(COLOFF)"
-#		@$(CC) $(CFLAGS) $(HEADERB) $(SRC-BONUS) $(NAME-LIBFT) $(NAME-MLX) \
-#		-L${MLXDIR} $(MLXFLAGS) -o $(NAME-BONUS)
-#		@echo "$(GREEN)So Long ready!$(COLOFF)"
 
 ##------------------------------------------------------------------##
-#.PHONY
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re test
