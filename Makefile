@@ -3,19 +3,17 @@
 
 ## Preparation, set up MLX
 UNAME				= $(shell uname)
+MLXTAR		= minilibx-linux.tgz
+MLXDIR		= ./lib/mlx/
+MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
+MLXFLAGS 	= -lmlx -lXext -lX11 -lm
+MLXGIT		= https://github.com/42Paris/minilibx-linux.git
+
 ifeq ($(UNAME), Darwin)
-	MLXTAR		= minilibx_opengl.tgz
-	MLXDIR		= ./lib/mlx/ 
-	MLXURL		= "https://cdn.intra.42.fr/document/document/30911/minilibx_opengl.tgz"
-	MLXFLAGS 	= -lmlx -framework OpenGL -framework AppKit 
-#	MLXGIT		= https://github.com/dannywillems/minilibx-mac-osx.git
-else ifeq ($(UNAME), Linux)
-	MLXTAR		= minilibx-linux.tgz
-	MLXDIR		= ./lib/mlx/
-	MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
-	MLXFLAGS 	= -lmlx -lXext -lX11 -lm
-#	MLXGIT		= https://github.com/42Paris/minilibx-linux.git
+MLXFLAGS 	+=  -I/usr/x11/include -L/usr/X11/lib
 endif
+
+
 
 ## Name(s)
 NAME-C3				= cub3d
@@ -51,12 +49,11 @@ clean:
 					@echo "$(RED)cub3d's gone, baby, gone!$(COLOFF)"
 
 fclean:				clean
+					@rm -rf $(MLXDIR)
+					@echo "$(RED)Minilibx's gone, baby, gone!$(COLOFF)"
 					@make fclean -C ./lib
 					@echo "$(RED)Libft's gone, baby, gone!$(COLOFF)"
 					@$(RM) ./lib/$(MLXTAR)
-					@make clean -C $(MLXDIR)
-					@rm -rf $(MLXDIR)
-					@echo "$(RED)Minilibx's gone, baby, gone!$(COLOFF)"
 
 re:					fclean all
 
