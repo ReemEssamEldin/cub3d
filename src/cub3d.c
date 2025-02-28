@@ -110,6 +110,20 @@ int	destroy(t_data *cub3d)
 	exit(0);
 }
 
+/**
+ * put_pixel - Puts a pixel of a specified color at a given position in the image.
+ * @x: The x-coordinate of the pixel.
+ * @y: The y-coordinate of the pixel.
+ * @color: The color of the pixel in RGB format.
+ * @cub3d: A pointer to the t_data structure containing image data.
+ *
+ * This function sets the color of the pixel at the specified (x, y) coordinates
+ * in the image represented by the t_data structure. If the coordinates are
+ * outside the bounds of the image, the function returns without making any changes.
+ *
+ * The color is specified in RGB format, and the function extracts the individual
+ * red, green, and blue components to store them in the image data.
+ */
 void	put_pixel(int x, int y, int color, t_data *cub3d)
 {
 	int	idx;
@@ -136,8 +150,8 @@ void	draw_square(int x, int y, int size, int color, t_data *cub3d)
 
 void	init_player(t_player *player)
 {
-	player->x = (WID / 5); //start pos
-	player->y = HEI / 5; //start pos
+	player->x = (WID / 6); //start pos
+	player->y = HEI / 6; //start pos
 	player->angle = PI; //facing which way?
 
 	player->key_up = false;
@@ -414,7 +428,7 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d)
 	float delta_x = x2 - x1;
 	float delta_y = y2 - y1;
 	float angle = atan2(delta_y, delta_x) - cub3d->player.angle;
-	float fix_dist = distance(delta_x, delta_y) * cos(angle);
+	float fix_dist = distance(delta_x, delta_y) * cos(angle); // the correction
 	return (fix_dist);
 }
 
@@ -428,5 +442,5 @@ void	key_hooks(t_data *cub3d)
 		mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
 		mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
 		mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask, destroy, cub3d);
-		#endif
+	#endif
 }
