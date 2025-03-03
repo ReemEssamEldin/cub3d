@@ -41,6 +41,21 @@ void	init_cub3d(t_data *cub3d)
 	cub3d->img_ptr = NULL;
 }
 
+void	init_player(t_player *player)
+{
+	player->x = WID / 2;
+	player->y = HEI / 2;
+	player->angle = PI / 2;
+
+	player->key_up = false;
+	player->key_down = false;
+	player->key_right = false;
+	player->key_left = false;
+
+	player->left_rotate = false;
+	player->right_rotate = false;
+}
+
 void	init_mlx(t_data *cub3d)
 {
 
@@ -100,83 +115,6 @@ int	destroy(t_data *cub3d)
 	exit(0);
 }
 
-void	put_pixel(int x, int y, int color, t_data *cub3d)
-{
-	int	idx;
-
-	if(x >= WID || y >= HEI || x < 0 || y < 0)
-		return;
-	idx = y * cub3d->line_len + x * cub3d->bpp / 8;
-	cub3d->addr[idx] = color & 0xFF;
-	cub3d->addr[idx + 1] = (color >> 8) & 0xFF;
-	cub3d->addr[idx + 2] = (color >> 16) & 0xFF;
-}
-
-void	draw_square(int x, int y, int size, int color, t_data *cub3d)
-{
-	for(int i = 0; i < size; i++)
-		put_pixel(x + i, y, color, cub3d);
-	for(int i = 0; i < size; i++)
-		put_pixel(x, y + i, color, cub3d);
-	for(int i = 0; i < size; i++)
-		put_pixel(x + size, y + i, color, cub3d);
-	for(int i = 0; i < size; i++)
-		put_pixel(x + i, y + size, color, cub3d);
-}
-
-void	init_player(t_player *player)
-{
-	player->x = WID / 2;
-	player->y = HEI / 2;
-	player->angle = PI / 2;
-
-	player->key_up = false;
-	player->key_down = false;
-	player->key_right = false;
-	player->key_left = false;
-
-	player->left_rotate = false;
-	player->right_rotate = false;
-}
-
-void	move_player(t_player *player)
-{
-	int speed = 1;
-	float angle_speed = 0.03;
-	float cos_angle = cos(player->angle);
-	float sin_angle = sin(player->angle);
-
-	if (player->left_rotate)
-		player->angle -= angle_speed;
-	if (player->right_rotate)
-		player->angle += angle_speed;
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
-
-	if (player->key_down)
-	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
-	}
-	if (player->key_up)
-	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
-	}
-	if (player->key_right)
-	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
-	}
-	if (player->key_left)
-	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
-	}
-}
-
 //just a line, not a cone
 /* int	draw_loop(t_data *cub3d)
 {
@@ -220,13 +158,6 @@ int	draw_loop(t_data *cub3d)
 	return(0);
 }
 
-void	clear_image(t_data *cub3d)
-{
-	for(int y = 0; y < HEI; y++)
-		for(int x = 0; x < WID; x++)
-			put_pixel(x, y, 0, cub3d);
-}
-
 char	**init_map(void)
 {
 	char **map = malloc(sizeof(char *) * 11);
@@ -244,6 +175,63 @@ char	**init_map(void)
 	return (map);
 }
 
+void	move_player(t_player *player)
+{
+	int speed = 1;
+	float angle_speed = 0.03;
+	float cos_angle = cos(player->angle);
+	float sin_angle = sin(player->angle);
+
+	if (player->left_rotate)
+		player->angle -= angle_speed;
+	if (player->right_rotate)
+		player->angle += angle_speed;
+	if (player->angle > 2 * PI)
+		player->angle = 0;
+	if (player->angle < 0)
+		player->angle = 2 * PI;
+
+	if (player->key_down)
+	{
+		player->x += cos_angle * speed;
+		player->y += sin_angle * speed;
+	}
+	if (player->key_up)
+	{
+		player->x -= cos_angle * speed;
+		player->y -= sin_angle * speed;
+	}
+	if (player->key_right)
+	{
+		player->x += sin_angle * speed;
+		player->y -= cos_angle * speed;
+	}
+	if (player->key_left)
+	{
+		player->x -= sin_angle * speed;
+		player->y += cos_angle * speed;
+	}
+}
+
+void	clear_image(t_data *cub3d)
+{
+	for(int y = 0; y < HEI; y++)
+		for(int x = 0; x < WID; x++)
+			put_pixel(x, y, 0, cub3d);
+}
+
+void	draw_square(int x, int y, int size, int color, t_data *cub3d)
+{
+	for(int i = 0; i < size; i++)
+		put_pixel(x + i, y, color, cub3d);
+	for(int i = 0; i < size; i++)
+		put_pixel(x, y + i, color, cub3d);
+	for(int i = 0; i < size; i++)
+		put_pixel(x + size, y + i, color, cub3d);
+	for(int i = 0; i < size; i++)
+		put_pixel(x + i, y + size, color, cub3d);
+}
+
 void	draw_map(t_data *cub3d)
 {
 	char **map = cub3d->map;
@@ -252,18 +240,6 @@ void	draw_map(t_data *cub3d)
 		for(int x = 0; map[y][x]; x++)
 			if(map[y][x] == '1')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, color, cub3d);
-}
-
-bool	touch(float px, float py, t_data *cub3d)
-{
-	int	x;
-	int	y;
-
-	x = px / BLOCK;
-	y = py / BLOCK;
-	if(cub3d->map[y][x] == '1')
-		return (true);
-	return (false);
 }
 
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
@@ -280,4 +256,28 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
+}
+
+void	put_pixel(int x, int y, int color, t_data *cub3d)
+{
+	int	idx;
+
+	if(x >= WID || y >= HEI || x < 0 || y < 0)
+		return;
+	idx = y * cub3d->line_len + x * cub3d->bpp / 8;
+	cub3d->addr[idx] = color & 0xFF;
+	cub3d->addr[idx + 1] = (color >> 8) & 0xFF;
+	cub3d->addr[idx + 2] = (color >> 16) & 0xFF;
+}
+
+bool	touch(float px, float py, t_data *cub3d)
+{
+	int	x;
+	int	y;
+
+	x = px / BLOCK;
+	y = py / BLOCK;
+	if(cub3d->map[y][x] == '1')
+		return (true);
+	return (false);
 }
