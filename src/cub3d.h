@@ -13,7 +13,6 @@
 #else
 # include "../lib/minilibx-linux/mlx.h"
 #endif
-# include "../lib/minilibx-linux/mlx.h"
 # include "../lib/src/libft/libft.h"
 # include "../lib/src/get_next_line/get_next_line.h"
 # include "../lib/src/ft_printf/ft_printf.h"
