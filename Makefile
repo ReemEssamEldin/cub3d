@@ -7,7 +7,7 @@ ifeq ($(UNAME), Darwin)
 	MLXFLAGS 	= -I/usr/X11/include -lmlx -lX11 -L/usr/X11/lib -lXext
 else ifeq ($(UNAME), Linux)
 	MLXTAR		= minilibx-linux.tgz
-	MLXDIR		= ./lib/minilibx-linux/
+	MLXDIR		= ./lib/mlx/
 	MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
 	MLXFLAGS 	= -lmlx -lXext -lX11 -lm
 	MLXGIT		= https://github.com/42Paris/minilibx-linux.git
