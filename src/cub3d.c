@@ -152,7 +152,7 @@ void	init_player(t_player *player)
 {
 	player->x = (WID / 6); //start pos
 	player->y = HEI / 6; //start pos
-	player->angle = PI; //facing which way?
+	player->angle = PI ; //facing which way?
 
 	player->key_up = false;
 	player->key_down = false;
