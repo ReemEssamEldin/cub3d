@@ -63,19 +63,19 @@ void	init_mlx(t_data *cub3d)
 //experiment with mac key mappings
 int	key_press(int keysym, t_data *cub3d)
 {
-	if (keysym == XK_Escape)
+	if (keysym == XK_Escape || keysym == ESC)
 		destroy(cub3d);
-	if (keysym == XK_W || keysym == XK_w)
-		cub3d->player.key_up = true;
-	if (keysym == XK_S || keysym == XK_s)
+	if (keysym == XK_W || keysym == XK_w || keysym == W)
 		cub3d->player.key_down = true;
-	if (keysym == XK_A || keysym == XK_a)
-		cub3d->player.key_left = true;
-	if (keysym == XK_D || keysym == XK_d)
+	if (keysym == XK_S || keysym == XK_s || keysym == S)
+		cub3d->player.key_up = true;
+	if (keysym == XK_A || keysym == XK_a || keysym == A)
 		cub3d->player.key_right = true;
-	if (keysym == XK_Left)
+	if (keysym == XK_D || keysym == XK_d || keysym == D)
+		cub3d->player.key_left = true;
+	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = true;
-	if (keysym == XK_Right)
+	if (keysym == XK_Right || keysym == RIGHT)
 		cub3d->player.right_rotate = true;
 	return (0);
 }
