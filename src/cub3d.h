@@ -8,7 +8,7 @@
 # include <X11/X.h> //keys
 # include <X11/keysym.h> //keys
 # include <math.h>
-# include "../lib/mlx/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 # include "../lib/src/libft/libft.h"
 # include "../lib/src/get_next_line/get_next_line.h"
 # include "../lib/src/ft_printf/ft_printf.h"
