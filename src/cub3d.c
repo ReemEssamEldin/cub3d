@@ -26,7 +26,12 @@ int	main(int argc, char *argv[])
 	t_data	cub3d;
 
 	check_args(argc, argv[1]);
+	init_struct(&cub3d);
+	//init_map2(&cub3d, argv[1]);
 
+	//char	*audio_file;
+	//audio_file = "assets/mixkit-game-level-music-689.wav";
+	//play_audio(audio_file);
 
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
@@ -57,10 +62,41 @@ void	check_args(int argc, char *argv)
 		err_msg("Error\nOnly accepts .cub files.");
 }
 
-void	err_msg(char *err_msg)
+void	init_map2(t_data *cub3d, char *argv)
 {
-	printf("%s", err_msg);
-	exit(EXIT_FAILURE);
+	int		file;
+	char	*line;
+
+	file = open(argv, O_RDONLY);
+	if (file == -1)
+		perror("Map opening failed.");
+	line = get_next_line(file);
+	while (line)
+	{
+		if (check_header(line))
+			load_header(cub3d, line);
+		//if (header_complete(cub3d) )
+		//	load_map()
+	}
+
+	//load_map()
+}
+
+char	**init_map(void)
+{
+	char **map = malloc(sizeof(char *) * 11);
+	map[0] = "111111111111111";
+	map[1] = "100000000000001";
+	map[2] = "100000000000001";
+	map[3] = "100000100000001";
+	map[4] = "100000000000001";
+	map[5] = "100000010000001";
+	map[6] = "100001000000001";
+	map[7] = "100000000000001";
+	map[8] = "100000000000001";
+	map[9] = "111111111111111";
+	map[10] = NULL;
+	return (map);
 }
 
 void	init_cub3d(t_data *cub3d)
@@ -127,6 +163,7 @@ int	destroy(t_data *cub3d)
 		mlx_destroy_display(cub3d->mlx_ptr);
 		free(cub3d->mlx_ptr);
 	}
+	//end_audio();
 	exit(0);
 }
 
@@ -293,24 +330,6 @@ void	clear_image(t_data *cub3d)
 	for(int y = 0; y < HEI; y++)
 		for(int x = 0; x < WID; x++)
 			put_pixel(x, y, 0, cub3d);
-}
-
-char	**init_map(void)
-{
-	
-	char **map = malloc(sizeof(char *) * 11);
-	map[0] = "111111111111111";
-	map[1] = "100000000000001";
-	map[2] = "100000000000001";
-	map[3] = "100000100000001";
-	map[4] = "100000000000001";
-	map[5] = "100000010000001";
-	map[6] = "100001000000001";
-	map[7] = "100000000000001";
-	map[8] = "100000000000001";
-	map[9] = "111111111111111";
-	map[10] = NULL;
-	return (map);
 }
 
 void	draw_map(t_data *cub3d)

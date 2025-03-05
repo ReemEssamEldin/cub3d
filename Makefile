@@ -25,7 +25,9 @@ NAME-MLX			=
 endif
 
 ## Sources & headers & others
-SRC-C3				= ./src/cub3d.c
+SRC-C3				= ./src/cub3d.c \
+						./src/utils/utils.c \
+						./src/map/header.c \
 
 HEADER				= ./src/
 HEADERFILES			= ./src/cub3d.h
