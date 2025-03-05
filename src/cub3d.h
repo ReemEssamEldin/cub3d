@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
 # include <stdbool.h> //bool
 # include <fcntl.h> //open
 # include <X11/X.h> //keys
@@ -68,6 +69,21 @@ typedef struct s_player
 	bool right_rotate;
 }	t_player;
 
+typedef struct s_map
+{
+	char		*no_tex;
+	char		*so_tex;
+	char		*we_tex;
+	char		*ea_tex;
+
+	char		*fl_col;
+	char		*ce_col;
+
+	char		**map;
+	int			map_rows;
+	int			map_cols;
+}	t_map;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -81,6 +97,6 @@ typedef struct s_data
 	int			endian;
 
 	t_player	player;
-	char		**map;
+	t_map		map_info;
 }	t_data;
 #endif

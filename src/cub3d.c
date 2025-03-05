@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+void	check_args(int argc, char *argv);
+void	err_msg(char *err_msg);
 void	init_cub3d(t_data *cub3d);
 void	init_mlx(t_data *cub3d);
 int		key_press(int keysym, t_data *cub3d);
@@ -23,24 +25,42 @@ int	main(int argc, char *argv[])
 {
 	t_data	cub3d;
 
-	//check_args(argc, argv);
-	(void) argc;
-	(void) argv;
+	check_args(argc, argv[1]);
+
+
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
 	init_mlx(&cub3d);
 
 	key_hooks(&cub3d);
-	//mlx_hook(cub3d.win_ptr, KeyPress, KeyPressMask, key_press, &cub3d); //this may not work on mac
-	//mlx_hook(cub3d.win_ptr, KeyRelease, KeyReleaseMask, key_release, &cub3d); //this may not work on mac
-	//mlx_hook(cub3d.win_ptr, DestroyNotify, StructureNotifyMask, destroy, &cub3d); //this may not work on mac
-	//mlx_hook(cub3d.win_ptr, 2, 1L<<0, key_press, &cub3d); //hopefully works on mac (?)
-	//mlx_hook(cub3d.win_ptr, 3, 1L<<1, key_release, &cub3d); //hopefully works on mac (?)
-	//mlx_hook(cub3d.win_ptr, 17, 0, destroy, &cub3d); //hopefully works on mac (?)
 
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
 	mlx_loop(cub3d.mlx_ptr);
 	return (0);
+}
+
+void	check_args(int argc, char *argv)
+{
+	int		fd;
+	int		i;
+	int		j;
+
+	if (argc != 2)
+		err_msg("Error\nInvalid number of arguments.");
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		err_msg("Error\nFile does not exist.");
+	close(fd);
+	i = ft_strlen(argv) - 4;
+	j = ft_strncmp(".cub", &argv[i], 4);
+	if (j != 0)
+		err_msg("Error\nOnly accepts .cub files.");
+}
+
+void	err_msg(char *err_msg)
+{
+	printf("%s", err_msg);
+	exit(EXIT_FAILURE);
 }
 
 void	init_cub3d(t_data *cub3d)
@@ -52,7 +72,7 @@ void	init_cub3d(t_data *cub3d)
 
 void	init_mlx(t_data *cub3d)
 {
-	cub3d->map = init_map();
+	cub3d->map_info.map = init_map();
 	cub3d->mlx_ptr = mlx_init();
 	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WID, HEI, "Prototype");
 	cub3d->img_ptr = mlx_new_image(cub3d->mlx_ptr, WID, HEI);
@@ -277,6 +297,7 @@ void	clear_image(t_data *cub3d)
 
 char	**init_map(void)
 {
+	
 	char **map = malloc(sizeof(char *) * 11);
 	map[0] = "111111111111111";
 	map[1] = "100000000000001";
@@ -290,38 +311,11 @@ char	**init_map(void)
 	map[9] = "111111111111111";
 	map[10] = NULL;
 	return (map);
-/* 	char **map = malloc(sizeof(char *) * 25);
-	map[0] = "111111111111111111111111";
-	map[1] = "100000000000000000000001";
-	map[2] = "100000000000000000000001";
-	map[3] = "100000000000000000000001";
-	map[4] = "100000111110000101010001";
-	map[5] = "100000100010000000000001";
-	map[6] = "100000100010000100010001";
-	map[7] = "100000100010000000000001";
-	map[8] = "100000110110000101010001";
-	map[9] = "100000000000000000000001";
-	map[10] = "100000000000000000000001";
-	map[11] = "100000000000000000000001";
-	map[12] = "100000000000000000000001";
-	map[13] = "100000000000000000000001";
-	map[14] = "100000000000000000000001";
-	map[15] = "100000000000000000000001";
-	map[16] = "111111111000000000000001";
-	map[17] = "110100001000000000000001";
-	map[18] = "110000101000000000000001";
-	map[19] = "110100001000000000000001";
-	map[20] = "110111111000000000000001";
-	map[21] = "110000000000000000000001";
-	map[22] = "111111111000000000000001";
-	map[23] = "111111111111111111111111";
-	map[24] = NULL;
-	return (map); */
 }
 
 void	draw_map(t_data *cub3d)
 {
-	char **map = cub3d->map;
+	char **map = cub3d->map_info.map;
 	int color = GRE;
 	for(int y = 0; map[y]; y++)
 		for(int x = 0; map[y][x]; x++)
@@ -336,7 +330,7 @@ bool	touch(float px, float py, t_data *cub3d)
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if(cub3d->map[y][x] == '1')
+	if(cub3d->map_info.map[y][x] == '1')
 		return (true);
 	return (false);
 }
