@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 
 	check_args(argc, argv[1]);
 	init_struct(&cub3d);
-	//init_map2(&cub3d, argv[1]);
+	init_map2(&cub3d, argv[1]);
 
 	//char	*audio_file;
 	//audio_file = "assets/mixkit-game-level-music-689.wav";
@@ -60,26 +60,6 @@ void	check_args(int argc, char *argv)
 	j = ft_strncmp(".cub", &argv[i], 4);
 	if (j != 0)
 		err_msg("Error\nOnly accepts .cub files.");
-}
-
-void	init_map2(t_data *cub3d, char *argv)
-{
-	int		file;
-	char	*line;
-
-	file = open(argv, O_RDONLY);
-	if (file == -1)
-		perror("Map opening failed.");
-	line = get_next_line(file);
-	while (line)
-	{
-		if (check_header(line))
-			load_header(cub3d, line);
-		//if (header_complete(cub3d) )
-		//	load_map()
-	}
-
-	//load_map()
 }
 
 char	**init_map(void)
