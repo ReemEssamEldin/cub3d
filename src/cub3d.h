@@ -17,8 +17,9 @@
 # include "../lib/src/libft/libft.h"
 # include "../lib/src/get_next_line/get_next_line.h"
 # include "../lib/src/ft_printf/ft_printf.h"
-# include "map/map.h"
-# include "utils/utils.h"
+# include "./structs.h"
+# include "./map/map.h"
+# include "./utils/utils.h"
 
 # define WID 1280
 # define HEI 720
@@ -56,49 +57,4 @@ enum
 	DESTROY = 17
 };
 
-typedef struct s_player
-{
-	float x;
-	float y;
-	float angle;
-
-	bool key_up;
-	bool key_down;
-	bool key_left;
-	bool key_right;
-
-	bool left_rotate;
-	bool right_rotate;
-}	t_player;
-
-typedef struct s_map
-{
-	char		*no_tex;
-	char		*so_tex;
-	char		*we_tex;
-	char		*ea_tex;
-
-	char		*fl_col;
-	char		*ce_col;
-
-	char		**map;
-	int			map_rows;
-	int			map_cols;
-}	t_map;
-
-typedef struct s_data
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
-	void		*img_ptr_mm;
-
-	char		*addr;
-	int			bpp;
-	int			line_len;
-	int			endian;
-
-	t_player	player;
-	t_map		map_info;
-}	t_data;
 #endif
