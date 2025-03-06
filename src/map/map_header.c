@@ -21,7 +21,7 @@ void	load_header(t_data *cub3d, char *line)
 		cub3d->map_info.so_tex = ft_strdup(line);
 	else if (ft_strncmp(line, "F ", 2) == 0)
 		cub3d->map_info.fl_col = ft_strdup(line);
-	else if (ft_strncmp(line, "C ", 3) == 0)
+	else if (ft_strncmp(line, "C ", 2) == 0)
 		cub3d->map_info.ce_col = ft_strdup(line);
 }
 
