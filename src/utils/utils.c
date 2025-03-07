@@ -1,10 +1,27 @@
 #include "utils.h"
 
-void	err_msg(char *err_msg)
+void	err_msg(t_data *cub3d, char *err_msg)
 {
 	printf("%s", err_msg);
+	clean_header(&cub3d->map_info);
 	//frees/destroys go here;
 	exit(EXIT_FAILURE);
+}
+
+void	clean_header(t_map *map_info)
+{
+	if (map_info->no_tex)
+		free(map_info->no_tex);
+	if (map_info->so_tex)
+		free(map_info->so_tex);
+	if (map_info->ea_tex)
+		free(map_info->ea_tex);
+	if (map_info->we_tex)
+		free(map_info->we_tex);
+	if (map_info->fl_col)
+		free(map_info->fl_col);
+	if (map_info->ce_col)
+		free(map_info->ce_col);
 }
 
 char	*remove_trailing(char *str, char const *c)

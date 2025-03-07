@@ -4,25 +4,17 @@ void	init_struct(t_data *cub3d);
 
 void	init_map2(t_data *cub3d, char *argv)
 {
-	int		file;
-	char	*line;
-
 	init_struct(cub3d);
-	file = open(argv, O_RDONLY);
-	if (file == -1)
-		perror("Map opening failed.");
-	line = get_next_line(file);
-	while (line)
-	{
-		if (check_header(line))
-			load_header(cub3d, line);
-		free(line);
-		line = get_next_line(file);
-		// if (header_complete(cub3d) && )
-		// 	load_map();
-	}
-	free(line);
-	//load_map()
+	read_header(cub3d, argv);
+	printf("%s\n", cub3d->map_info.no_tex);
+	printf("%s\n", cub3d->map_info.so_tex);
+	printf("%s\n", cub3d->map_info.ea_tex);
+	printf("%s\n", cub3d->map_info.we_tex);
+	printf("%s\n", cub3d->map_info.fl_col);
+	printf("%s\n", cub3d->map_info.ce_col);
+	if (header_complete(cub3d) != 1)
+		err_msg(cub3d, "Error\nIncomplete header.");
+	
 	//return;
 }
 

@@ -1,7 +1,6 @@
 #include "cub3d.h"
 
 void	check_args(int argc, char *argv);
-void	err_msg(char *err_msg);
 void	init_cub3d(t_data *cub3d);
 void	init_mlx(t_data *cub3d);
 int		key_press(int keysym, t_data *cub3d);
@@ -27,24 +26,20 @@ int	main(int argc, char *argv[])
 
 	check_args(argc, argv[1]);
 	init_map2(&cub3d, argv[1]);
-	printf("%s\n", cub3d.map_info.no_tex);
-	printf("%s\n", cub3d.map_info.so_tex);
-	printf("%s\n", cub3d.map_info.ea_tex);
-	printf("%s\n", cub3d.map_info.we_tex);
-	printf("%s\n", cub3d.map_info.fl_col);
-	printf("%s\n", cub3d.map_info.ce_col);
+
 	//char	*audio_file;
 	//audio_file = "assets/mixkit-game-level-music-689.wav";
 	//play_audio(audio_file);
 
-	init_cub3d(&cub3d);
+/* 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
 	init_mlx(&cub3d);
 
 	key_hooks(&cub3d);
 
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
-	mlx_loop(cub3d.mlx_ptr);
+	mlx_loop(cub3d.mlx_ptr); */
+	clean_header(&cub3d.map_info);
 	return (0);
 }
 
@@ -55,15 +50,15 @@ void	check_args(int argc, char *argv)
 	int		j;
 
 	if (argc != 2)
-		err_msg("Error\nInvalid number of arguments.");
+		err_msg(NULL, "Error\nInvalid number of arguments.");
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		err_msg("Error\nFile does not exist.");
+		err_msg(NULL, "Error\nFile does not exist.");
 	close(fd);
 	i = ft_strlen(argv) - 4;
 	j = ft_strncmp(".cub", &argv[i], 4);
 	if (j != 0)
-		err_msg("Error\nOnly accepts .cub files.");
+		err_msg(NULL, "Error\nOnly accepts .cub files.");
 }
 
 char	**init_map(void)
