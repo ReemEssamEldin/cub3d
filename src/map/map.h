@@ -4,8 +4,8 @@
 # include "../cub3d.h"
 
 //map_init.c
-void	init_struct(t_data *cub3d);
 void	init_map2(t_data *cub3d, char *argv);
+void	init_struct(t_data *cub3d);
 
 //map_header.c
 int		check_header(char *line);

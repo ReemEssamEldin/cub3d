@@ -3,6 +3,7 @@
 void	err_msg(char *err_msg)
 {
 	printf("%s", err_msg);
+	//frees/destroys go here;
 	exit(EXIT_FAILURE);
 }
 

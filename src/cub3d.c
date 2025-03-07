@@ -26,9 +26,13 @@ int	main(int argc, char *argv[])
 	t_data	cub3d;
 
 	check_args(argc, argv[1]);
-	init_struct(&cub3d);
 	init_map2(&cub3d, argv[1]);
-
+	printf("%s\n", cub3d.map_info.no_tex);
+	printf("%s\n", cub3d.map_info.so_tex);
+	printf("%s\n", cub3d.map_info.ea_tex);
+	printf("%s\n", cub3d.map_info.we_tex);
+	printf("%s\n", cub3d.map_info.fl_col);
+	printf("%s\n", cub3d.map_info.ce_col);
 	//char	*audio_file;
 	//audio_file = "assets/mixkit-game-level-music-689.wav";
 	//play_audio(audio_file);
