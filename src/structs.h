@@ -25,8 +25,8 @@ typedef struct s_map
 	char		*we_tex;
 	char		*ea_tex;
 
-	char		*fl_col;
-	char		*ce_col;
+	char		*fl_col; //maybe array?
+	char		*ce_col; //maybe array?
 
 	char		**map;
 	int			map_rows;

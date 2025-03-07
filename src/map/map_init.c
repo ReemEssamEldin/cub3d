@@ -1,5 +1,6 @@
 #include "map.h"
 
+void	init_map2(t_data *cub3d, char *argv);
 void	init_struct(t_data *cub3d);
 
 void	init_map2(t_data *cub3d, char *argv)
@@ -14,8 +15,7 @@ void	init_map2(t_data *cub3d, char *argv)
 	printf("%s\n", cub3d->map_info.ce_col);
 	if (header_complete(cub3d) != 1)
 		err_msg(cub3d, "Error\nIncomplete header.");
-	
-	//return;
+	read_content(cub3d, argv);
 }
 
 void	init_struct(t_data *cub3d)
