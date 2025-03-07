@@ -12,7 +12,7 @@ void	init_player(t_player *player);
 void	move_player(t_player *player);
 int		draw_loop(t_data *cub3d);
 void	clear_image(t_data *cub3d);
-char	**init_map(void);
+//char	**init_map(void);
 void	draw_map(t_data *cub3d);
 bool	touch(float px, float py, t_data *cub3d);
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i);
@@ -25,20 +25,21 @@ int	main(int argc, char *argv[])
 	t_data	cub3d;
 
 	check_args(argc, argv[1]);
-	init_map2(&cub3d, argv[1]);
+	init_map(&cub3d, argv[1]);
 
 	//char	*audio_file;
 	//audio_file = "assets/mixkit-game-level-music-689.wav";
 	//play_audio(audio_file);
 
-/* 	init_cub3d(&cub3d);
+	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
 	init_mlx(&cub3d);
 
 	key_hooks(&cub3d);
 
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
-	mlx_loop(cub3d.mlx_ptr); */
+	mlx_loop(cub3d.mlx_ptr);
+	
 	clean_mapheader(&cub3d.map_info);
 	clean_mapcontent(&cub3d.map_info);
 	return (0);
@@ -62,23 +63,6 @@ void	check_args(int argc, char *argv)
 		err_msg(NULL, "Error\nOnly accepts .cub files.");
 }
 
-char	**init_map(void)
-{
-	char **map = malloc(sizeof(char *) * 11);
-	map[0] = "111111111111111";
-	map[1] = "100000000000001";
-	map[2] = "100000000000001";
-	map[3] = "100000100000001";
-	map[4] = "100000000000001";
-	map[5] = "100000010000001";
-	map[6] = "100001000000001";
-	map[7] = "100000000000001";
-	map[8] = "100000000000001";
-	map[9] = "111111111111111";
-	map[10] = NULL;
-	return (map);
-}
-
 void	init_cub3d(t_data *cub3d)
 {
 	cub3d->mlx_ptr = NULL;
@@ -88,7 +72,6 @@ void	init_cub3d(t_data *cub3d)
 
 void	init_mlx(t_data *cub3d)
 {
-	cub3d->map_info.map = init_map();
 	cub3d->mlx_ptr = mlx_init();
 	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WID, HEI, "Prototype");
 	cub3d->img_ptr = mlx_new_image(cub3d->mlx_ptr, WID, HEI);
