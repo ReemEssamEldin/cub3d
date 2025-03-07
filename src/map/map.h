@@ -14,8 +14,8 @@ void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
 
 //map_content.c
-void	load_map(char *cub_file, t_data *cub3d);
-int		read_cub(char *cub_file);
+void	read_content(t_data *cub3d, char *cub_file);
+int		read_cub(t_data *cub3d, char *cub_file);
 int		fill_map(char *cub_file, t_data *cub3d);
 
 #endif

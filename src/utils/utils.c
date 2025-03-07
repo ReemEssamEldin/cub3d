@@ -3,12 +3,13 @@
 void	err_msg(t_data *cub3d, char *err_msg)
 {
 	printf("%s", err_msg);
-	clean_header(&cub3d->map_info);
+	clean_mapheader(&cub3d->map_info);
+	clean_mapcontent(&cub3d->map_info);
 	//frees/destroys go here;
 	exit(EXIT_FAILURE);
 }
 
-void	clean_header(t_map *map_info)
+void	clean_mapheader(t_map *map_info)
 {
 	if (map_info->no_tex)
 		free(map_info->no_tex);
@@ -24,7 +25,20 @@ void	clean_header(t_map *map_info)
 		free(map_info->ce_col);
 }
 
-char	*remove_trailing(char *str, char const *c)
+void	clean_mapcontent(t_map *map_info)
+{
+	int	i;
+
+	i = 0;
+	while (map_info->map[i] != NULL)
+	{
+		free(map_info->map[i]);
+		i++;
+	}
+	free(map_info->map);
+}
+
+/* char	*remove_trailing(char *str, char const *c)
 {
 	int		start;
 	int		end;
@@ -44,4 +58,18 @@ char	*remove_trailing(char *str, char const *c)
 	ft_strncpy(trimmed, (str + start), end);
 	free(str);
 	return (trimmed);
+} */
+
+char *remove_trailing(char *str, char *c)
+{
+	int len;
+
+	len = ft_strlen(str);
+	while (len > 0 && ft_strchr(c, str[len - 1]) != NULL)
+	{
+		str[len - 1] = '\0';
+		len--;
+	}
+	
+	return str;
 }

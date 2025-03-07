@@ -39,7 +39,8 @@ int	main(int argc, char *argv[])
 
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
 	mlx_loop(cub3d.mlx_ptr); */
-	clean_header(&cub3d.map_info);
+	clean_mapheader(&cub3d.map_info);
+	clean_mapcontent(&cub3d.map_info);
 	return (0);
 }
 
