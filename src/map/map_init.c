@@ -1,9 +1,9 @@
 #include "map.h"
 
-void	init_map2(t_data *cub3d, char *argv);
+void	init_map(t_data *cub3d, char *argv);
 void	init_struct(t_data *cub3d);
 
-void	init_map2(t_data *cub3d, char *argv)
+void	init_map(t_data *cub3d, char *argv)
 {
 	init_struct(cub3d);
 	read_header(cub3d, argv);
