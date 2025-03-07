@@ -70,6 +70,5 @@ char *remove_trailing(char *str, char *c)
 		str[len - 1] = '\0';
 		len--;
 	}
-	
 	return str;
 }
