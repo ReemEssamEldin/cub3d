@@ -4,21 +4,13 @@
 ## Preparation, set up MLX
 UNAME				= $(shell uname)
 ifeq ($(UNAME), Darwin)
-<<<<<<< HEAD
-	MLXTAR		= minilibx_opengl
-	MLXDIR		= ./lib/mlx/ 
-	MLXURL		= "https://cdn.intra.42.fr/document/document/30911/minilibx_opengl.tgz"
-	MLXFLAGS 	= -lmlx -framework OpenGL -framework AppKit 
-#	MLXGIT		= https://github.com/dannywillems/minilibx-mac-osx.git
-=======
 	MLXFLAGS 	= -I/usr/X11/include -lmlx -lX11 -L/usr/X11/lib -lXext
->>>>>>> r-fix-macos
 else ifeq ($(UNAME), Linux)
-	MLXTAR		= minilibx-linux
-	MLXDIR		= ./lib/mlx/
+	MLXTAR		= minilibx-linux.tgz
+	MLXDIR		= ./lib/minilibx-linux/
 	MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
 	MLXFLAGS 	= -lmlx -lXext -lX11 -lm
-#	MLXGIT		= https://github.com/42Paris/minilibx-linux.git
+	MLXGIT		= https://github.com/42Paris/minilibx-linux.git
 endif
 
 ## Name(s)
@@ -68,19 +60,12 @@ clean:
 fclean:				clean
 					@make fclean -C ./lib
 					@echo "$(RED)Libft's gone, baby, gone!$(COLOFF)"
-<<<<<<< HEAD
-					@$(RM) ./lib/$(MLXTAR)
-					@make clean -C $(MLXDIR)
-					@rm -rf $(MLXDIR)
-					@echo "$(RED)Minilibx's gone, baby, gone!$(COLOFF)"
-=======
 					@if [ "$(UNAME)" = "Linux" ]; then \
 						$(RM) ./lib/$(MLXTAR); \
 						make clean -C ./lib/minilibx-linux; \
 						rm -rf $(MLXDIR); \
 						echo "$(RED)Minilibx's gone, baby, gone!$(COLOFF)"; \
 					fi
->>>>>>> r-fix-macos
 
 re:					fclean all
 
@@ -96,8 +81,7 @@ $(NAME-MLX):
 		echo "$(YELLOW)Getting minilibx.$(COLOFF)"; \
 		curl -0 "${MLXURL}" --output ./lib/"${MLXTAR}"; \
 		echo "$(YELLOW)Extracting minilibx.$(COLOFF)"; \
-		mkdir -p ${MLXDIR}; \
-		tar -xzvf ./lib/"${MLXTAR}" -C ${MLXDIR} --strip-components=1 > /dev/null; \
+		tar -xzvf ./lib/"${MLXTAR}" -C ./lib/ > /dev/null; \
 		fi
 		@echo "$(YELLOW)Making minilibx.$(COLOFF)"
 		@make -C ${MLXDIR} -s
