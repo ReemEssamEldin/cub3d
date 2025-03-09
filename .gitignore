@@ -111,5 +111,9 @@ valgrind-out.txt
 
 ## MLX
 lib/minilibx-linux.tgz
+<<<<<<< HEAD
 lib/minilibx-linux/
 lib/mlx/
+=======
+lib/minilibx-linux/
+>>>>>>> r-fix-macos
