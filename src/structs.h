@@ -38,7 +38,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	void		*img_ptr_mm;
+	void		*img_ptr_mm; //minimap
 
 	char		*addr;
 	int			bpp;

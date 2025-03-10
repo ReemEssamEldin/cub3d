@@ -27,9 +27,9 @@ int	main(int argc, char *argv[])
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
 
-	//char	*audio_file;
-	//audio_file = "assets/mixkit-game-level-music-689.wav";
-	//play_audio(audio_file);
+	char	*audio_file;
+	audio_file = "assets/audio/mixkit-game-level-music-689.wav";
+	play_audio(audio_file);
 
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
@@ -131,7 +131,7 @@ int	destroy(t_data *cub3d)
 	}
 	clean_mapheader(&cub3d->map_info);
 	clean_mapcontent(&cub3d->map_info);
-	//end_audio();
+	end_audio();
 	exit(0);
 }
 

@@ -20,6 +20,7 @@
 # include "./structs.h"
 # include "./map/map.h"
 # include "./utils/utils.h"
+# include "./audio/audio.h"
 
 # define WID 1280
 # define HEI 720
