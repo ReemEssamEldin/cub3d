@@ -3,8 +3,11 @@
 void	err_msg(t_data *cub3d, char *err_msg)
 {
 	printf("%s", err_msg);
-	clean_mapheader(&cub3d->map_info);
-	clean_mapcontent(&cub3d->map_info);
+	if (cub3d)
+	{
+		clean_mapheader(&cub3d->map_info);
+		clean_mapcontent(&cub3d->map_info);
+	}
 	//frees/destroys go here;
 	exit(EXIT_FAILURE);
 }
