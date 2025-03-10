@@ -119,6 +119,9 @@ int	key_release(int keysym, t_data *cub3d)
 
 int	destroy(t_data *cub3d)
 {
+	
+	if (cub3d->img_ptr)
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img_ptr);
 	if (cub3d->win_ptr)
 		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
 	if (cub3d->mlx_ptr)
@@ -126,6 +129,8 @@ int	destroy(t_data *cub3d)
 		mlx_destroy_display(cub3d->mlx_ptr);
 		free(cub3d->mlx_ptr);
 	}
+	clean_mapheader(&cub3d->map_info);
+	clean_mapcontent(&cub3d->map_info);
 	//end_audio();
 	exit(0);
 }
