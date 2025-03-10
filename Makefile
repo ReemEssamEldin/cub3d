@@ -81,7 +81,9 @@ $(NAME-MLX):
 		echo "$(YELLOW)Getting minilibx.$(COLOFF)"; \
 		curl -0 "${MLXURL}" --output ./lib/"${MLXTAR}"; \
 		echo "$(YELLOW)Extracting minilibx.$(COLOFF)"; \
+		mkdir -p ${MLXDIR}; \
 		tar -xzvf ./lib/"${MLXTAR}" -C ./lib/ > /dev/null; \
+		rm -rf ${MLXDIR}/.git/; \
 		fi
 		@echo "$(YELLOW)Making minilibx.$(COLOFF)"
 		@make -C ${MLXDIR} -s

@@ -8,6 +8,7 @@
 - https://github.com/Sleleu/Cub3d - seems cool, also make computer screams
 - https://github.com/Rush-iam/nGragasstein3D-cub3D - looks badass
 - https://github.com/ael-bekk/Cub3d-Advanced-Raycasting - looks badass
+- https://github.com/eschirni/cub3d
 
 #### Tutorial
 - https://lodev.org/cgtutor/
@@ -16,6 +17,10 @@
 - https://ismailassil.medium.com/ray-casting-c-8bfae2c2fc13
 - https://github.com/vinibiavatti1/RayCastingTutorial/wiki
 - https://www.youtube.com/watch?v=G9i78WoBBIU --> following this currently
+- https://github.com/gleal42/cub3d
+- https://github.com/Gontjarow/MiniLibX/blob/master/docs/index.md
+- https://github.com/terry-yes/mlx_example
+- https://website-b-bischoff.vercel.app/cube3d
 
 #### Useful?
 - https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/ -- Ooo, in french!
@@ -23,6 +28,7 @@
 - https://github.com/qst0/ft_libgfx
 - https://github.com/RhesusP/cub3D
 - https://github.com/keuhdall/images_example
+- https://doomwiki.org/wiki/Doom_source_code_files
 
 ### miniRT (Raytracing)
 - https://42-cursus.gitbook.io/guide/rank-04/minirt
