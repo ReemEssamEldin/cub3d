@@ -13,11 +13,6 @@
 #else
 # include "../lib/minilibx-linux/mlx.h"
 #endif
-# ifdef __APPLE__
-#  include <mlx.h>
-# else
-#  include "../lib/minilibx-linux/mlx.h"
-# endif
 # include "../lib/src/libft/libft.h"
 # include "../lib/src/get_next_line/get_next_line.h"
 # include "../lib/src/ft_printf/ft_printf.h"
@@ -57,29 +52,20 @@ enum
 	EXPOSE = 12,
 	DESTROY = 17
 };
-# define BLOCK 64 //what?
-
-# define RED 0xFF0000
-# define GRE 0x008000
-# define BLU 0x0000FF
-# define YEL 0xFFFF00
-# define VIO 0x800080
-# define WHI 0xFFFFFF
-# define BLA 0x000000
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	angle;
+	float x;
+	float y;
+	float angle;
 
-	bool	key_up;
-	bool	key_down;
-	bool	key_left;
-	bool	key_right;
+	bool key_up;
+	bool key_down;
+	bool key_left;
+	bool key_right;
 
-	bool	left_rotate;
-	bool	right_rotate;
+	bool left_rotate;
+	bool right_rotate;
 }	t_player;
 
 typedef struct s_data
@@ -93,15 +79,8 @@ typedef struct s_data
 	int			bpp;
 	int			line_len;
 	int			endian;
-	char		*addr;
-	int			bpp;
-	int			line_len;
-	int			endian;
 
-	t_player	player;
-	char		**map;
 	t_player	player;
 	char		**map;
 }	t_data;
 #endif
-

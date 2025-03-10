@@ -50,21 +50,6 @@ void	init_cub3d(t_data *cub3d)
 	cub3d->img_ptr = NULL;
 }
 
-void	init_player(t_player *player)
-{
-	player->x = WID / 2;
-	player->y = HEI / 2;
-	player->angle = PI / 2;
-
-	player->key_up = false;
-	player->key_down = false;
-	player->key_right = false;
-	player->key_left = false;
-
-	player->left_rotate = false;
-	player->right_rotate = false;
-}
-
 void	init_mlx(t_data *cub3d)
 {
 	cub3d->map = init_map();
@@ -153,22 +138,14 @@ void	put_pixel(int x, int y, int color, t_data *cub3d)
 
 void	draw_square(int x, int y, int size, int color, t_data *cub3d)
 {
-	move_player(&cub3d->player);
-	clear_image(cub3d);
-	draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
-	draw_map(cub3d);
-
-	float fraction = PI /3 / WID;
-	float start_x = cub3d->player.angle - PI / 6;
-	int i = 0;
-	while(i < WID)
-	{
-		draw_line(&cub3d->player, cub3d, start_x, i);
-		start_x += fraction;
-		i++;
-	}
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
-	return(0);
+	for(int i = 0; i < size; i++)
+		put_pixel(x + i, y, color, cub3d);
+	for(int i = 0; i < size; i++)
+		put_pixel(x, y + i, color, cub3d);
+	for(int i = 0; i < size; i++)
+		put_pixel(x + size, y + i, color, cub3d);
+	for(int i = 0; i < size; i++)
+		put_pixel(x + i, y + size, color, cub3d);
 }
 
 void	init_player(t_player *player)
