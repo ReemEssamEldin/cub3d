@@ -1,0 +1,13 @@
+Hello and welcome!
+
+Includes over 900 black and white seamlessly tiling textures. They're intended to be tinted with CSS blending modes or within a game engine's image color tint parameter. This way you can slap a BW texture onto anything, then apply any color from the rainbow via 'color tint', 'shaders' or 'blending modes' to create cool versatile results. In some cases you can even animate colors or apply gradients that flow over these textures in a cool way.
+
+Format: High Quality JPG or PNG
+Image Size: 128x128px
+
+Use them as website backgrounds, 3D model textures or in any other artistic endeavours.
+
+--
+
+Compiled by: Reactorcore
+http://www.reactorcoregames.com
