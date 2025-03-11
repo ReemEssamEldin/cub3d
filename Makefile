@@ -25,16 +25,21 @@ NAME-MLX			=
 endif
 
 ## Sources & headers & others
-SRC-C3				= ./src/cub3d.c
+SRC-C3				= ./src/cub3d.c \
+						./src/utils/utils.c \
+						./src/map/map_init.c \
+						./src/map/map_header.c \
+						./src/map/map_content.c \
+						./src/audio/audio.c \
 
 HEADER				= ./src/
-HEADERFILES			= ./src/cub3d.h
+
 
 # Determine dependencies based on OS
 ifeq ($(UNAME), Linux)
-C3-DEPS = $(SRC-C3) $(NAME-LIBFT) $(HEADERFILES) $(NAME-MLX)
+C3-DEPS = $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX)
 else
-C3-DEPS = $(SRC-C3) $(NAME-LIBFT) $(HEADERFILES)
+C3-DEPS = $(SRC-C3) $(NAME-LIBFT) 
 endif
 
 ## Compiler, flags, & other commands
@@ -70,7 +75,7 @@ fclean:				clean
 re:					fclean all
 
 test:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME-SL)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME-C3) ./assets/maps/small.cub 
 
 ##------------------------------------------------------------------##
 # Targets

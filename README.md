@@ -17,18 +17,23 @@
 - https://ismailassil.medium.com/ray-casting-c-8bfae2c2fc13
 - https://github.com/vinibiavatti1/RayCastingTutorial/wiki
 - https://www.youtube.com/watch?v=G9i78WoBBIU --> following this currently
+- https://github.com/BEQSONA-cmd/RayCaster/tree/main --> following this currently
 - https://github.com/gleal42/cub3d
 - https://github.com/Gontjarow/MiniLibX/blob/master/docs/index.md
 - https://github.com/terry-yes/mlx_example
 - https://website-b-bischoff.vercel.app/cube3d
+- https://reactive.so/post/42-a-comprehensive-guide-to-cub3d/
 
 #### Useful?
 - https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/ -- Ooo, in french!
+- https://github.com/iciamyplant/Cub3d-Linux --> in french too
 - https://github.com/Saxsori/ray-cast
 - https://github.com/qst0/ft_libgfx
 - https://github.com/RhesusP/cub3D
 - https://github.com/keuhdall/images_example
 - https://doomwiki.org/wiki/Doom_source_code_files
+- https://github.com/id-Software/wolf3d/tree/master - wolfenstein 3d
+- https://github.com/Edvinas1122/cub3D --> incorporate audio
 
 ### miniRT (Raytracing)
 - https://42-cursus.gitbook.io/guide/rank-04/minirt
