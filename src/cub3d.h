@@ -23,6 +23,7 @@
 # include "./audio/audio.h"
 # include "./drawing/drawing.h"
 # include "./key_mapping/key_map.h"
+# include "./init/init.h"
 
 # define WID 1280
 # define HEI 720
@@ -61,18 +62,7 @@ enum
 };
 
 //----------------------------------------------------------------------
-void	init_cub3d(t_data *cub3d);
-void	init_mlx(t_data *cub3d);
-void	init_player(t_player *player);
-//char	**init_map(void);
-//----------------------------------------------------------------------
 int		destroy(t_data *cub3d);
-void	clear_image(t_data *cub3d);
-//----------------------------------------------------------------------
-bool	touch(float px, float py, t_data *cub3d);
-float	distance(float x, float y);
-float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
-//----------------------------------------------------------------------
 void	check_args(int argc, char *argv);
 //----------------------------------------------------------------------
 

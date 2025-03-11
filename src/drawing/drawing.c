@@ -224,3 +224,9 @@ void	draw_map(t_data *cub3d)
 			if (map[y][x] == '1')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, color, cub3d);
 }
+void	clear_image(t_data *cub3d)
+{
+	for(int y = 0; y < HEI; y++)
+		for(int x = 0; x < WID; x++)
+			put_pixel(x, y, 0, cub3d);
+}
