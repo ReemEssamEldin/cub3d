@@ -1,11 +1,11 @@
 EA ./assets/textures/HW1.png
-NO ./assets/textures/HW1.png
+NO 		./assets/textures/HW3.png
 
 
 F 220,100,0
 SO ./assets/textures/HW4.png
 
-WE ./assets/textures/HW7.png
+WE    ./assets/textures/HW2.png
 //EA ./path_to_the_east_texture2
 
 C 225,30,0

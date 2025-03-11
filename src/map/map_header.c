@@ -89,12 +89,12 @@ void	load_header(t_data *cub3d, char *line)
 {
 	char	*complete_path;
 
+	complete_path = NULL;
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		if (cub3d->map_info.no_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling no_tex");
 		complete_path = get_comppath(line);
-		//printf("%s", complete_path);
 		if (verify_file(complete_path))
 			cub3d->map_info.no_tex = ft_strdup(line);
 	}
@@ -103,7 +103,6 @@ void	load_header(t_data *cub3d, char *line)
 		if (cub3d->map_info.so_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling so_tex");
 		complete_path = get_comppath(line);
-		//printf("%s", complete_path);
 		if (verify_file(complete_path))	
 			cub3d->map_info.so_tex = ft_strdup(line);
 	}
@@ -112,7 +111,6 @@ void	load_header(t_data *cub3d, char *line)
 		if (cub3d->map_info.ea_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling ea_tex");
 		complete_path = get_comppath(line);
-		//printf("%s", complete_path);
 		if (verify_file(complete_path))
 			cub3d->map_info.ea_tex = ft_strdup(line);
 	}
@@ -121,7 +119,6 @@ void	load_header(t_data *cub3d, char *line)
 		if (cub3d->map_info.we_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling we_tex");
 		complete_path = get_comppath(line);
-		//printf("%s", complete_path);
 		if (verify_file(complete_path))
 			cub3d->map_info.we_tex = ft_strdup(line);
 	}
@@ -137,6 +134,7 @@ void	load_header(t_data *cub3d, char *line)
 			err_msg(cub3d, "Error\nRefilling ce_col");
 		cub3d->map_info.ce_col = ft_strdup(line);
 	}
+	free(complete_path);
 }
 
 /**
@@ -162,6 +160,20 @@ int	header_complete(t_data *cub3d)
 	return(0);
 }
 
+/**
+ * @brief Extracts the complete path from a line of text.
+ *
+ * This function parses a line to extract a path. It works as follows:
+ * 1. Skips the initial part of the line until it finds a space
+ * 2. Skips any spaces or tabs
+ * 3. Captures the remaining content until newline or carriage return
+ *
+ * @param line The input line containing a path to extract
+ * @return A newly allocated string with the extracted path, 
+ *         or NULL if allocation fails
+ * 
+ * @note The caller is responsible for freeing the returned string
+ */
 char	*get_comppath(char *line)
 {
 	/* int	len;
@@ -178,7 +190,7 @@ char	*get_comppath(char *line)
 	i = 0;
 	while (line[i] && line[i] != ' ')
 		i++;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	start = i;
 	while (line[i] && line[i] != '\n' && line[i] != '\r')
@@ -187,6 +199,16 @@ char	*get_comppath(char *line)
 	return (complete_path);
 }
 
+/**
+ * @brief Verifies if a file exists and is readable
+ *
+ * This function attempts to open the provided file path in read-only mode
+ * to check if the file exists and is accessible for reading.
+ *
+ * @param complete_path The full path to the file to verify
+ * @return 1 if the file exists and is readable, 0 otherwise
+ * @note If the file cannot be opened, an error message is printed to stdout
+ */
 int	verify_file(char *complete_path)
 {
 	int		file;
