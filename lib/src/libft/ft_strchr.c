@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:12:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/08/01 12:05:51 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:25:01 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (s[i] == (char)c)
 		return ((char *)(s + i));
-	return ((void *) 0);
+	return (0);
 }
 
 /*

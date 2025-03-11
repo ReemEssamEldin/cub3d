@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 18:45:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/07/31 18:53:56 by hsetyamu         ###   ########.fr       */
+/*   Created: 2024/11/25 13:55:18 by hsetyamu          #+#    #+#             */
+/*   Updated: 2024/11/26 21:07:56 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+/* int	ft_isspace(char c)
 {
-	unsigned int	i;
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+} */
 
-	i = 0;
-	while (src[i] && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+int	ft_isspace(int c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
 }

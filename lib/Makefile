@@ -45,6 +45,7 @@ SRC					= $(DIR_FPF)ft_printf.c \
 					$(DIR_LFT)ft_strchr.c \
 					$(DIR_LFT)ft_strrchr.c \
 					$(DIR_LFT)ft_strncmp.c \
+					$(DIR_LFT)ft_strcmp.c \
 					$(DIR_LFT)ft_memchr.c \
 					$(DIR_LFT)ft_memcmp.c \
 					$(DIR_LFT)ft_strnstr.c \
@@ -71,7 +72,10 @@ SRC					= $(DIR_FPF)ft_printf.c \
 					$(DIR_LFT)ft_lstmap.c \
 					$(DIR_LFT)ft_lstnew.c \
 					$(DIR_LFT)ft_lstsize.c \
-					$(DIR_LFT)ft_strncpy.c \
+					$(DIR_LFT)ft_atol.c \
+					$(DIR_LFT)ft_isspace.c \
+					$(DIR_LFT)ft_realloc.c \
+					$(DIR_LFT)ft_isnumber.c \
 
 OBJ					= $(SRC:.c=.o)
 
