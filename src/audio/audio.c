@@ -48,9 +48,10 @@ void play_audio(char *audio_file)
 	char		*path;
 
 	audio_player = detect_audioplayer();
-	argv = ft_calloc(3, sizeof(char *));
+	argv = ft_calloc(4, sizeof(char *));
 	argv[0] = ft_strdup(audio_player);
-	argv[1] = ft_strdup(audio_file);
+	argv[1] = ft_strdup("--channels=1");
+	argv[2] = ft_strdup(audio_file);
 	path = ft_strjoin("/usr/bin/", audio_player);
 	pid = fork();
 	if (pid < 0)
@@ -71,6 +72,45 @@ void play_audio(char *audio_file)
 	free(audio_player);
 	free(argv[0]);
 	free(argv[1]);
+	free(argv[2]);
+	free(argv);
+	free(path);
+}
+
+void play_audio2(char *audio_file)
+{
+	int			pid;
+	char		**argv;
+	extern char	**environ;
+	char		*audio_player;
+	char		*path;
+
+	audio_player = detect_audioplayer();
+	argv = ft_calloc(4, sizeof(char *));
+	argv[0] = ft_strdup(audio_player);
+	argv[1] = ft_strdup("--channels=2");
+	argv[2] = ft_strdup(audio_file);
+	path = ft_strjoin("/usr/bin/", audio_player);
+	pid = fork();
+	if (pid < 0)
+	{
+		perror("fork");
+		return;
+	}
+	else if (pid == 0)
+	{
+		if (execve(path, argv, environ) == -1)
+		{
+			perror("execve");
+			exit(1);
+		}
+	}
+	else
+		waitpid(pid, NULL, WNOHANG);
+	free(audio_player);
+	free(argv[0]);
+	free(argv[1]);
+	free(argv[2]);
 	free(argv);
 	free(path);
 }

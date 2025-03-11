@@ -28,8 +28,12 @@ int	main(int argc, char *argv[])
 	init_map(&cub3d, argv[1]);
 
 	char	*audio_file;
-	audio_file = "assets/audio/mixkit-game-level-music-689.wav";
+	char	*audio_file2;
+	//audio_file = "assets/audio/mixkit-game-level-music-689.wav";
+	audio_file = "assets/audio/Farting_Around_incompetech.wav";
+	audio_file2 = "assets/audio/horror-background-tension-build-up-254933.wav";
 	play_audio(audio_file);
+	play_audio2(audio_file2);
 
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);

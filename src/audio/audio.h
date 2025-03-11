@@ -4,5 +4,6 @@
 # include "../cub3d.h"
 
 void	play_audio(char *audio);
+void	play_audio2(char *audio);
 void	end_audio(void);
 #endif
