@@ -4,6 +4,8 @@ void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
+char	*get_comppath(char *line);
+int		verify_file(char *complete_path);
 
 /**
  * @brief Reads and processes the header section of a map file
@@ -85,29 +87,43 @@ int	check_header(char *line)
  */
 void	load_header(t_data *cub3d, char *line)
 {
+	char	*complete_path;
+
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		if (cub3d->map_info.no_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling no_tex");
-		cub3d->map_info.no_tex = ft_strdup(line);
+		complete_path = get_comppath(line);
+		//printf("%s", complete_path);
+		if (verify_file(complete_path))
+			cub3d->map_info.no_tex = ft_strdup(line);
 	}
 	else if (ft_strncmp(line, "SO ", 3) == 0)
 	{
 		if (cub3d->map_info.so_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling so_tex");
-		cub3d->map_info.so_tex = ft_strdup(line);
+		complete_path = get_comppath(line);
+		//printf("%s", complete_path);
+		if (verify_file(complete_path))	
+			cub3d->map_info.so_tex = ft_strdup(line);
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 	{
 		if (cub3d->map_info.ea_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling ea_tex");
-		cub3d->map_info.ea_tex = ft_strdup(line);
+		complete_path = get_comppath(line);
+		//printf("%s", complete_path);
+		if (verify_file(complete_path))
+			cub3d->map_info.ea_tex = ft_strdup(line);
 	}
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 	{
 		if (cub3d->map_info.we_tex != NULL)
 			err_msg(cub3d, "Error\nRefilling we_tex");
-		cub3d->map_info.we_tex = ft_strdup(line);
+		complete_path = get_comppath(line);
+		//printf("%s", complete_path);
+		if (verify_file(complete_path))
+			cub3d->map_info.we_tex = ft_strdup(line);
 	}
 	else if (ft_strncmp(line, "F ", 2) == 0)
 	{
@@ -144,4 +160,48 @@ int	header_complete(t_data *cub3d)
 		cub3d->map_info.ce_col != NULL)
 		return(1);
 	return(0);
+}
+
+char	*get_comppath(char *line)
+{
+	/* int	len;
+	char	*complete_path;
+
+	len = ft_strlen(line);
+	complete_path = ft_substr(line, 3, len);
+	return (complete_path); */
+
+	int		i;
+	int		start;
+	char	*complete_path;
+
+	i = 0;
+	while (line[i] && line[i] != ' ')
+		i++;
+	while (line[i] && line[i] == ' ')
+		i++;
+	start = i;
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
+		i++;
+	complete_path = ft_substr(line, start, i - start);
+	return (complete_path);
+}
+
+int	verify_file(char *complete_path)
+{
+	int		file;
+
+	file = open(complete_path, O_RDONLY);
+	if (file == -1)
+	{
+		close(file);
+		printf("File: %s\n", complete_path);
+		perror("File can't be found.");
+		return(0);
+	}
+	else
+	{
+		close(file);
+		return(1);
+	}
 }

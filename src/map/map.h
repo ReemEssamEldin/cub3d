@@ -12,6 +12,8 @@ void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
+char	*get_comppath(char *line);
+int		verify_file(char *complete_path);
 
 //map_content.c
 void	read_content(t_data *cub3d, char *cub_file);
