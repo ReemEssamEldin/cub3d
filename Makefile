@@ -31,6 +31,7 @@ SRC-C3				= ./src/cub3d.c \
 						./src/map/map_header.c \
 						./src/map/map_content.c \
 						./src/audio/audio.c \
+						./src/drawing/drawing.c \
 
 HEADER				= ./src/
 
@@ -39,7 +40,7 @@ HEADER				= ./src/
 ifeq ($(UNAME), Linux)
 C3-DEPS = $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX)
 else
-C3-DEPS = $(SRC-C3) $(NAME-LIBFT) 
+C3-DEPS = $(SRC-C3) $(NAME-LIBFT)
 endif
 
 ## Compiler, flags, & other commands
@@ -75,7 +76,7 @@ fclean:				clean
 re:					fclean all
 
 test:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME-C3) ./assets/maps/small.cub 
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME-C3) ./assets/maps/small.cub
 
 ##------------------------------------------------------------------##
 # Targets

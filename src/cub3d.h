@@ -21,6 +21,7 @@
 # include "./map/map.h"
 # include "./utils/utils.h"
 # include "./audio/audio.h"
+# include "./drawing/drawing.h"
 
 # define WID 1280
 # define HEI 720
@@ -36,7 +37,7 @@
 # define BLA 0x000000
 
 # define ESC			0xff1b
-//# define UP				0xff52
+//# define UP			0xff52
 //# define DOWN			0xff54
 # define LEFT			0xff51
 # define RIGHT			0xff53
@@ -44,8 +45,8 @@
 # define A				0x0061
 # define S				0x0073
 # define D				0x0064
-//# define Q				0x0071
-//# define E				0x0065
+//# define Q			0x0071
+//# define E			0x0065
 
 enum
 {
@@ -57,5 +58,26 @@ enum
 	EXPOSE = 12,
 	DESTROY = 17
 };
+
+//----------------------------------------------------------------------
+void	init_cub3d(t_data *cub3d);
+void	init_mlx(t_data *cub3d);
+void	init_player(t_player *player);
+//char	**init_map(void);
+//----------------------------------------------------------------------
+int		key_press(int keysym, t_data *cub3d);
+int		key_release(int keysym, t_data *cub3d);
+void	move_player(t_player *player);
+void	key_hooks(t_data *cub3d);
+//----------------------------------------------------------------------
+int		destroy(t_data *cub3d);
+void	clear_image(t_data *cub3d);
+//----------------------------------------------------------------------
+bool	touch(float px, float py, t_data *cub3d);
+float	distance(float x, float y);
+float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
+//----------------------------------------------------------------------
+void	check_args(int argc, char *argv);
+//----------------------------------------------------------------------
 
 #endif
