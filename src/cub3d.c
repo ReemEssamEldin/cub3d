@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
 
-	char	*audio_file;
+	/* char	*audio_file;
 	char	*audio_file2;
 	//audio_file = "assets/audio/mixkit-game-level-music-689.wav";
 	audio_file = "assets/audio/Farting_Around_incompetech.wav";
@@ -42,7 +42,7 @@ int	main(int argc, char *argv[])
 	key_hooks(&cub3d);
 
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
-	mlx_loop(cub3d.mlx_ptr);
+	mlx_loop(cub3d.mlx_ptr); */
 	
 	clean_mapheader(&cub3d.map_info);
 	clean_mapcontent(&cub3d.map_info);
