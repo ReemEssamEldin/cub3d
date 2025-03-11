@@ -9,7 +9,8 @@ int		destroy(t_data *cub3d);
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	draw_square(int x, int y, int size, int color, t_data *cub3d);
 void	init_player(t_player *player);
-void	move_player(t_player *player);
+//void	move_player(t_player *player);
+void	move_player(t_player *player, t_data *cub3d);
 int		draw_loop(t_data *cub3d);
 void	clear_image(t_data *cub3d);
 //char	**init_map(void);
@@ -192,7 +193,7 @@ void	init_player(t_player *player)
 	player->right_rotate = false;
 }
 
-void	move_player(t_player *player)
+/* void	move_player(t_player *player)
 {
 	int speed = 1;
 	float angle_speed = 0.03;
@@ -227,6 +228,76 @@ void	move_player(t_player *player)
 	{
 		player->x -= sin_angle * speed;
 		player->y += cos_angle * speed;
+	}
+} */
+
+void move_player(t_player *player, t_data *cub3d)
+{
+	float speed = 1;
+	float angle_speed = 0.03;
+	float cos_angle = cos(player->angle);
+	float sin_angle = sin(player->angle);
+	float new_x, new_y;
+	float collision_buffer = 5;  // Buffer distance from walls
+
+	// Handle rotation
+	if (player->left_rotate)
+		player->angle -= angle_speed;
+	if (player->right_rotate)
+		player->angle += angle_speed;
+	if (player->angle > 2 * PI)
+		player->angle = 0;
+	if (player->angle < 0)
+		player->angle = 2 * PI;
+
+	// Calculate potential new positions
+	if (player->key_down)
+	{
+		new_x = player->x + cos_angle * speed;
+		new_y = player->y + sin_angle * speed;
+		// Only move if not touching a wall
+		if (!touch(new_x + collision_buffer * (cos_angle > 0 ? 1 : -1), 
+				  new_y + collision_buffer * (sin_angle > 0 ? 1 : -1), cub3d))
+		{
+			player->x = new_x;
+			player->y = new_y;
+		}
+	}
+
+	if (player->key_up)
+	{
+		new_x = player->x - cos_angle * speed;
+		new_y = player->y - sin_angle * speed;
+		if (!touch(new_x + collision_buffer * (cos_angle < 0 ? 1 : -1), 
+				  new_y + collision_buffer * (sin_angle < 0 ? 1 : -1), cub3d))
+		{
+			player->x = new_x;
+			player->y = new_y;
+		}
+	}
+
+	if (player->key_right)
+	{
+		new_x = player->x + sin_angle * speed;
+		new_y = player->y - cos_angle * speed;
+		if (!touch(new_x + collision_buffer * (sin_angle > 0 ? 1 : -1), 
+				  new_y + collision_buffer * (cos_angle < 0 ? 1 : -1), cub3d))
+		{
+			player->x = new_x;
+			player->y = new_y;
+		}
+	}
+
+	if (player->key_left)
+	{
+		new_x = player->x - sin_angle * speed;
+		new_y = player->y + cos_angle * speed;
+		if (!touch(new_x + collision_buffer * (sin_angle < 0 ? 1 : -1), 
+				  new_y + collision_buffer * (cos_angle > 0 ? 1 : -1), cub3d))
+		{
+			player->x = new_x;
+			player->y = new_y;
+		}
 	}
 }
 
@@ -276,7 +347,8 @@ void	move_player(t_player *player)
 //first person
 int	draw_loop(t_data *cub3d)
 {
-	move_player(&cub3d->player);
+	//move_player(&cub3d->player);
+	move_player(&cub3d->player, cub3d);
 	clear_image(cub3d);
 
 	//top-down
@@ -314,7 +386,7 @@ void	draw_map(t_data *cub3d)
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, color, cub3d);
 }
 
-bool	touch(float px, float py, t_data *cub3d)
+/* bool	touch(float px, float py, t_data *cub3d)
 {
 	int	x;
 	int	y;
@@ -324,6 +396,31 @@ bool	touch(float px, float py, t_data *cub3d)
 	if(cub3d->map_info.map[y][x] == '1')
 		return (true);
 	return (false);
+} */
+
+bool touch(float px, float py, t_data *cub3d)
+{
+	int x;
+	int y;
+
+	// Check if position is outside the map boundaries
+	if (px < 0 || py < 0)
+		return true;
+
+	x = px / BLOCK;
+	y = py / BLOCK;
+
+	// Check if position is outside map array bounds
+	if (y >= cub3d->map_info.map_rows || x >= cub3d->map_info.map_cols || 
+		y < 0 || x < 0)
+		return true;
+
+	// Check if position has a wall
+	if (cub3d->map_info.map[y] && x < (int)ft_strlen(cub3d->map_info.map[y]) && 
+		cub3d->map_info.map[y][x] == '1')
+		return true;
+
+	return false;
 }
 
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
@@ -384,16 +481,16 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 // 	int end = start_y + height;
 	
 // 	float shading_factor = 1.0 / (1.0 + dist * 0.1);
-//     if (shading_factor > 1.0)
-//         shading_factor = 1.0;
-//     if (shading_factor < 0.2)
-//         shading_factor = 0.2;
+//	 if (shading_factor > 1.0)
+//		 shading_factor = 1.0;
+//	 if (shading_factor < 0.2)
+//		 shading_factor = 0.2;
 
-//     // Apply shading to the color
-//     int color = GRE;
-//     int shaded_color = ((int)((color & 0xFF) * shading_factor) & 0xFF) |
-//                       (((int)(((color >> 8) & 0xFF) * shading_factor) & 0xFF) << 8) |
-//                       (((int)(((color >> 16) & 0xFF) * shading_factor) & 0xFF) << 16);
+//	 // Apply shading to the color
+//	 int color = GRE;
+//	 int shaded_color = ((int)((color & 0xFF) * shading_factor) & 0xFF) |
+//					   (((int)(((color >> 8) & 0xFF) * shading_factor) & 0xFF) << 8) |
+//					   (((int)(((color >> 16) & 0xFF) * shading_factor) & 0xFF) << 16);
 
 // 	while(start_y < end)
 // 	{
