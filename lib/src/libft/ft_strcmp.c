@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:51:51 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/12/30 12:43:08 by reldahli         ###   ########.fr       */
+/*   Created: 2024/12/30 15:53:37 by reldahli          #+#    #+#             */
+/*   Updated: 2025/01/15 18:33:49 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int i)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (('a' <= i && i <= 'z')
-		|| ('A' <= i && i <= 'Z')
-		|| ('0' <= i && i <= '9'))
-		return (1);
-	return (0);
-}
+	int	i;
 
-/*checks for an alphanumeric character*/
-
-/*
-int	main(void)
-{
-	ft_isalnum('a'); //write(1,&i,1) under return(1)
-	ft_isalnum('2');
-	ft_isalnum('$');
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0')
+	{
+		i++;
+	}
+	if (s1[i] == s2[i])
+	{
+		return (0);
+	}
+	else
+	{
+		return (s1[i] - s2[i]);
+	}
 }
-*/
