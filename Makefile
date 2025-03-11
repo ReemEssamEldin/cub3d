@@ -32,7 +32,9 @@ SRC-C3				= ./src/cub3d.c \
 						./src/map/map_content.c \
 						./src/audio/audio.c \
 						./src/drawing/drawing.c \
+						./src/drawing/math.c \
 						./src/key_mapping/key_map.c \
+						./src/init/init.c \
 
 HEADER				= ./src/
 
