@@ -6,11 +6,6 @@
 // void	init_player(t_player *player);
 // //char	**init_map(void);
 // ----------------------------------------------------------------------
-// int		key_press(int keysym, t_data *cub3d);
-// int		key_release(int keysym, t_data *cub3d);
-// void	move_player(t_player *player);
-// void	key_hooks(t_data *cub3d);
-// ----------------------------------------------------------------------
 // int		destroy(t_data *cub3d);
 // void	clear_image(t_data *cub3d);
 // ----------------------------------------------------------------------
@@ -80,44 +75,6 @@ void	init_mlx(t_data *cub3d)
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->img_ptr, 0, 0);
 }
 
-//experiment with mac key mappings
-int	key_press(int keysym, t_data *cub3d)
-{
-	if (keysym == XK_Escape || keysym == ESC)
-		destroy(cub3d);
-	if (keysym == XK_W || keysym == XK_w || keysym == W)
-		cub3d->player.key_down = true;
-	if (keysym == XK_S || keysym == XK_s || keysym == S)
-		cub3d->player.key_up = true;
-	if (keysym == XK_A || keysym == XK_a || keysym == A)
-		cub3d->player.key_right = true;
-	if (keysym == XK_D || keysym == XK_d || keysym == D)
-		cub3d->player.key_left = true;
-	if (keysym == XK_Left || keysym == LEFT)
-		cub3d->player.left_rotate = true;
-	if (keysym == XK_Right || keysym == RIGHT)
-		cub3d->player.right_rotate = true;
-	return (0);
-}
-
-//experiment with mac key mappings
-int	key_release(int keysym, t_data *cub3d)
-{
-	if (keysym == XK_W || keysym == XK_w || keysym == W)
-		cub3d->player.key_down = false;
-	if (keysym == XK_S || keysym == XK_s || keysym == S)
-		cub3d->player.key_up = false;
-	if (keysym == XK_A || keysym == XK_a || keysym == A)
-		cub3d->player.key_right = false;
-	if (keysym == XK_D || keysym == XK_d || keysym == D)
-		cub3d->player.key_left = false;
-	if (keysym == XK_Left || keysym == LEFT)
-		cub3d->player.left_rotate = false;
-	if (keysym == XK_Right || keysym == RIGHT)
-		cub3d->player.right_rotate = false;
-	return (0);
-}
-
 int	destroy(t_data *cub3d)
 {
 	if (cub3d->img_ptr)
@@ -150,44 +107,6 @@ void	init_player(t_player *player)
 	player->right_rotate = false;
 }
 
-void	move_player(t_player *player)
-{
-	int speed = 1;
-	float angle_speed = 0.03;
-	float cos_angle = cos(player->angle);
-	float sin_angle = sin(player->angle);
-
-	if (player->left_rotate)
-		player->angle -= angle_speed;
-	if (player->right_rotate)
-		player->angle += angle_speed;
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
-
-	if (player->key_down)
-	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
-	}
-	if (player->key_up)
-	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
-	}
-	if (player->key_right)
-	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
-	}
-	if (player->key_left)
-	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
-	}
-}
-
 void	clear_image(t_data *cub3d)
 {
 	for(int y = 0; y < HEI; y++)
@@ -207,49 +126,6 @@ bool	touch(float px, float py, t_data *cub3d)
 	return (false);
 }
 
-//shading based on distance
-// void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
-// {
-// 	(void)i;
-// 	float cos_angle = cos(start_x);
-// 	float sin_angle = sin(start_x);
-// 	float ray_x = player->x;
-// 	float ray_y = player->y;
-
-// 	while(!touch(ray_x, ray_y, cub3d))
-// 	{
-// 		put_pixel(ray_x, ray_y, RED, cub3d); //this line handles rays
-// 		ray_x += cos_angle;
-// 		ray_y += sin_angle;
-// 	}
-
-// 	//this part handles 1st-person perspective
-// 	float dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d); //fix fish-eye
-// 	//float dist = distance(ray_x - player->x, ray_y - player->y); //fish-eye
-// 	float height = (BLOCK / dist) * (WID / 2);
-// 	int start_y = (HEI - height) / 2;
-// 	int end = start_y + height;
-
-// 	float shading_factor = 1.0 / (1.0 + dist * 0.1);
-//     if (shading_factor > 1.0)
-//         shading_factor = 1.0;
-//     if (shading_factor < 0.2)
-//         shading_factor = 0.2;
-
-//     // Apply shading to the color
-//     int color = GRE;
-//     int shaded_color = ((int)((color & 0xFF) * shading_factor) & 0xFF) |
-//                       (((int)(((color >> 8) & 0xFF) * shading_factor) & 0xFF) << 8) |
-//                       (((int)(((color >> 16) & 0xFF) * shading_factor) & 0xFF) << 16);
-
-// 	while(start_y < end)
-// 	{
-// 		//put_pixel(i, start_y, GRE, cub3d);
-// 		put_pixel(i, start_y, shaded_color, cub3d);
-// 		start_y++;
-// 	}
-// }
-
 float	distance(float x, float y)
 {
 	return (sqrt(x * x + y * y));
@@ -264,15 +140,3 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d)
 	return (fix_dist);
 }
 
-void	key_hooks(t_data *cub3d)
-{
-	#ifdef __APPLE__
-		mlx_hook(cub3d->win_ptr, KEYPRESS, 1L<<0, key_press, cub3d);
-		mlx_hook(cub3d->win_ptr, KEYRELEASE, 1L<<1, key_release, cub3d);
-		mlx_hook(cub3d->win_ptr, DESTROY, 0, destroy, cub3d);
-	#else
-		mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
-		mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
-		mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask, destroy, cub3d);
-	#endif
-}

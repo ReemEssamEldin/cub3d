@@ -22,6 +22,7 @@
 # include "./utils/utils.h"
 # include "./audio/audio.h"
 # include "./drawing/drawing.h"
+# include "./key_mapping/key_map.h"
 
 # define WID 1280
 # define HEI 720
@@ -64,11 +65,6 @@ void	init_cub3d(t_data *cub3d);
 void	init_mlx(t_data *cub3d);
 void	init_player(t_player *player);
 //char	**init_map(void);
-//----------------------------------------------------------------------
-int		key_press(int keysym, t_data *cub3d);
-int		key_release(int keysym, t_data *cub3d);
-void	move_player(t_player *player);
-void	key_hooks(t_data *cub3d);
 //----------------------------------------------------------------------
 int		destroy(t_data *cub3d);
 void	clear_image(t_data *cub3d);
