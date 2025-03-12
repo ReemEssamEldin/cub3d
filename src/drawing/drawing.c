@@ -169,10 +169,11 @@ int	draw_loop(t_data *cub3d)
 	float	start_x;
 	int		i;
 
-	move_player(&cub3d->player);
+	//move_player(&cub3d->player);
+	move_player(&cub3d->player, cub3d);
 	clear_image(cub3d);
 	//top-down
-	draw_square(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
+	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
 	draw_map(cub3d);
 	//1st-person
 	fraction = PI / 3 / WID; //FOV width
@@ -199,6 +200,36 @@ void	draw_square(int x, int y, int size, int color, t_data *cub3d)
 		put_pixel(x + size, y + i, color, cub3d);
 	for (int i = 0; i < size; i++)
 		put_pixel(x + i, y + size, color, cub3d);
+}
+
+void draw_triangle(int x, int y, int size, int color, t_data *cub3d)
+{
+	// Calculate the vertices of the triangle
+	int x1 = x;
+	int y1 = y;
+	int x2 = x - size / 2;
+	int y2 = y + size;
+	int x3 = x + size / 2;
+	int y3 = y + size;
+
+	// Draw the three sides of the triangle
+	for (int i = 0; i <= size; i++)
+	{
+		// Top left edge: from (x1, y1) to (x2, y2)
+		int tx = x1 + (x2 - x1) * i / size;
+		int ty = y1 + (y2 - y1) * i / size;
+		put_pixel(tx, ty, color, cub3d);
+
+		// Top right edge: from (x1, y1) to (x3, y3)
+		int rx = x1 + (x3 - x1) * i / size;
+		int ry = y1 + (y3 - y1) * i / size;
+		put_pixel(rx, ry, color, cub3d);
+
+		// Bottom edge: from (x2, y2) to (x3, y3)
+		int bx = x2 + (x3 - x2) * i / size;
+		int by = y2 + (y3 - y2) * i / size;
+		put_pixel(bx, by, color, cub3d);
+	}
 }
 
 void	draw_map(t_data *cub3d)
