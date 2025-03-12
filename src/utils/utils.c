@@ -63,9 +63,9 @@ void	clean_mapcontent(t_map *map_info)
 	return (trimmed);
 } */
 
-char *remove_trailing(char *str, char *c)
+char	*remove_trailing(char *str, char *c)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(str);
 	while (len > 0 && ft_strchr(c, str[len - 1]) != NULL)
@@ -73,5 +73,5 @@ char *remove_trailing(char *str, char *c)
 		str[len - 1] = '\0';
 		len--;
 	}
-	return str;
+	return (str);
 }
