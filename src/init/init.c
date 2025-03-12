@@ -1,11 +1,5 @@
 #include "../cub3d.h"
 
-// ----------------------------------------------------------------------
-// void		init_cub3d(t_data *cub3d);
-// void		init_mlx(t_data *cub3d);
-// void		init_player(t_player *player);
-// ----------------------------------------------------------------------
-
 void	init_cub3d(t_data *cub3d)
 {
 	cub3d->mlx_ptr = NULL;
@@ -28,13 +22,11 @@ void	init_player(t_player *player)
 {
 	player->x = (WID / 6); //start pos
 	player->y = HEI / 6; //start pos
-	player->angle = PI ; //facing which way?
-
+	player->angle = PI; //facing which way?
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
 	player->key_left = false;
-
 	player->left_rotate = false;
 	player->right_rotate = false;
 }
