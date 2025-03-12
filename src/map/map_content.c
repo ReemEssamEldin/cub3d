@@ -192,11 +192,14 @@ int empty_line(char *line)
  */
 int verify_boundaries(t_data *cub3d)
 {
-	int i, j;
+	int	i;
+	int	j;
 	
-	for (i = 0; i < cub3d->map_info.map_rows; i++)
+	i = 0;
+	while (i < cub3d->map_info.map_rows)
 	{
-		for (j = 0; j < (int)ft_strlen(cub3d->map_info.map[i]); j++)
+		j = 0;
+		while (j < (int)ft_strlen(cub3d->map_info.map[i]))
 		{
 			// Check only walkable spaces and player positions
 			if (cub3d->map_info.map[i][j] == '0' || 
@@ -208,7 +211,7 @@ int verify_boundaries(t_data *cub3d)
 				// Check if position is at map edge
 				if (i == 0 || i == cub3d->map_info.map_rows - 1 || 
 					j == 0 || j == (int)ft_strlen(cub3d->map_info.map[i]) - 1)
-					return 0; // Map has opening at edge
+					return (0); // Map has opening at edge
 				
 				// Check all adjacent cells (including diagonals)
 				// Top row
@@ -216,21 +219,23 @@ int verify_boundaries(t_data *cub3d)
 					cub3d->map_info.map[i-1][j-1] == ' ' || 
 					cub3d->map_info.map[i-1][j] == ' ' || 
 					cub3d->map_info.map[i-1][j+1] == ' ')
-					return 0;
+					return (0);
 					
 				// Middle row
 				if (cub3d->map_info.map[i][j-1] == ' ' || 
 					cub3d->map_info.map[i][j+1] == ' ')
-					return 0;
+					return (0);
 					
 				// Bottom row
 				if (j >= (int)ft_strlen(cub3d->map_info.map[i+1]) || 
 					cub3d->map_info.map[i+1][j-1] == ' ' || 
 					cub3d->map_info.map[i+1][j] == ' ' || 
 					cub3d->map_info.map[i+1][j+1] == ' ')
-					return 0;
+					return (0);
 			}
+			j++;
 		}
+		i++;
 	}
-	return 1; // Map boundaries are valid
+	return (1); // Map boundaries are valid
 }

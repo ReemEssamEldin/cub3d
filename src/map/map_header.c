@@ -2,6 +2,8 @@
 
 void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);
+int		get_col(t_data *cub3d, char *line, char **col_field, char *code);
+int		get_tex(t_data *cub3d, char *line, char **tex_field, char *code);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
 char	*get_comppath(char *line);
@@ -65,76 +67,79 @@ int	check_header(char *line)
 }
 
 /**
- * @brief Processes map header information from a line of text.
+ * @brief Handles loading texture paths for walls
  *
- * This function parses a line from the map file and checks if it contains
- * texture paths or color definitions for the game. It handles the following
- * identifiers:
- * - "NO ": Path to the north wall texture
- * - "SO ": Path to the south wall texture
- * - "EA ": Path to the east wall texture
- * - "WE ": Path to the west wall texture
- * - "F ": Floor color definition
- * - "C ": Ceiling color definition
- *
- * If an attempt is made to redefine any of these attributes that have already
- * been set, an error is triggered.
- *
- * @param cub3d Pointer to the main data structure containing map information
- * @param line The line of text to process from the map file
- *
- * @note The function stores a duplicate of the entire line, not just the path or color value
+ * @param cub3d Main data structure
+ * @param line Current line being processed
+ * @param texture_type Type of texture (NO, SO, EA, WE)
+ * @param texture_field Pointer to the texture field in map_info
+ * @return 1 if successful, 0 otherwise
  */
-void	load_header(t_data *cub3d, char *line)
+int get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 {
-	char	*complete_path;
+	char *complete_path;
 
-	complete_path = NULL;
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	if (*tex_field != NULL)
 	{
-		if (cub3d->map_info.no_tex != NULL)
-			err_msg(cub3d, "Error\nRefilling no_tex");
-		complete_path = get_comppath(line);
-		if (verify_file(complete_path))
-			cub3d->map_info.no_tex = ft_strdup(line);
+		printf("%s\n", code);
+		err_msg(cub3d, "Error\nRefilling texture");
+		return (0);
 	}
-	else if (ft_strncmp(line, "SO ", 3) == 0)
+	complete_path = get_comppath(line);
+	if (verify_file(complete_path))
 	{
-		if (cub3d->map_info.so_tex != NULL)
-			err_msg(cub3d, "Error\nRefilling so_tex");
-		complete_path = get_comppath(line);
-		if (verify_file(complete_path))	
-			cub3d->map_info.so_tex = ft_strdup(line);
-	}
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-	{
-		if (cub3d->map_info.ea_tex != NULL)
-			err_msg(cub3d, "Error\nRefilling ea_tex");
-		complete_path = get_comppath(line);
-		if (verify_file(complete_path))
-			cub3d->map_info.ea_tex = ft_strdup(line);
-	}
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-	{
-		if (cub3d->map_info.we_tex != NULL)
-			err_msg(cub3d, "Error\nRefilling we_tex");
-		complete_path = get_comppath(line);
-		if (verify_file(complete_path))
-			cub3d->map_info.we_tex = ft_strdup(line);
-	}
-	else if (ft_strncmp(line, "F ", 2) == 0)
-	{
-		if (cub3d->map_info.fl_col != NULL)
-			err_msg(cub3d, "Error\nRefilling fl_col");
-		cub3d->map_info.fl_col = ft_strdup(line);
-	}
-	else if (ft_strncmp(line, "C ", 2) == 0)
-	{
-		if (cub3d->map_info.ce_col != NULL)
-			err_msg(cub3d, "Error\nRefilling ce_col");
-		cub3d->map_info.ce_col = ft_strdup(line);
+		*tex_field = ft_strdup(line);
+		free(complete_path);
+		return (1);
 	}
 	free(complete_path);
+	return (0);
+}
+
+/**
+ * @brief Handles loading color information
+ *
+ * @param cub3d Main data structure
+ * @param line Current line being processed
+ * @param color_field Pointer to the color field in map_info
+ * @param color_type Type of color (F or C)
+ * @return 1 if successful, 0 otherwise
+ */
+int get_col(t_data *cub3d, char *line, char **col_field, char *code)
+{
+	if (*col_field != NULL)
+	{
+		printf("%s\n", code);
+		err_msg(cub3d, "Error\nRefilling color");
+		return (0);
+	}
+	*col_field = ft_strdup(line);
+	return (1);
+}
+
+/**
+ * @brief Processes map header information from a line of text
+ *
+ * This function parses a line from the map file and loads texture paths
+ * or color definitions into the game data structure.
+ *
+ * @param cub3d Pointer to the main data structure
+ * @param line The line of text to process from the map file
+ */
+void load_header(t_data *cub3d, char *line)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		get_tex(cub3d, line, &cub3d->map_info.no_tex, "NO");
+	else if (ft_strncmp(line, "SO ", 3) == 0)
+		get_tex(cub3d, line, &cub3d->map_info.so_tex, "SO");
+	else if (ft_strncmp(line, "EA ", 3) == 0)
+		get_tex(cub3d, line, &cub3d->map_info.ea_tex, "EA");
+	else if (ft_strncmp(line, "WE ", 3) == 0)
+		get_tex(cub3d, line, &cub3d->map_info.we_tex, "WE");
+	else if (ft_strncmp(line, "F ", 2) == 0)
+		get_col(cub3d, line, &cub3d->map_info.fl_col, "F");
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		get_col(cub3d, line, &cub3d->map_info.ce_col, "C");
 }
 
 /**
