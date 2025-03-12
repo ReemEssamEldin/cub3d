@@ -1,7 +1,7 @@
 #ifndef DRAWING_H
 # define DRAWING_H
 
-# include "../cub3d.h"
+# include "cub3d.h"
 
 // drawing.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);

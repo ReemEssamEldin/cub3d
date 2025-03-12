@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 //experiment with mac key mappings
 int	key_press(int keysym, t_data *cub3d)

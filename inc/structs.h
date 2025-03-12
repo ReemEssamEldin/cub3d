@@ -1,7 +1,7 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include "./cub3d.h"
+# include "cub3d.h"
 
 typedef struct s_player
 {

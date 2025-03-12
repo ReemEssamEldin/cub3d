@@ -17,13 +17,13 @@
 # include "../lib/src/libft/libft.h"
 # include "../lib/src/get_next_line/get_next_line.h"
 # include "../lib/src/ft_printf/ft_printf.h"
-# include "./structs.h"
-# include "./map/map.h"
-# include "./utils/utils.h"
-# include "./audio/audio.h"
-# include "./drawing/drawing.h"
-# include "./key_mapping/key_map.h"
-# include "./init/init.h"
+# include "structs.h"
+# include "map.h"
+# include "utils.h"
+# include "audio.h"
+# include "drawing.h"
+# include "key_map.h"
+# include "init.h"
 
 # define WID 1280
 # define HEI 720

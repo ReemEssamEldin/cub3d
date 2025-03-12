@@ -1,7 +1,7 @@
 #ifndef MAP_H
 # define MAP_H
 
-# include "../cub3d.h"
+# include "cub3d.h"
 
 //map_init.c
 void	init_map(t_data *cub3d, char *argv);
