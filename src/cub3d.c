@@ -7,7 +7,8 @@ int	main(int argc, char *argv[])
 
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
-	audio_file = "assets/audio/mixkit-game-level-music-689.wav";
+	//audio_file = "assets/audio/mixkit-game-level-music-689.wav";
+	audio_file = "assets/audio/horror-background-tension-build-up-254933.wav";
 	play_audio(audio_file);
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
