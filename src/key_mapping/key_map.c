@@ -1,12 +1,5 @@
 #include "../cub3d.h"
 
-//----------------------------------------------------------------------
-// int		key_press(int keysym, t_data *cub3d);
-// int		key_release(int keysym, t_data *cub3d);
-// void		move_player(t_player *player);
-// void		key_hooks(t_data *cub3d);
-// ----------------------------------------------------------------------
-
 //experiment with mac key mappings
 int	key_press(int keysym, t_data *cub3d)
 {
@@ -56,7 +49,6 @@ void	move_player(t_player *player)
 	angle_speed = 0.03;
 	cos_angle = cos(player->angle);
 	sin_angle = sin(player->angle);
-
 	if (player->left_rotate)
 		player->angle -= angle_speed;
 	if (player->right_rotate)
@@ -65,7 +57,6 @@ void	move_player(t_player *player)
 		player->angle = 0;
 	if (player->angle < 0)
 		player->angle = 2 * PI;
-
 	if (player->key_down)
 	{
 		player->x += cos_angle * speed;
@@ -91,14 +82,13 @@ void	move_player(t_player *player)
 void	key_hooks(t_data *cub3d)
 {
 	#ifdef __APPLE__
-
 	mlx_hook(cub3d->win_ptr, KEYPRESS, 1L << 0, key_press, cub3d);
 	mlx_hook(cub3d->win_ptr, KEYRELEASE, 1L << 1, key_release, cub3d);
 	mlx_hook(cub3d->win_ptr, DESTROY, 0, destroy, cub3d);
 	#else
-
 	mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
 	mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
-	mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask, destroy, cub3d);
+	mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask,
+		destroy, cub3d);
 	#endif
 }
