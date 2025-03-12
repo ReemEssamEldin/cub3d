@@ -2,7 +2,8 @@
 #include <sys/wait.h>
 
 /**
- * @brief Detects the appropriate audio player command based on the system platform
+ * @brief Detects the appropriate audio player
+ * command based on the system platform
  *
  * This function determines which command-line audio player to use depending
  * on the operating system:
@@ -26,20 +27,20 @@ char	*detect_audioplayer(void)
 
 /**
  * @brief Plays an audio file using an available audio player
- * 
+ *
  * This function plays the specified audio file by detecting an available
  * audio player on the system, and executing it in a separate child process.
  * The parent process continues execution without waiting for the audio
  * playback to complete (non-blocking).
- * 
+ *
  * @param audio_file Path to the audio file to be played
- * 
+ *
  * @note The function automatically detects an appropriate audio player
  *       using the detect_audioplayer() function.
  * @note Memory allocated during execution is properly freed before returning.
  * @note If fork() or execve() fails, appropriate error messages are displayed.
  */
-void play_audio(char *audio_file)
+void	play_audio(char *audio_file)
 {
 	int			pid;
 	char		**argv;
@@ -56,7 +57,7 @@ void play_audio(char *audio_file)
 	if (pid < 0)
 	{
 		perror("fork");
-		return;
+		return ;
 	}
 	else if (pid == 0)
 	{
@@ -77,23 +78,23 @@ void play_audio(char *audio_file)
 
 /**
  * @brief Terminates the audio player process
- * 
+ *
  * This function terminates any running audio player process by:
  * 1. Detecting the currently used audio player
  * 2. Creating a child process using fork()
  * 3. Executing killall command with -9 signal on the detected audio player
  * 4. Waiting for the child process to complete
  * 5. Cleaning up allocated memory
- * 
+ *
  * The function uses execve() to run the killall command and properly
  * frees all allocated memory to prevent leaks.
- * 
+ *
  * @note This function assumes killall binary is located at "/usr/bin/killall"
  */
 void	end_audio(void)
 {
-	int		pid;
-	char	**argv;
+	int			pid;
+	char		**argv;
 	extern char	**environ;
 	char		*audio_player;
 
