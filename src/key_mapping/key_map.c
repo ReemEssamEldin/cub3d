@@ -38,7 +38,7 @@ int	key_release(int keysym, t_data *cub3d)
 	return (0);
 }
 
-void	move_player(t_player *player)
+/* void	move_player(t_player *player)
 {
 	int		speed;
 	float	angle_speed;
@@ -76,6 +76,98 @@ void	move_player(t_player *player)
 	{
 		player->x -= sin_angle * speed;
 		player->y += cos_angle * speed;
+	}
+} */
+
+void handle_rotation(t_player *player, float angle_speed)
+{
+	if (player->left_rotate)
+		player->angle -= angle_speed;
+	if (player->right_rotate)
+		player->angle += angle_speed;
+	if (player->angle > 2 * PI)
+		player->angle = 0;
+	if (player->angle < 0)
+		player->angle = 2 * PI;
+}
+
+// Try to move player in a direction with collision detection
+void try_move(t_player *player, float dx, float dy, float dir_x, float dir_y, 
+			 float collision_buffer, t_data *cub3d)
+{
+	float new_x = player->x + dx;
+	float new_y = player->y + dy;
+
+	if (!touch(new_x + collision_buffer * dir_x, 
+			  new_y + collision_buffer * dir_y, cub3d))
+	{
+		player->x = new_x;
+		player->y = new_y;
+	}
+}
+
+void move_player(t_player *player, t_data *cub3d)
+{
+	float speed = 1;
+	float angle_speed = 0.03;
+	float collision_buffer = 5;
+	float dir_x, dir_y;
+	
+	handle_rotation(player, angle_speed);
+	float cos_angle = cos(player->angle);
+	float sin_angle = sin(player->angle);
+	
+	if (player->key_down)
+	{
+		if (cos_angle > 0)
+			dir_x = 1;
+		else
+			dir_x = -1;
+		if (sin_angle > 0)
+			dir_y = 1;
+		else
+			dir_y = -1;
+		try_move(player, cos_angle * speed, sin_angle * speed, 
+				dir_x, dir_y, collision_buffer, cub3d);
+	}
+	if (player->key_up)
+	{
+		if (cos_angle < 0)
+			dir_x = 1;
+		else
+			dir_x = -1;
+		if (sin_angle < 0)
+			dir_y = 1;
+		else
+			dir_y = -1;
+		try_move(player, -cos_angle * speed, -sin_angle * speed,
+				dir_x, dir_y, collision_buffer, cub3d);
+	}
+	if (player->key_right)
+	{
+		if (sin_angle > 0)
+			dir_x = 1;
+		else
+			dir_x = -1;
+		if (cos_angle < 0)
+			dir_y = 1;
+		else
+			dir_y = -1;
+		try_move(player, sin_angle * speed, -cos_angle * speed,
+				dir_x, dir_y, collision_buffer, cub3d);
+	}
+	if (player->key_left)
+	{
+		if (sin_angle < 0)
+			dir_x = 1;
+		else
+			dir_x = -1;
+		if (cos_angle > 0)
+			dir_y = 1;
+		else
+			dir_y = -1;
+		try_move(player, -sin_angle * speed, cos_angle * speed,
+				dir_x, dir_y, collision_buffer, cub3d);
 	}
 }
 
