@@ -32,6 +32,8 @@ void	clean_mapcontent(t_map *map_info)
 {
 	int	i;
 
+	if (map_info->map == NULL)
+		return;
 	i = 0;
 	while (map_info->map[i] != NULL)
 	{
