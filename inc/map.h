@@ -12,10 +12,15 @@ void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
+char	*get_comppath(char *line);
+int		verify_file(char *complete_path);
 
 //map_content.c
 void	read_content(t_data *cub3d, char *cub_file);
-int		read_cub(t_data *cub3d, char *cub_file);
-int		fill_map(char *cub_file, t_data *cub3d);
+int		check_grid(t_data *cub3d, char *cub_file);
+int		save_grid(t_data *cub3d, char *cub_file);
+int		valid_mapline(char *line);
+int		empty_line(char *line);
+int		verify_boundaries(t_data *cub3d);
 
 #endif

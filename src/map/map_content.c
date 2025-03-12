@@ -5,6 +5,7 @@ int		check_grid(t_data *cub3d, char *cub_file);
 int		save_grid(t_data *cub3d, char *cub_file);
 int		valid_mapline(char *line);
 int		empty_line(char *line);
+int		verify_boundaries(t_data *cub3d);
 
 /**
  * @brief Reads and processes the map content from a file
@@ -27,6 +28,9 @@ void	read_content(t_data *cub3d, char *cub_file)
 	if (!cub3d->map_info.map)
 		perror("Map allocation failed");
 	cub3d->map_info.map_cols = save_grid(cub3d, cub_file);
+
+	if (!verify_boundaries(cub3d))
+		err_msg(cub3d, "Error\nMap is not enclosed by walls");
 }
 
 /**
@@ -85,7 +89,7 @@ int	check_grid(t_data *cub3d, char *cub_file)
  * @param cub3d Pointer to the main data structure containing map information
  * @param cub_file Path to the map file to be read
  * @return The length of the longest line in the map (number of columns)
- *         or -1 if the file could not be opened
+ *		 or -1 if the file could not be opened
  */
 int	save_grid(t_data *cub3d, char *cub_file)
 {
@@ -173,4 +177,60 @@ int empty_line(char *line)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	return (line[i] == '\n' || line[i] == '\0');
+}
+
+/**
+ * @brief Validates if the map is properly enclosed by walls
+ *
+ * This function checks that all walkable areas (represented by '0' or player 
+ * start positions 'N', 'S', 'E', 'W') are completely surrounded by walls ('1').
+ * It also ensures that there are no walkable areas adjacent to map boundaries
+ * or spaces.
+ *
+ * @param cub3d Pointer to the main data structure
+ * @return 1 if map is valid, 0 if it has open boundaries
+ */
+int verify_boundaries(t_data *cub3d)
+{
+	int i, j;
+	
+	for (i = 0; i < cub3d->map_info.map_rows; i++)
+	{
+		for (j = 0; j < (int)ft_strlen(cub3d->map_info.map[i]); j++)
+		{
+			// Check only walkable spaces and player positions
+			if (cub3d->map_info.map[i][j] == '0' || 
+				cub3d->map_info.map[i][j] == 'N' || 
+				cub3d->map_info.map[i][j] == 'S' || 
+				cub3d->map_info.map[i][j] == 'E' || 
+				cub3d->map_info.map[i][j] == 'W')
+			{
+				// Check if position is at map edge
+				if (i == 0 || i == cub3d->map_info.map_rows - 1 || 
+					j == 0 || j == (int)ft_strlen(cub3d->map_info.map[i]) - 1)
+					return 0; // Map has opening at edge
+				
+				// Check all adjacent cells (including diagonals)
+				// Top row
+				if (j >= (int)ft_strlen(cub3d->map_info.map[i-1]) || 
+					cub3d->map_info.map[i-1][j-1] == ' ' || 
+					cub3d->map_info.map[i-1][j] == ' ' || 
+					cub3d->map_info.map[i-1][j+1] == ' ')
+					return 0;
+					
+				// Middle row
+				if (cub3d->map_info.map[i][j-1] == ' ' || 
+					cub3d->map_info.map[i][j+1] == ' ')
+					return 0;
+					
+				// Bottom row
+				if (j >= (int)ft_strlen(cub3d->map_info.map[i+1]) || 
+					cub3d->map_info.map[i+1][j-1] == ' ' || 
+					cub3d->map_info.map[i+1][j] == ' ' || 
+					cub3d->map_info.map[i+1][j+1] == ' ')
+					return 0;
+			}
+		}
+	}
+	return 1; // Map boundaries are valid
 }
