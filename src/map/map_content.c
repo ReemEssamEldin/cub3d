@@ -8,7 +8,7 @@ int		empty_line(char *line);
 
 /**
  * @brief Reads and processes the map content from a file
- * 
+ *
  * This function reads a map file, allocates memory for the map grid,
  * populates the grid with the file's content. It uses check_grid to determine
  * the number of rows in the map and save_grid to populate the map array
@@ -16,7 +16,7 @@ int		empty_line(char *line);
  *
  * @param cub3d  Pointer to the main data structure containing map information
  * @param cub_file  Path to the map file to be read
- * 
+ *
  * @note The function will print an error message if memory allocation fails
  */
 void	read_content(t_data *cub3d, char *cub_file)
@@ -33,8 +33,8 @@ void	read_content(t_data *cub3d, char *cub_file)
  * @brief Checks the map grid in a .cub file and counts valid rows
  *
  * This function reads a .cub file line by line to validate the map section.
- * It counts the number of valid map lines and ensures that once the map 
- * section begins (after finding the first valid map line), all subsequent 
+ * It counts the number of valid map lines and ensures that once the map
+ * section begins (after finding the first valid map line), all subsequent
  * lines are also valid map lines with no empty lines or invalid symbols.
  *
  * @param cub3d Pointer to the main data structure
@@ -79,7 +79,7 @@ int	check_grid(t_data *cub3d, char *cub_file)
  *
  * This function reads a map file line by line, validates each line using
  * valid_mapline(), and saves valid lines to the map grid in cub3d->map_info.map.
- * It also determines the length of the longest line in the map, which is 
+ * It also determines the length of the longest line in the map, which is
  * returned as the column count.
  *
  * @param cub3d Pointer to the main data structure containing map information
@@ -118,7 +118,7 @@ int	save_grid(t_data *cub3d, char *cub_file)
 	}
 	cub3d->map_info.map[i] = NULL;
 	close(file);
-	return(line_len);
+	return (line_len);
 }
 
 /**
@@ -135,10 +135,10 @@ int	save_grid(t_data *cub3d, char *cub_file)
  * @param line The string to validate as a map line
  * @return 1 if the line contains only valid map characters, 0 otherwise
  */
-int valid_mapline(char *line)
+int	valid_mapline(char *line)
 {
-	int i = 0;
-	
+	int	i;
+
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
@@ -146,8 +146,9 @@ int valid_mapline(char *line)
 		return (0);
 	while (line[i] && line[i] != '\n')
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != ' ' && 
-			line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+		if (line[i] != '0' && line[i] != '1' && line[i] != ' '
+			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'E'
+			&& line[i] != 'W')
 			return (0);
 		i++;
 	}
@@ -165,9 +166,9 @@ int valid_mapline(char *line)
  * @param line The string to check
  * @return int 1 (true) if the line is empty, 0 (false) otherwise
  */
-int empty_line(char *line)
+int	empty_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
