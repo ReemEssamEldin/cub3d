@@ -1,11 +1,11 @@
-EA ./path_to_the_east_texture1
-NO ./path_to_the_north_texture
+EA ./assets/textures/HW1.png
+NO 		./assets/textures/HW3.png
 
 
 F 220,100,0
-SO ./path_to_the_south_texture hehe
+SO ./assets/textures/HW4.png
 
-WE ./path_to_the_west_texture
+WE    ./assets/textures/HW2.png
 //EA ./path_to_the_east_texture2
 
 C 225,30,0
@@ -15,7 +15,7 @@ C 225,30,0
 100000000000001
 100000100000001
 100000000000001
-100000010000001
+100000010N00001
 100001000000001
 1111100000000011111
     100000000000001
