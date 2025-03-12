@@ -1,30 +1,20 @@
 #include "cub3d.h"
 
-// ----------------------------------------------------------------------
-// int		destroy(t_data *cub3d);
-// void		check_args(int argc, char *argv);
-// ----------------------------------------------------------------------
-
 int	main(int argc, char *argv[])
 {
 	t_data	cub3d;
+	char	*audio_file;
 
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
-
-	char	*audio_file;
 	audio_file = "assets/audio/mixkit-game-level-music-689.wav";
 	play_audio(audio_file);
-
 	init_cub3d(&cub3d);
 	init_player(&cub3d.player);
 	init_mlx(&cub3d);
-
 	key_hooks(&cub3d);
-
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
 	mlx_loop(cub3d.mlx_ptr);
-
 	clean_mapheader(&cub3d.map_info);
 	clean_mapcontent(&cub3d.map_info);
 	return (0);
@@ -64,5 +54,3 @@ int	destroy(t_data *cub3d)
 	end_audio();
 	exit(0);
 }
-
-
