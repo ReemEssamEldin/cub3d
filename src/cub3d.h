@@ -9,11 +9,11 @@
 # include <X11/X.h> //keys
 # include <X11/keysym.h> //keys
 # include <math.h>
-#  ifdef __APPLE__
-#   include <mlx.h>
-#  else
-#   include "../lib/minilibx-linux/mlx.h"
-#  endif
+# ifdef __APPLE__
+#  include <mlx.h>
+# else
+#  include "../lib/minilibx-linux/mlx.h"
+# endif
 # include "../lib/src/libft/libft.h"
 # include "../lib/src/get_next_line/get_next_line.h"
 # include "../lib/src/ft_printf/ft_printf.h"
@@ -61,9 +61,7 @@ enum
 	DESTROY = 17
 };
 
-//----------------------------------------------------------------------
 int		destroy(t_data *cub3d);
 void	check_args(int argc, char *argv);
-//----------------------------------------------------------------------
 
 #endif

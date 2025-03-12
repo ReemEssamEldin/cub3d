@@ -5,17 +5,17 @@
 
 typedef struct s_player
 {
-	float x;
-	float y;
-	float angle;
+	float	x;
+	float	y;
+	float	angle;
 
-	bool key_up;
-	bool key_down;
-	bool key_left;
-	bool key_right;
+	bool	key_up;
+	bool	key_down;
+	bool	key_left;
+	bool	key_right;
 
-	bool left_rotate;
-	bool right_rotate;
+	bool	left_rotate;
+	bool	right_rotate;
 }	t_player;
 
 typedef struct s_map
@@ -27,7 +27,6 @@ typedef struct s_map
 
 	char		*fl_col; //maybe array?
 	char		*ce_col; //maybe array?
-
 	char		**map;
 	int			map_rows;
 	int			map_cols;
@@ -39,7 +38,6 @@ typedef struct s_data
 	void		*win_ptr;
 	void		*img_ptr;
 	void		*img_ptr_mm; //minimap
-
 	char		*addr;
 	int			bpp;
 	int			line_len;
