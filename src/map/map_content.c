@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 void	read_content(t_data *cub3d, char *cub_file);
 int		check_grid(t_data *cub3d, char *cub_file);

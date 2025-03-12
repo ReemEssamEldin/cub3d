@@ -1,4 +1,4 @@
-#include "map.h"
+#include "../../inc/cub3d.h"
 
 void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);

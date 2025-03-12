@@ -1,4 +1,4 @@
-#include "map.h"
+#include "../../inc/cub3d.h"
 
 void	init_map(t_data *cub3d, char *argv);
 void	init_struct(t_data *cub3d);

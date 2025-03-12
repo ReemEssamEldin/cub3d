@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 /*
  * put_pixel - Puts a pixel of a specified color

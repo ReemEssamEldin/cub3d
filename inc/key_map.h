@@ -1,7 +1,7 @@
 #ifndef KEY_MAP_H
 # define KEY_MAP_H
 
-# include "../cub3d.h"
+# include "cub3d.h"
 
 int		key_press(int keysym, t_data *cub3d);
 int		key_release(int keysym, t_data *cub3d);

@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "../cub3d.h"
+# include "cub3d.h"
 
 //utils.c
 void	err_msg(t_data *cub3d, char *err_msg);

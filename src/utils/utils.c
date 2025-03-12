@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../../inc/cub3d.h"
 
 void	err_msg(t_data *cub3d, char *err_msg)
 {
