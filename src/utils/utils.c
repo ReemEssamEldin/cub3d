@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
+/*   Updated: 2025/03/13 13:41:32 by reldahli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	err_msg(t_data *cub3d, char *err_msg)
@@ -33,7 +45,7 @@ void	clean_mapcontent(t_map *map_info)
 	int	i;
 
 	if (map_info->map == NULL)
-		return;
+		return ;
 	i = 0;
 	while (map_info->map[i] != NULL)
 	{
