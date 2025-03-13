@@ -6,24 +6,26 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:47:07 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:52:09 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 //experiment with mac key mappings
+//keysym represents the key that was pressed
+//cub3d is a pointer to the main game structure, which stores player data and game state
 int	key_press(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_Escape || keysym == ESC)
 		destroy(cub3d);
-	if (keysym == XK_W || keysym == XK_w || keysym == W)
+	if (keysym == XK_W || keysym == XK_w)
 		cub3d->player.key_down = true;
-	if (keysym == XK_S || keysym == XK_s || keysym == S)
+	if (keysym == XK_S || keysym == XK_s)
 		cub3d->player.key_up = true;
-	if (keysym == XK_A || keysym == XK_a || keysym == A)
+	if (keysym == XK_A || keysym == XK_a)
 		cub3d->player.key_right = true;
-	if (keysym == XK_D || keysym == XK_d || keysym == D)
+	if (keysym == XK_D || keysym == XK_d)
 		cub3d->player.key_left = true;
 	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = true;
@@ -35,13 +37,13 @@ int	key_press(int keysym, t_data *cub3d)
 //experiment with mac key mappings
 int	key_release(int keysym, t_data *cub3d)
 {
-	if (keysym == XK_W || keysym == XK_w || keysym == W)
+	if (keysym == XK_W || keysym == XK_w)
 		cub3d->player.key_down = false;
-	if (keysym == XK_S || keysym == XK_s || keysym == S)
+	if (keysym == XK_S || keysym == XK_s)
 		cub3d->player.key_up = false;
-	if (keysym == XK_A || keysym == XK_a || keysym == A)
+	if (keysym == XK_A || keysym == XK_a)
 		cub3d->player.key_right = false;
-	if (keysym == XK_D || keysym == XK_d || keysym == D)
+	if (keysym == XK_D || keysym == XK_d)
 		cub3d->player.key_left = false;
 	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = false;
