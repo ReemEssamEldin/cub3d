@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:24:44 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:47:07 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	try_move(t_player *player, float dx, float dy, float dir_x, float dir_y,
 
 	new_x = player->x + dx;
 	new_y = player->y + dy;
-
 	if (!touch(new_x + collision_buffer * dir_x,
 			new_y + collision_buffer * dir_y, cub3d))
 	{
@@ -128,15 +127,15 @@ void	move_player(t_player *player, t_data *cub3d)
 	float	collision_buffer;
 	float	dir_x;
 	float	dir_y;
+	float	cos_angle;
+	float	sin_angle;
 
 	speed = 1;
 	angle_speed = 0.03;
 	collision_buffer = 5;
-
 	handle_rotation(player, angle_speed);
-	float	cos_angle = cos(player->angle);
-	float	sin_angle = sin(player->angle);
-
+	cos_angle = cos(player->angle);
+	sin_angle = sin(player->angle);
 	if (player->key_down)
 	{
 		if (cos_angle > 0)
