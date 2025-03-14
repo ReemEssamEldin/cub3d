@@ -18,15 +18,14 @@ void	init_mlx(t_data *cub3d)
 		cub3d->img_ptr, 0, 0);
 }
 
-void	init_player(t_player *player)
+void	init_player(t_data *cub3d)
 {
-	player->x = (WID / 6); //start pos
-	player->y = HEI / 6; //start pos
-	player->angle = PI; //facing which way?
-	player->key_up = false;
-	player->key_down = false;
-	player->key_right = false;
-	player->key_left = false;
-	player->left_rotate = false;
-	player->right_rotate = false;
+	if (!put_player(cub3d))
+		err_msg(cub3d, "Error\nPlayer position (missing/duplicate)");
+	cub3d->player.key_up = false;
+	cub3d->player.key_down = false;
+	cub3d->player.key_right = false;
+	cub3d->player.key_left = false;
+	cub3d->player.left_rotate = false;
+	cub3d->player.right_rotate = false;
 }

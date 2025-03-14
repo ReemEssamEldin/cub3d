@@ -7,11 +7,11 @@ int	main(int argc, char *argv[])
 
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
+	init_player(&cub3d);
 	//audio_file = "assets/audio/mixkit-game-level-music-689.wav";
 	audio_file = "assets/audio/horror-background-tension-build-up-254933.wav";
 	play_audio(audio_file);
 	init_cub3d(&cub3d);
-	init_player(&cub3d.player);
 	init_mlx(&cub3d);
 	key_hooks(&cub3d);
 	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);

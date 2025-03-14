@@ -5,5 +5,6 @@
 
 void		init_cub3d(t_data *cub3d);
 void		init_mlx(t_data *cub3d);
-void		init_player(t_player *player);
+//void		init_player(t_player *player); //need to take cub3d
+void		init_player(t_data *cub3d);
 #endif
