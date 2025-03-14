@@ -35,6 +35,7 @@ SRC-C3				= ./src/cub3d.c \
 						./src/drawing/math.c \
 						./src/key_mapping/key_map.c \
 						./src/init/init.c \
+						./src/player_properties/position_direction.c \
 
 HEADER				= ./src/
 

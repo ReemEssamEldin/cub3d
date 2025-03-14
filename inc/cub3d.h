@@ -24,6 +24,7 @@
 # include "drawing.h"
 # include "key_map.h"
 # include "init.h"
+# include "player.h" //maybe combine with keymapping?
 
 # define WID 1280
 # define HEI 720
