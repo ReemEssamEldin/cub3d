@@ -15,4 +15,6 @@ If validation is passed (all header info properly extracted), then the content (
 
 The second pass actually saves each line (simultaneously removes trailing newline chars) to the t_map struct. The number of cols of the map is also saved at this point for no particular reason.
 
+The map is checked for openings. But not with flood fill. --> say something more.
+
 ### Starting position & direction
