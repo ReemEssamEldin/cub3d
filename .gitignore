@@ -113,3 +113,8 @@ valgrind-out.txt
 lib/minilibx-linux.tgz
 lib/minilibx-linux/
 lib/mlx/
+
+# VS Code settings
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
