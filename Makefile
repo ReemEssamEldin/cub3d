@@ -8,7 +8,8 @@ ifeq ($(UNAME), Darwin)
 else ifeq ($(UNAME), Linux)
 	MLXTAR		= minilibx-linux.tgz
 	MLXDIR		= ./lib/minilibx-linux/
-	MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
+#	MLXURL		= "https://cdn.intra.42.fr/document/document/30910/minilibx-linux.tgz"
+	MLXURL		= https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
 	MLXFLAGS 	= -lmlx -lXext -lX11 -lm
 	MLXGIT		= https://github.com/42Paris/minilibx-linux.git
 endif
