@@ -10,6 +10,8 @@ void	init_struct(t_data *cub3d);
 //map_header.c
 void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);
+int		get_col(t_data *cub3d, char *line, char **col_field, char *code);
+int		get_tex(t_data *cub3d, char *line, char **tex_field, char *code);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
 char	*get_comppath(char *line);
