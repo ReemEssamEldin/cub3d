@@ -4,7 +4,6 @@ void	read_content(t_data *cub3d, char *cub_file);
 int		check_grid(t_data *cub3d, char *cub_file);
 int		save_grid(t_data *cub3d, char *cub_file);
 int		valid_mapline(char *line);
-int		empty_line(char *line);
 int		verify_boundaries(t_data *cub3d);
 
 /**
@@ -156,27 +155,6 @@ int valid_mapline(char *line)
 		i++;
 	}
 	return (1);
-}
-
-/**
- * @brief Checks if a line is empty or contains only whitespace characters
- *
- * This function scans through the given line and determines if it's empty.
- * A line is considered empty if it:
- * - Contains only spaces and/or tabs followed by a newline or null terminator
- * - Is just a newline or null terminator
- *
- * @param line The string to check
- * @return int 1 (true) if the line is empty, 0 (false) otherwise
- */
-int empty_line(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	return (line[i] == '\n' || line[i] == '\0');
 }
 
 /**
