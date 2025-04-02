@@ -1,17 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
+/*   Updated: 2025/03/13 16:52:09 by reldahli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 //experiment with mac key mappings
+//keysym represents the key that was pressed
+//cub3d is a pointer to the main game structure, which stores player data and game state
 int	key_press(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_Escape || keysym == ESC)
 		destroy(cub3d);
-	if (keysym == XK_W || keysym == XK_w || keysym == W)
+	if (keysym == XK_W || keysym == XK_w)
 		cub3d->player.key_down = true;
-	if (keysym == XK_S || keysym == XK_s || keysym == S)
+	if (keysym == XK_S || keysym == XK_s)
 		cub3d->player.key_up = true;
-	if (keysym == XK_A || keysym == XK_a || keysym == A)
+	if (keysym == XK_A || keysym == XK_a)
 		cub3d->player.key_right = true;
-	if (keysym == XK_D || keysym == XK_d || keysym == D)
+	if (keysym == XK_D || keysym == XK_d)
 		cub3d->player.key_left = true;
 	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = true;
@@ -23,13 +37,13 @@ int	key_press(int keysym, t_data *cub3d)
 //experiment with mac key mappings
 int	key_release(int keysym, t_data *cub3d)
 {
-	if (keysym == XK_W || keysym == XK_w || keysym == W)
+	if (keysym == XK_W || keysym == XK_w)
 		cub3d->player.key_down = false;
-	if (keysym == XK_S || keysym == XK_s || keysym == S)
+	if (keysym == XK_S || keysym == XK_s)
 		cub3d->player.key_up = false;
-	if (keysym == XK_A || keysym == XK_a || keysym == A)
+	if (keysym == XK_A || keysym == XK_a)
 		cub3d->player.key_right = false;
-	if (keysym == XK_D || keysym == XK_d || keysym == D)
+	if (keysym == XK_D || keysym == XK_d)
 		cub3d->player.key_left = false;
 	if (keysym == XK_Left || keysym == LEFT)
 		cub3d->player.left_rotate = false;
@@ -79,7 +93,7 @@ int	key_release(int keysym, t_data *cub3d)
 	}
 } */
 
-void handle_rotation(t_player *player, float angle_speed)
+void	handle_rotation(t_player *player, float angle_speed)
 {
 	if (player->left_rotate)
 		player->angle -= angle_speed;
@@ -92,31 +106,38 @@ void handle_rotation(t_player *player, float angle_speed)
 }
 
 // Try to move player in a direction with collision detection
-void try_move(t_player *player, float dx, float dy, float dir_x, float dir_y, 
-			 float collision_buffer, t_data *cub3d)
+void	try_move(t_player *player, float dx, float dy, float dir_x, float dir_y,
+	float collision_buffer, t_data *cub3d)
 {
-	float new_x = player->x + dx;
-	float new_y = player->y + dy;
+	float	new_x;
+	float	new_y;
 
-	if (!touch(new_x + collision_buffer * dir_x, 
-			  new_y + collision_buffer * dir_y, cub3d))
+	new_x = player->x + dx;
+	new_y = player->y + dy;
+	if (!touch(new_x + collision_buffer * dir_x,
+			new_y + collision_buffer * dir_y, cub3d))
 	{
 		player->x = new_x;
 		player->y = new_y;
 	}
 }
 
-void move_player(t_player *player, t_data *cub3d)
+void	move_player(t_player *player, t_data *cub3d)
 {
-	float speed = 1;
-	float angle_speed = 0.03;
-	float collision_buffer = 5;
-	float dir_x, dir_y;
-	
+	float	speed;
+	float	angle_speed;
+	float	collision_buffer;
+	float	dir_x;
+	float	dir_y;
+	float	cos_angle;
+	float	sin_angle;
+
+	speed = 1;
+	angle_speed = 0.03;
+	collision_buffer = 5;
 	handle_rotation(player, angle_speed);
-	float cos_angle = cos(player->angle);
-	float sin_angle = sin(player->angle);
-	
+	cos_angle = cos(player->angle);
+	sin_angle = sin(player->angle);
 	if (player->key_down)
 	{
 		if (cos_angle > 0)
@@ -127,8 +148,8 @@ void move_player(t_player *player, t_data *cub3d)
 			dir_y = 1;
 		else
 			dir_y = -1;
-		try_move(player, cos_angle * speed, sin_angle * speed, 
-				dir_x, dir_y, collision_buffer, cub3d);
+		try_move(player, cos_angle * speed, sin_angle * speed,
+			dir_x, dir_y, collision_buffer, cub3d);
 	}
 	if (player->key_up)
 	{
@@ -141,7 +162,7 @@ void move_player(t_player *player, t_data *cub3d)
 		else
 			dir_y = -1;
 		try_move(player, -cos_angle * speed, -sin_angle * speed,
-				dir_x, dir_y, collision_buffer, cub3d);
+			dir_x, dir_y, collision_buffer, cub3d);
 	}
 	if (player->key_right)
 	{
@@ -154,7 +175,7 @@ void move_player(t_player *player, t_data *cub3d)
 		else
 			dir_y = -1;
 		try_move(player, sin_angle * speed, -cos_angle * speed,
-				dir_x, dir_y, collision_buffer, cub3d);
+			dir_x, dir_y, collision_buffer, cub3d);
 	}
 	if (player->key_left)
 	{
@@ -167,7 +188,7 @@ void move_player(t_player *player, t_data *cub3d)
 		else
 			dir_y = -1;
 		try_move(player, -sin_angle * speed, cos_angle * speed,
-				dir_x, dir_y, collision_buffer, cub3d);
+			dir_x, dir_y, collision_buffer, cub3d);
 	}
 }
 
