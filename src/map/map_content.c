@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:33:09 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:05:37 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		verify_boundaries(t_data *cub3d);
  *
  * @note The function will print an error message if memory allocation fails
  */
+
 void	read_content(t_data *cub3d, char *cub_file)
 {
 	cub3d->map_info.map_rows = check_grid(cub3d, cub_file);
@@ -56,6 +57,7 @@ void	read_content(t_data *cub3d, char *cub_file)
  * @param cub_file Path to the .cub file to be checked
  * @return The number of valid map rows found, or exits on error
  */
+
 int	check_grid(t_data *cub3d, char *cub_file)
 {
 	int		file;
@@ -102,6 +104,7 @@ int	check_grid(t_data *cub3d, char *cub_file)
  * @return The length of the longest line in the map (number of columns)
  *		 or -1 if the file could not be opened
  */
+
 int	save_grid(t_data *cub3d, char *cub_file)
 {
 	int		file;
@@ -182,6 +185,7 @@ int	valid_mapline(char *line)
  * @param line The string to check
  * @return int 1 (true) if the line is empty, 0 (false) otherwise
  */
+
 int	empty_line(char *line)
 {
 	int	i;
@@ -203,6 +207,7 @@ int	empty_line(char *line)
  * @param cub3d Pointer to the main data structure
  * @return 1 if map is valid, 0 if it has open boundaries
  */
+
 int	verify_boundaries(t_data *cub3d)
 {
 	int	i;

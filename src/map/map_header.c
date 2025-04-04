@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:39:45 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:03:48 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		verify_file(char *complete_path);
  *
  * @note Prints an error message if the file cannot be opened
  */
+
 void	read_header(t_data *cub3d, char *cub_file)
 {
 	int		file;
@@ -71,6 +72,7 @@ void	read_header(t_data *cub3d, char *cub_file)
  * @return int Returns 1 if line starts with a
  * valid header identifier, 0 otherwise
  */
+
 int	check_header(char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0
@@ -92,6 +94,7 @@ int	check_header(char *line)
  * @param texture_field Pointer to the texture field in map_info
  * @return 1 if successful, 0 otherwise
  */
+
 int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 {
 	char	*complete_path;
@@ -122,6 +125,7 @@ int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
  * @param color_type Type of color (F or C)
  * @return 1 if successful, 0 otherwise
  */
+
 int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 {
 	if (*col_field != NULL)
@@ -143,6 +147,7 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
  * @param cub3d Pointer to the main data structure
  * @param line The line of text to process from the map file
  */
+
 void	load_header(t_data *cub3d, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
@@ -170,6 +175,7 @@ void	load_header(t_data *cub3d, char *line)
  * @param cub3d Pointer to the main data structure containing map information
  * @return 1 if all required header elements are present, 0 otherwise
  */
+
 int	header_complete(t_data *cub3d)
 {
 	if (cub3d->map_info.no_tex != NULL
@@ -196,14 +202,9 @@ int	header_complete(t_data *cub3d)
  *
  * @note The caller is responsible for freeing the returned string
  */
+
 char	*get_comppath(char *line)
 {
-	/* int	len;
-	char	*complete_path;
-
-	len = ft_strlen(line);
-	complete_path = ft_substr(line, 3, len);
-	return (complete_path); */
 	int		i;
 	int		start;
 	char	*complete_path;
@@ -230,6 +231,7 @@ char	*get_comppath(char *line)
  * @return 1 if the file exists and is readable, 0 otherwise
  * @note If the file cannot be opened, an error message is printed to stdout
  */
+
 int	verify_file(char *complete_path)
 {
 	int		file;

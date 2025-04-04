@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:22 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:12:23 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:05:42 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
  * @return A newly allocated string containing the audio player command.
  * The caller is responsible for freeing this memory.
  */
+
 char	*detect_audioplayer(void)
 {
 	char	*audio_player;
@@ -52,6 +53,7 @@ char	*detect_audioplayer(void)
  * @note Memory allocated during execution is properly freed before returning.
  * @note If fork() or execve() fails, appropriate error messages are displayed.
  */
+
 void	play_audio(char *audio_file)
 {
 	int			pid;
@@ -103,6 +105,7 @@ void	play_audio(char *audio_file)
  *
  * @note This function assumes killall binary is located at "/usr/bin/killall"
  */
+
 void	end_audio(void)
 {
 	int			pid;
@@ -129,13 +132,3 @@ void	end_audio(void)
 	free(argv[2]);
 	free(argv);
 }
-
-/* void	play_audio(char *audio, int loudness)
-{
-	(void) audio;
-	loudness++;
-}
-
-void	end_audio(void)
-{
-} */

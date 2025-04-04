@@ -6,15 +6,12 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 16:52:09 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:00:30 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-//experiment with mac key mappings
-//keysym represents the key that was pressed
-//cub3d is a pointer to the main game structure, which stores player data and game state
 int	key_press(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_Escape || keysym == ESC)
@@ -34,7 +31,6 @@ int	key_press(int keysym, t_data *cub3d)
 	return (0);
 }
 
-//experiment with mac key mappings
 int	key_release(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_W || keysym == XK_w)
@@ -52,47 +48,6 @@ int	key_release(int keysym, t_data *cub3d)
 	return (0);
 }
 
-/* void	move_player(t_player *player)
-{
-	int		speed;
-	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
-
-	speed = 1;
-	angle_speed = 0.03;
-	cos_angle = cos(player->angle);
-	sin_angle = sin(player->angle);
-	if (player->left_rotate)
-		player->angle -= angle_speed;
-	if (player->right_rotate)
-		player->angle += angle_speed;
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
-	if (player->key_down)
-	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
-	}
-	if (player->key_up)
-	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
-	}
-	if (player->key_right)
-	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
-	}
-	if (player->key_left)
-	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
-	}
-} */
-
 void	handle_rotation(t_player *player, float angle_speed)
 {
 	if (player->left_rotate)
@@ -105,7 +60,6 @@ void	handle_rotation(t_player *player, float angle_speed)
 		player->angle = 2 * PI;
 }
 
-// Try to move player in a direction with collision detection
 void	try_move(t_player *player, float dx, float dy, float dir_x, float dir_y,
 	float collision_buffer, t_data *cub3d)
 {

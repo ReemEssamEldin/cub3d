@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   position_direction.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 12:04:32 by reldahli          #+#    #+#             */
+/*   Updated: 2025/04/04 12:04:34 by reldahli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/player.h"
 
 bool	put_player(t_data *cub3d);
@@ -10,7 +22,7 @@ bool	put_player(t_data *cub3d)
 	int		y;
 	int		found;
 	char	pos;
-	
+
 	found = false;
 	y = 0;
 	while (y < cub3d->map_info.map_rows)

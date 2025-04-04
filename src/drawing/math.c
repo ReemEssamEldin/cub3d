@@ -6,23 +6,11 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:39 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:48:21 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:59:21 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-/* bool	touch(float px, float py, t_data *cub3d)
-{
-	int	x;
-	int	y;
-
-	x = px / BLOCK;
-	y = py / BLOCK;
-	if (cub3d->map_info.map[y][x] == '1')
-		return (true);
-	return (false);
-} */
 
 bool	touch(float px, float py, t_data *cub3d)
 {

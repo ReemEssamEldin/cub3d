@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:41:32 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:05:00 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,6 @@ void	clean_mapcontent(t_map *map_info)
 	}
 	free(map_info->map);
 }
-
-/* char	*remove_trailing(char *str, char const *c)
-{
-	int		start;
-	int		end;
-	char	*trimmed;
-
-	if (!c || !str)
-		return (NULL);
-	start = 0;
-	while (str[start] != '\0' && ft_strchr(c, str[start]) != NULL)
-		start++;
-	end = ft_strlen(str + start);
-	while (end > start && ft_strchr(c, str[(start + end) - 1]) != NULL)
-		end--;
-	trimmed = ft_calloc((end + 1), sizeof(char *));
-	if (!trimmed)
-		return (NULL);
-	ft_strncpy(trimmed, (str + start), end);
-	free(str);
-	return (trimmed);
-} */
 
 char	*remove_trailing(char *str, char *c)
 {
