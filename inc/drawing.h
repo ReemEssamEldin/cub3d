@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 11:39:56 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:07:06 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "cub3d.h"
 
 // drawing.c
-void	put_pixel(int x, int y, int color, t_data *cub3d);
-void	draw_line(t_player *player, t_data *cub3d, float start_x, int i);
+void	put_pixel(int x, int y, int color, t_data *cub3d, char *addr);
+void	draw_line(t_player *player, t_data *cub3d, float start_x, int i, char *addr);
 int		draw_loop(t_data *cub3d);
-void	draw_square(int x, int y, int size, int color, t_data *cub3d);
-void	draw_triangle(int x, int y, int size, int color, t_data *cub3d);
-void	draw_map(t_data *cub3d);
-void	clear_image(t_data *cub3d);
+void	draw_square(int x, int y, int size, int color, t_data *cub3d, char *addr);
+void	draw_triangle(int x, int y, int size, int color, t_data *cub3d, char *addr);
+void	draw_map(t_data *cub3d, char *addr);
+void	clear_image(t_data *cub3d, char *addr);
 // math.c
 bool	touch(float px, float py, t_data *cub3d);
 float	distance(float x, float y);
