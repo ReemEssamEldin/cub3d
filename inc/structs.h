@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/07 23:00:17 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:19:11 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ typedef struct s_data
 	char		*addr_mm;
 	int			bpp;
 	int			line_len;
+	int			line_len_mm;
 	int			endian;
-    int     line_len_mm;
-    int     endian_mm;
+	int			endian_mm;
 
 	t_player	player;
 	t_map		map_info;
