@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 11:39:51 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:47:17 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@
 # define WID 1280
 # define HEI 720
 # define PI 3.14159265359
-# define BLOCK 20 //what?
+# define BLOCK 10 //what?
 
 # define RED 0xFF0000
 # define GRE 0x008000
+# define GREY 0x808080
 # define BLU 0x0000FF
 # define YEL 0xFFFF00
 # define VIO 0x800080
