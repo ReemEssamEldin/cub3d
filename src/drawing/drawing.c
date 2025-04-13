@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:54:09 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:54:52 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,52 +127,6 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	}
 }
 
-//just a line, not a cone
-/* int	draw_loop(t_data *cub3d)
-{
-	move_player(&cub3d->player);
-	clear_image(cub3d);
-	draw_square(cub3d->player.x, cub3d->player.y, 32, RED, cub3d);
-	draw_map(cub3d);
-
-	float	ray_x = cub3d->player.x;
-	float	ray_y = cub3d->player.y;
-	float	cos_angle = cos(cub3d->player.angle);
-	float	sin_angle = sin(cub3d->player.angle);
-
-	while(!touch(ray_x, ray_y, cub3d))
-	{
-		put_pixel(ray_x, ray_y, YEL, cub3d);
-		ray_x += cos_angle;
-		ray_y += sin_angle;
-	}
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
-		cub3d->img_ptr, 0, 0);
-	return(0);
-} */
-
-//top-down ,conical ray
-/* int	draw_loop(t_data *cub3d)
-{
-	move_player(&cub3d->player);
-	clear_image(cub3d);
-	draw_square(cub3d->player.x, cub3d->player.y,
-		32, RED, cub3d); //handles top-down view
-	draw_map(cub3d); //handles top-down view
-
-	float fraction = PI /3 / WID;
-	float start_x = cub3d->player.angle - PI / 6;
-	int i = 0;
-	while(i < WID)
-	{
-		draw_line(&cub3d->player, cub3d, start_x, i);
-		start_x += fraction;
-		i++;
-	}
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
-		cub3d->img_ptr, 0, 0);
-	return(0);
-} */
 
 //first person
 int	draw_loop(t_data *cub3d)
@@ -184,9 +138,6 @@ int	draw_loop(t_data *cub3d)
 	//move_player(&cub3d->player);
 	move_player(&cub3d->player, cub3d);
 	clear_image(cub3d);
-	//top-down
-	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
-	draw_map(cub3d);
 	//1st-person
 	fraction = PI / 3 / WID; //FOV width
 	start_x = cub3d->player.angle - PI / 6;
@@ -197,6 +148,10 @@ int	draw_loop(t_data *cub3d)
 		start_x += fraction;
 		i++;
 	}
+	draw_map(cub3d);
+	//top-down
+	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
+
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
 	return (0);
@@ -212,6 +167,13 @@ void	draw_square(int x, int y, int size, int color, t_data *cub3d)
 		put_pixel(x + size, y + i, color, cub3d);
 	for (int i = 0; i < size; i++)
 		put_pixel(x + i, y + size, color, cub3d);
+}
+
+void	draw_filled_square(int x, int y, int size, int color, t_data *cub3d)
+{
+	for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++)
+			put_pixel(x + i, y + j, color, cub3d);
 }
 
 void	draw_triangle(int x, int y, int size, int color, t_data *cub3d)
@@ -257,14 +219,42 @@ void	draw_triangle(int x, int y, int size, int color, t_data *cub3d)
 void	draw_map(t_data *cub3d)
 {
 	char	**map;
-	int		color;
+	int		map_width;
+	int		map_height;
+	int		wall_color;
+	int		bg_color;
+	int 	space_color;
+	int map_padding;
 
 	map = cub3d->map_info.map;
-	color = GRE;
+	map_height = 0;
+	map_width = 0;
+	map_padding = 0;
+	while (map[map_height])
+	{
+		int len = 0;
+		while (map[map_height][len])
+			len++;
+		if (len > map_width)
+			map_width = len;
+		map_height++;
+	}
+	map_width += map_padding;
+	map_height += map_padding;
+
+	bg_color = BLU;
+	wall_color = BLU;
+	space_color = GREY;
+	// Fill background
+	for (int y = 0; y < map_height * BLOCK; y++)
+		for (int x = 0; x < map_width * BLOCK; x++)
+			put_pixel(x, y, bg_color, cub3d);
 	for (int y = 0; map[y]; y++)
 		for (int x = 0; map[y][x]; x++)
 			if (map[y][x] == '1')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, color, cub3d);
+				draw_filled_square(x * BLOCK, y * BLOCK, BLOCK, wall_color, cub3d);
+			else if (map[y][x] == '0')
+				draw_filled_square(x * BLOCK, y * BLOCK, BLOCK, space_color, cub3d);
 }
 
 void	clear_image(t_data *cub3d)
