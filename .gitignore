@@ -116,5 +116,5 @@ lib/mlx/
 
 # VS Code settings
 .vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+.vscode/extensions.json
+.vscode/settings.json
