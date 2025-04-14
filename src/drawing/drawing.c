@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 21:13:50 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:34:47 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	(void)i;
 	cos_angle = cos(start_x);
 	sin_angle = sin(start_x);
-	ray_x = player->x;
-	ray_y = player->y;
+	ray_x = player->x + BLOCK/4;  // Start from middle of player square
+	ray_y = player->y + BLOCK/4;  // Start from middle of player square
 	while (!touch(ray_x, ray_y, cub3d))
 	{
 		put_pixel(ray_x, ray_y, RED, cub3d); //this line handles rays
@@ -142,23 +142,41 @@ int	draw_loop(t_data *cub3d)
 	float	fraction;
 	float	start_x;
 	int		i;
+	float   ray_angles[WID];  // Store ray angles for later use
 
-	//move_player(&cub3d->player);
 	move_player(&cub3d->player, cub3d);
 	clear_image(cub3d);
-	//1st-person
-	fraction = PI / 3 / WID; //FOV width
+
+	// Calculate and store ray angles
+	fraction = PI / 3 / WID;
 	start_x = cub3d->player.angle - PI / 6;
 	i = 0;
 	while (i < WID)
 	{
+		ray_angles[i] = start_x;
 		draw_line(&cub3d->player, cub3d, start_x, i);
 		start_x += fraction;
 		i++;
 	}
+
+	// Draw minimap
 	draw_map(cub3d);
-	//top-down
-	// draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
+
+	// Redraw rays on top of minimap
+	float cos_angle, sin_angle, ray_x, ray_y;
+	for (i = 0; i < WID; i++)
+	{
+		cos_angle = cos(ray_angles[i]);
+		sin_angle = sin(ray_angles[i]);
+		ray_x = cub3d->player.x + BLOCK/4;
+		ray_y = cub3d->player.y + BLOCK/4;
+		while (!touch(ray_x, ray_y, cub3d))
+		{
+			put_pixel(ray_x, ray_y, DARK_GREY, cub3d);
+			ray_x += cos_angle;
+			ray_y += sin_angle;
+		}
+	}
 	draw_filled_square(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
 
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
