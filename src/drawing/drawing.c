@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/13 17:57:59 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 12:24:48 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	int		start_y;
 	int		end;
 	int		color;
+	int		color2;
 
 	(void)i;
 	cos_angle = cos(start_x);
@@ -116,10 +117,17 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	start_y = (HEI - height) / 2;
 	end = start_y + height;
 	color = GRE;
+	color2 = YEL;
 	// if (cos_angle > 0) // Wall facing right
 	// 	color = (color >> 1) & 0x7F7F7F; // Darken the color
 	// else if (cos_angle < 0) // Wall facing left
 	// 	color = (color << 1) | 0x808080; // Lighten the color
+	int p = 0;
+	while ( p < start_y)
+	{
+		put_pixel(i, p, color2, cub3d);
+		p++;
+	}
 	while (start_y < end)
 	{
 		put_pixel(i, start_y, color, cub3d);
@@ -243,7 +251,7 @@ void	draw_map(t_data *cub3d)
 	map_height += map_padding;
 
 	bg_color = BLU;
-	wall_color = BLU;
+	wall_color = GRE;
 	space_color = GREY;
 	// Fill background
 	draw_filled_square(0, 0, map_width * BLOCK, bg_color, cub3d);
