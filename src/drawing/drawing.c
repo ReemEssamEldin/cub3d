@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 21:34:47 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:38:44 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,22 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	int		end;
 	int		color;
 	int		color2;
+	float   max_ray_length;
+	float   current_length;
 
 	(void)i;
 	cos_angle = cos(start_x);
 	sin_angle = sin(start_x);
 	ray_x = player->x + BLOCK/4;  // Start from middle of player square
 	ray_y = player->y + BLOCK/4;  // Start from middle of player square
-	while (!touch(ray_x, ray_y, cub3d))
+	max_ray_length = BLOCK * 5; // Limit ray to 5 blocks length
+	current_length = 0;
+	while (!touch(ray_x, ray_y, cub3d) && current_length < max_ray_length)
 	{
 		put_pixel(ray_x, ray_y, RED, cub3d); //this line handles rays
 		ray_x += cos_angle;
 		ray_y += sin_angle;
+		current_length += 1;
 	}
 	//this part handles 1st-person perspective
 	dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d); //fix fish-eye
@@ -164,17 +169,22 @@ int	draw_loop(t_data *cub3d)
 
 	// Redraw rays on top of minimap
 	float cos_angle, sin_angle, ray_x, ray_y;
+	float max_ray_length = BLOCK * 5;
+	float current_length;
+
 	for (i = 0; i < WID; i++)
 	{
 		cos_angle = cos(ray_angles[i]);
 		sin_angle = sin(ray_angles[i]);
 		ray_x = cub3d->player.x + BLOCK/4;
 		ray_y = cub3d->player.y + BLOCK/4;
-		while (!touch(ray_x, ray_y, cub3d))
+		current_length = 0;
+		while (!touch(ray_x, ray_y, cub3d) && current_length < max_ray_length)
 		{
 			put_pixel(ray_x, ray_y, DARK_GREY, cub3d);
 			ray_x += cos_angle;
 			ray_y += sin_angle;
+			current_length += 1;
 		}
 	}
 	draw_filled_square(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
@@ -270,7 +280,7 @@ void	draw_map(t_data *cub3d)
 	map_height += map_padding;
 
 	bg_color = GREY;
-	wall_color = GRE;
+	wall_color = BROWN;
 	space_color = GREY;
 	// Fill background
 	for (int y = 0; y < map_height * BLOCK; y++)
