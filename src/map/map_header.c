@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_header.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:39:45 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:43:39 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 	complete_path = get_comppath(line);
 	if (verify_file(complete_path))
 	{
-		*tex_field = ft_strdup(line);
+		*tex_field = ft_strdup(complete_path);
 		free(complete_path);
 		return (1);
 	}
