@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 15:47:10 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:04:15 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,7 @@ char	*get_comppath(char *line)
 int	verify_file(char *complete_path)
 {
 	int		file;
+	char	*ext;
 
 	file = open(complete_path, O_RDONLY);
 	if (file == -1)
@@ -244,9 +245,18 @@ int	verify_file(char *complete_path)
 		perror("File can't be found.");
 		return (0);
 	}
-	else
+	close(file);
+	ext = ft_strrchr(complete_path, '.');
+	if (!ext)
 	{
-		close(file);
-		return (1);
+		printf("File has no extension: %s\n", complete_path);
+		return (0);
 	}
+	if (ft_strncmp(ext, ".png", 5) == 0 || 
+		ft_strncmp(ext, ".jpg", 5) == 0 || 
+		ft_strncmp(ext, ".jpeg", 6) == 0 || 
+		ft_strncmp(ext, ".xpm", 5) == 0)
+		return (1);
+	printf("Invalid file extension: %s\n", complete_path);
+	return (0);
 }
