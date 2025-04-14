@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/13 17:26:54 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:28:37 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ void	clear_image(t_data *cub3d);
 bool	touch(float px, float py, t_data *cub3d);
 float	distance(float x, float y);
 float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
+
+// draw_floceil.c
+int rgb_to_colour(char *rgb_str);
 #endif
