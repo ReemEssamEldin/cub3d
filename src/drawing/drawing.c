@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 16:29:41 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:52:51 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	float	height;
 	int		start_y;
 	int		end;
-	int		color;
-	int		color2;
-	int		color3;
+	int		col_wall;
+	int		col_ceil;
+	int		col_floo;
 
 	(void)i;
 	cos_angle = cos(start_x);
@@ -117,32 +117,44 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	height = (BLOCK / dist) * (WID / 2);
 	start_y = (HEI - height) / 2;
 	end = start_y + height;
-	color = GRE;
-	color2 = rgb_to_colour(cub3d->map_info.ce_col);
-	color3 = rgb_to_colour(cub3d->map_info.fl_col);
 	// if (cos_angle > 0) // Wall facing right
 	// 	color = (color >> 1) & 0x7F7F7F; // Darken the color
 	// else if (cos_angle < 0) // Wall facing left
 	// 	color = (color << 1) | 0x808080; // Lighten the color
-	int top = 0;
-	while ( top < start_y)
-	{
-		put_pixel(i, top, color2, cub3d);
-		top++;
-	}
-	while (start_y < end)
-	{
-		put_pixel(i, start_y, color, cub3d);
-		start_y++;
-	}
-	int bot = HEI;
-	while (end < bot)
-	{
-		put_pixel(i, end, color3, cub3d);
-		end++;
-	}
+	col_wall = GRE;
+	col_ceil = rgb_to_colour(cub3d->map_info.ce_col);
+	col_floo = rgb_to_colour(cub3d->map_info.fl_col);
+	draw_maindisplay(0, start_y, col_ceil, cub3d, i);
+	draw_maindisplay(start_y, end, col_wall, cub3d, i);
+	draw_maindisplay(end, HEI, col_floo, cub3d, i);
+	// int top = 0;
+	// while (top < start_y)
+	// {
+	// 	put_pixel(i, top, col2, cub3d);
+	// 	top++;
+	// }
+	// while (start_y < end)
+	// {
+	// 	put_pixel(i, start_y, col, cub3d);
+	// 	start_y++;
+	// }
+	// int bot = HEI;
+	// while (end < bot)
+	// {
+	// 	put_pixel(i, end, col3, cub3d);
+	// 	end++;
+	// }
 }
 
+void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i)
+{
+	(void) i;
+	while (top < bot)
+	{
+		put_pixel(i, top, colour, cub3d);
+		top++;
+	}
+}
 
 //first person
 int	draw_loop(t_data *cub3d)
