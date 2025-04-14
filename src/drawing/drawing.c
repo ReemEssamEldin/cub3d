@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/13 17:54:52 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:57:59 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,9 +246,7 @@ void	draw_map(t_data *cub3d)
 	wall_color = BLU;
 	space_color = GREY;
 	// Fill background
-	for (int y = 0; y < map_height * BLOCK; y++)
-		for (int x = 0; x < map_width * BLOCK; x++)
-			put_pixel(x, y, bg_color, cub3d);
+	draw_filled_square(0, 0, map_width * BLOCK, bg_color, cub3d);
 	for (int y = 0; map[y]; y++)
 		for (int x = 0; map[y][x]; x++)
 			if (map[y][x] == '1')
