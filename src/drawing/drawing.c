@@ -174,7 +174,7 @@ int	draw_loop(t_data *cub3d)
 	clear_image(cub3d);
 	//top-down
 	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
-	draw_map(cub3d);
+	//draw_map(cub3d);
 	//1st-person
 	fraction = PI / 3 / WID; //FOV width
 	start_x = cub3d->player.angle - PI / 6;
@@ -185,6 +185,7 @@ int	draw_loop(t_data *cub3d)
 		start_x += fraction;
 		i++;
 	}
+	draw_map(cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
 	return (0);
@@ -238,7 +239,7 @@ void	draw_map(t_data *cub3d)
 	int		color;
 
 	map = cub3d->map_info.map;
-	color = GRE;
+	color = YEL;
 	for (int y = 0; map[y]; y++)
 		for (int x = 0; map[y][x]; x++)
 			if (map[y][x] == '1')
