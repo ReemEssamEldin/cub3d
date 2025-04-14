@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 21:06:52 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:34:40 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define RED 0xFF0000
 # define GRE 0x008000
 # define GREY 0x808080
+# define DARK_GREY 0x404040
 # define BLU 0x0000FF
 # define YEL 0xFFFF00
 # define VIO 0x800080
