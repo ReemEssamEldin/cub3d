@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 12:24:48 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:58:29 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int	draw_loop(t_data *cub3d)
 	}
 	draw_map(cub3d);
 	//top-down
-	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
+	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
 
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
@@ -237,7 +237,7 @@ void	draw_map(t_data *cub3d)
 	map = cub3d->map_info.map;
 	map_height = 0;
 	map_width = 0;
-	map_padding = 0;
+	map_padding = 1;
 	while (map[map_height])
 	{
 		int len = 0;
@@ -250,11 +250,13 @@ void	draw_map(t_data *cub3d)
 	map_width += map_padding;
 	map_height += map_padding;
 
-	bg_color = BLU;
+	bg_color = GREY;
 	wall_color = GRE;
 	space_color = GREY;
 	// Fill background
-	draw_filled_square(0, 0, map_width * BLOCK, bg_color, cub3d);
+	for (int y = 0; y < map_height * BLOCK; y++)
+		for (int x = 0; x < map_width * BLOCK; x++)
+			put_pixel(x, y, bg_color, cub3d);
 	for (int y = 0; map[y]; y++)
 		for (int x = 0; map[y][x]; x++)
 			if (map[y][x] == '1')

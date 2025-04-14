@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/13 17:47:17 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:06:52 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define HEI 720
 # define PI 3.14159265359
 # define BLOCK 10 //what?
+
 
 # define RED 0xFF0000
 # define GRE 0x008000
