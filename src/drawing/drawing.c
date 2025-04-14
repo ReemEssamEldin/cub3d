@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 20:58:29 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:13:50 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,8 @@ int	draw_loop(t_data *cub3d)
 	}
 	draw_map(cub3d);
 	//top-down
-	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
+	// draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
+	draw_filled_square(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
 
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
