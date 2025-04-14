@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 16:28:37 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:52:54 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	draw_filled_square(int x, int y, int size, int color, t_data *cub3d);
 void	draw_triangle(int x, int y, int size, int color, t_data *cub3d);
 void	draw_map(t_data *cub3d);
 void	clear_image(t_data *cub3d);
+void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i);
+
 // math.c
 bool	touch(float px, float py, t_data *cub3d);
 float	distance(float x, float y);
