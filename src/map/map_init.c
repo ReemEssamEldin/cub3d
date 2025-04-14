@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:40:01 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/02 18:00:37 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:34:56 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	init_map(t_data *cub3d, char *argv)
 	if (header_complete(cub3d) != 1) //header_complete is a function that checks if the header is complete
 		err_msg(cub3d, "Error\nIncomplete header.");
 	read_content(cub3d, argv); //read_content is a function that reads the content of the map
-	printf("%s\n", cub3d->map_info.no_tex);
-	printf("%s\n", cub3d->map_info.so_tex);
-	printf("%s\n", cub3d->map_info.ea_tex);
-	printf("%s\n", cub3d->map_info.we_tex);
-	printf("%s\n", cub3d->map_info.fl_col);
-	printf("%s\n", cub3d->map_info.ce_col);
+	printf("NO: %s\n", cub3d->map_info.no_tex);
+	printf("SO: %s\n", cub3d->map_info.so_tex);
+	printf("EA: %s\n", cub3d->map_info.ea_tex);
+	printf("WE: %s\n", cub3d->map_info.we_tex);
+	printf("FL: %s\n", cub3d->map_info.fl_col);
+	printf("CE: %s\n", cub3d->map_info.ce_col);
 	i = 0;
 	while (cub3d->map_info.map[i] != NULL) //map is a 2D array that stores the map data
 	{
