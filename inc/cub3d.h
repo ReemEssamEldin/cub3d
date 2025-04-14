@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 21:34:40 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:38:07 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define VIO 0x800080
 # define WHI 0xFFFFFF
 # define BLA 0x000000
+# define BROWN 0xA52A2A
 
 # define ESC			0xff1b
 //# define UP			0xff52
