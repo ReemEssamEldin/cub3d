@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 15:10:23 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:29:41 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	start_y = (HEI - height) / 2;
 	end = start_y + height;
 	color = GRE;
-	color2 = YEL;
-	color3 = VIO;
+	color2 = rgb_to_colour(cub3d->map_info.ce_col);
+	color3 = rgb_to_colour(cub3d->map_info.fl_col);
 	// if (cos_angle > 0) // Wall facing right
 	// 	color = (color >> 1) & 0x7F7F7F; // Darken the color
 	// else if (cos_angle < 0) // Wall facing left
