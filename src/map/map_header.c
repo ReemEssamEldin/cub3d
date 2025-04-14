@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 15:43:39 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:47:10 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 		err_msg(cub3d, "Error\nRefilling color");
 		return (0);
 	}
+	while (*line && !ft_isdigit(*line))
+		line++;
 	*col_field = ft_strdup(line);
 	return (1);
 }
