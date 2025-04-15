@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/13 17:47:17 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:38:07 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@
 # define PI 3.14159265359
 # define BLOCK 10 //what?
 
+
 # define RED 0xFF0000
 # define GRE 0x008000
 # define GREY 0x808080
+# define DARK_GREY 0x404040
 # define BLU 0x0000FF
 # define YEL 0xFFFF00
 # define VIO 0x800080
 # define WHI 0xFFFFFF
 # define BLA 0x000000
+# define BROWN 0xA52A2A
 
 # define ESC			0xff1b
 //# define UP			0xff52
