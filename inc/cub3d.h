@@ -38,6 +38,7 @@
 # define VIO 0x800080
 # define WHI 0xFFFFFF
 # define BLA 0x000000
+# define DARK_GREY 0x404040
 
 # define ESC			0xff1b
 //# define UP			0xff52

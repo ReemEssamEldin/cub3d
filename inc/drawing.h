@@ -3,6 +3,9 @@
 
 # include "cub3d.h"
 
+// draw_floceil.c
+int rgb_to_colour(char *rgb_str);
+
 // drawing.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i);
@@ -11,6 +14,8 @@ void	draw_square(int x, int y, int size, int color, t_data *cub3d);
 void	draw_triangle(int x, int y, int size, int color, t_data *cub3d);
 void	draw_map(t_data *cub3d);
 void	clear_image(t_data *cub3d);
+void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i);
+
 // math.c
 bool	touch(float px, float py, t_data *cub3d);
 float	distance(float x, float y);

@@ -84,18 +84,25 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	float	height;
 	int		start_y;
 	int		end;
-	int		color;
+	int		col_wall;
+	int		col_ceil;
+	int		col_floo;
+	float   max_ray_length;
+	float   current_length;
 
 	(void)i;
 	cos_angle = cos(start_x);
 	sin_angle = sin(start_x);
-	ray_x = player->x;
-	ray_y = player->y;
-	while (!touch(ray_x, ray_y, cub3d))
+	ray_x = player->x + BLOCK/4;  // Start from middle of player square
+	ray_y = player->y + BLOCK/4;  // Start from middle of player square
+	max_ray_length = BLOCK * 5; // Limit ray to 5 blocks length
+	current_length = 0;
+	while (!touch(ray_x, ray_y, cub3d) && current_length < max_ray_length)
 	{
 		put_pixel(ray_x, ray_y, RED, cub3d); //this line handles rays
 		ray_x += cos_angle;
 		ray_y += sin_angle;
+		current_length += 1;
 	}
 	//this part handles 1st-person perspective
 	dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d); //fix fish-eye
@@ -103,15 +110,30 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	height = (BLOCK / dist) * (WID / 2);
 	start_y = (HEI - height) / 2;
 	end = start_y + height;
-	color = GRE;
+	col_wall = GRE;
+	col_ceil = rgb_to_colour(cub3d->map_info.ce_col);
+	col_floo = rgb_to_colour(cub3d->map_info.fl_col);
+	draw_maindisplay(0, start_y, col_ceil, cub3d, i);
+	draw_maindisplay(start_y, end, col_wall, cub3d, i);
+	draw_maindisplay(end, HEI, col_floo, cub3d, i);
 	// if (cos_angle > 0) // Wall facing right
 	// 	color = (color >> 1) & 0x7F7F7F; // Darken the color
 	// else if (cos_angle < 0) // Wall facing left
 	// 	color = (color << 1) | 0x808080; // Lighten the color
-	while (start_y < end)
+	// while (start_y < end)
+	// {
+	// 	put_pixel(i, start_y, color, cub3d);
+	// 	start_y++;
+	// }
+}
+
+void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i)
+{
+	(void) i;
+	while (top < bot)
 	{
-		put_pixel(i, start_y, color, cub3d);
-		start_y++;
+		put_pixel(i, top, colour, cub3d);
+		top++;
 	}
 }
 
@@ -168,24 +190,44 @@ int	draw_loop(t_data *cub3d)
 	float	fraction;
 	float	start_x;
 	int		i;
+	float   ray_angles[WID];
 
 	//move_player(&cub3d->player);
 	move_player(&cub3d->player, cub3d);
 	clear_image(cub3d);
-	//top-down
-	draw_triangle(cub3d->player.x, cub3d->player.y, BLOCK / 2, BLU, cub3d);
-	//draw_map(cub3d);
-	//1st-person
-	fraction = PI / 3 / WID; //FOV width
+	// Calculate and store ray angles
+	fraction = PI / 3 / WID;
 	start_x = cub3d->player.angle - PI / 6;
 	i = 0;
 	while (i < WID)
 	{
+		ray_angles[i] = start_x;
 		draw_line(&cub3d->player, cub3d, start_x, i);
 		start_x += fraction;
 		i++;
 	}
 	draw_map(cub3d);
+	float cos_angle, sin_angle, ray_x, ray_y;
+	float max_ray_length = BLOCK * 5;
+	float current_length;
+
+	for (i = 0; i < WID; i++)
+	{
+		cos_angle = cos(ray_angles[i]);
+		sin_angle = sin(ray_angles[i]);
+		ray_x = cub3d->player.x + BLOCK/4;
+		ray_y = cub3d->player.y + BLOCK/4;
+		current_length = 0;
+		while (!touch(ray_x, ray_y, cub3d) && current_length < max_ray_length)
+		{
+			put_pixel(ray_x, ray_y, DARK_GREY, cub3d);
+			ray_x += cos_angle;
+			ray_y += sin_angle;
+			current_length += 1;
+		}
+	}
+	draw_square(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
+
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
 	return (0);
