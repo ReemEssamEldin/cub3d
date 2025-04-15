@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 16:52:09 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:11:00 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	move_player(t_player *player, t_data *cub3d)
 
 	speed = 1;
 	angle_speed = 0.03;
-	collision_buffer = 5;
+	collision_buffer = BLOCK * 0.1;
 	handle_rotation(player, angle_speed);
 	cos_angle = cos(player->angle);
 	sin_angle = sin(player->angle);
