@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 11:40:16 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:57:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ typedef struct s_map
 	int			map_cols;
 }	t_map;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_texture;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -57,6 +68,7 @@ typedef struct s_data
 
 	t_player	player;
 	t_map		map_info;
+	t_texture	textures[4];
 }	t_data;
 
 #endif
