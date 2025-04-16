@@ -1,11 +1,11 @@
-EA ./assets/textures/HW1.xpm
-NO 		./assets/textures/HW3.xpm
+EA ./assets/textures/Pat1.xpm
+NO 		./assets/textures/Pat3.xpm
 
 
 F 220,100,0
-SO ./assets/textures/HW4.xpm
+SO ./assets/textures/Pat4.xpm
 
-WE    ./assets/textures/HW2.xpm
+WE    ./assets/textures/Pat2.xpm
 //EA ./path_to_the_east_texture2
 
 C 225,30,0
