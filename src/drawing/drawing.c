@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/16 14:58:10 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:22:05 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 
 void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i)
 {
-	(void) i;
+	(void) i;xpm
 	while (top < bot)
 	{
 		put_pixel(i, top, colour, cub3d);
