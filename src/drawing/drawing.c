@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/16 15:22:05 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:42:13 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	// 	put_pixel(i, end, col3, cub3d);
 	// 	end++;
 	// }
-	// Define variables for texture mapping
+/* 	// Define variables for texture mapping
     int tex_num = 0;        // Which texture to use (N,S,E,W)
     double wall_x = 0;      // Where exactly the ray hit the wall
     int tex_x;              // X coordinate on the texture
@@ -231,12 +231,12 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
     }
     
     // Draw floor
-    draw_maindisplay(end, HEI, rgb_to_colour(cub3d->map_info.fl_col), cub3d, i);
+    draw_maindisplay(end, HEI, rgb_to_colour(cub3d->map_info.fl_col), cub3d, i); */
 }
 
 void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i)
 {
-	(void) i;xpm
+	(void) i;
 	while (top < bot)
 	{
 		put_pixel(i, top, colour, cub3d);
