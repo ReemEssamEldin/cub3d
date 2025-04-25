@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/14 16:18:01 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:51:36 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,10 +252,7 @@ int	verify_file(char *complete_path)
 		printf("File has no extension: %s\n", complete_path);
 		return (0);
 	}
-	if (ft_strncmp(ext, ".png", 4) == 0 || 
-		ft_strncmp(ext, ".jpg", 4) == 0 || 
-		ft_strncmp(ext, ".jpeg", 5) == 0 || 
-		ft_strncmp(ext, ".xpm", 4) == 0)
+	if (ft_strncmp(ext, ".xpm", 4) == 0)
 		return (1);
 	printf("Invalid file extension: %s\n", complete_path);
 	return (0);
