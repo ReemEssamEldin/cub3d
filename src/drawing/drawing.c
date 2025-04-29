@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/29 13:48:19 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:55:17 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int	draw_loop(t_data *cub3d)
 		}
 		i++;
 	}
-	draw_filled_square (cub3d->player.x, cub3d->player.y, BLOCK / 2,
+	draw_filled_square (cub3d->player.x, cub3d->player.y, BLOCK/2,
 		BLU, cub3d);
 	mlx_put_image_to_window (cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
@@ -187,9 +187,9 @@ void	draw_map(t_data *cub3d)
 	map_height = 0;
 	map_width = 0;
 	map_padding = 1;
-	len = 0;
 	while (map[map_height])
 	{
+		len = 0;
 		while (map[map_height][len])
 			len++;
 		if (len > map_width)
