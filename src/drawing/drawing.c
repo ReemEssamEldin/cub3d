@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/29 16:06:37 by hsetyamu         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/04/29 16:11:06 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../inc/cub3d.h"
 
@@ -69,33 +70,28 @@ void	cast_ray(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
 
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 {
-    float	ray_x;
-    float	ray_y;
-    float	dist;
-    float	height;
-    int		start_y;
-    int		end;
-    int		col_wall;
-    int		col_ceil;
-    int		col_floo;
+	float	ray_x;
+	float	ray_y;
+	float	dist;
+	float	height;
+	int		start_y;
+	int		end;
+	int		col_wall;
+	int		col_ceil;
+	int		col_floo;
 
-    //(void)i;
-
-    // Cast the ray
-    cast_ray(cub3d, start_x, &ray_x, &ray_y);
-
-    // Handle first-person perspective
-    dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d); // Fix fish-eye
-    height = (BLOCK / dist) * (WID / 2);
-    start_y = (HEI - height) / 2;
-    end = start_y + height;
-    col_wall = GRE;
-    col_ceil = rgb_to_colour(cub3d->map_info.ce_col);
-    col_floo = rgb_to_colour(cub3d->map_info.fl_col);
-
-    draw_maindisplay(0, start_y, col_ceil, cub3d, i);
-    draw_maindisplay(start_y, end, col_wall, cub3d, i);
-    draw_maindisplay(end, HEI, col_floo, cub3d, i);
+	cast_ray(cub3d, start_x, &ray_x, &ray_y);
+	// Handle first-person perspective
+	dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d);
+	height = (BLOCK / dist) * (WID / 2);
+	start_y = (HEI - height) / 2;
+	end = start_y + height;
+	col_wall = GRE;
+	col_ceil = rgb_to_colour(cub3d->map_info.ce_col);
+	col_floo = rgb_to_colour(cub3d->map_info.fl_col);
+	draw_maindisplay(0, start_y, col_ceil, cub3d, i);
+	draw_maindisplay(start_y, end, col_wall, cub3d, i);
+	draw_maindisplay(end, HEI, col_floo, cub3d, i);
 }
 
 void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i)
@@ -114,11 +110,15 @@ int	draw_loop(t_data *cub3d)
 	float	fraction;
 	float	start_x;
 	int		i;
-	float   ray_angles[WID];  // Store ray angles for later use
-
+	float	cos_angle;
+	float	sin_angle;
+	float	ray_x;
+	float	ray_y;
+	float	max_ray_length;
+	float	current_length;
+	float	ray_angles[WID]; // Store ray angles for later use
 	move_player(&cub3d->player, cub3d);
 	clear_image(cub3d);
-
 	// Calculate and store ray angles
 	fraction = PI / 3 / WID;
 	start_x = cub3d->player.angle - PI / 6;
@@ -130,16 +130,12 @@ int	draw_loop(t_data *cub3d)
 		start_x += fraction;
 		i++;
 	}
-
 	// Draw minimap
 	draw_map(cub3d);
-
 	// Redraw rays on top of minimap
-	float cos_angle, sin_angle, ray_x, ray_y;
-	float max_ray_length = BLOCK * 5;
-	float current_length;
-
-	for (i = 0; i < WID; i++)
+	max_ray_length = BLOCK * 5;
+	i = 0;
+	while (i < WID)
 	{
 		cos_angle = cos(ray_angles[i]);
 		sin_angle = sin(ray_angles[i]);
@@ -153,6 +149,7 @@ int	draw_loop(t_data *cub3d)
 			ray_y += sin_angle;
 			current_length += 1;
 		}
+		i++;
 	}
 	draw_filled_square(cub3d->player.x - (BLOCK/4), cub3d->player.y - (BLOCK/4), BLOCK/2, BLU, cub3d);
 	//put_pixel(cub3d->player.x, cub3d->player.y, BLU, cub3d);
@@ -162,23 +159,23 @@ int	draw_loop(t_data *cub3d)
 	return (0);
 }
 
-// void	draw_square(int x, int y, int size, int color, t_data *cub3d)
-// {
-// 	for (int i = 0; i < size; i++)
-// 		put_pixel(x + i, y, color, cub3d);
-// 	for (int i = 0; i < size; i++)
-// 		put_pixel(x, y + i, color, cub3d);
-// 	for (int i = 0; i < size; i++)
-// 		put_pixel(x + size, y + i, color, cub3d);
-// 	for (int i = 0; i < size; i++)
-// 		put_pixel(x + i, y + size, color, cub3d);
-// }
-
 void	draw_filled_square(int x, int y, int size, int color, t_data *cub3d)
 {
-	for (int j = 0; j < size; j++)
-		for (int i = 0; i < size; i++)
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j < size)
+	{
+		while (i < size)
+		{
 			put_pixel(x + i, y + j, color, cub3d);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
 }
 
 void	draw_map(t_data *cub3d)
@@ -188,8 +185,9 @@ void	draw_map(t_data *cub3d)
 	int		map_height;
 	int		wall_color;
 	int		bg_color;
-	int 	space_color;
-	int map_padding;
+	int		space_color;
+	int		map_padding;
+	int		len;
 
 	map = cub3d->map_info.map;
 	map_height = 0;
@@ -197,8 +195,8 @@ void	draw_map(t_data *cub3d)
 	map_padding = 1;
 	while (map[map_height])
 	{
-		int len = 0;
-		while (map[map_height][len])
+		len = 0;
+		while (map[map_height][len])following files would be overwritten 
 			len++;
 		if (len > map_width)
 			map_width = len;
@@ -206,7 +204,6 @@ void	draw_map(t_data *cub3d)
 	}
 	map_width += map_padding;
 	map_height += map_padding;
-
 	bg_color = GREY;
 	wall_color = YEL;
 	space_color = GREY;
@@ -217,14 +214,27 @@ void	draw_map(t_data *cub3d)
 	for (int y = 0; map[y]; y++)
 		for (int x = 0; map[y][x]; x++)
 			if (map[y][x] == '1')
-				draw_filled_square(x * BLOCK, y * BLOCK, BLOCK, wall_color, cub3d);
+				draw_filled_square(x * BLOCK, y * BLOCK, BLOCK,
+					wall_color, cub3d);
 			else if (map[y][x] == '0')
-				draw_filled_square(x * BLOCK, y * BLOCK, BLOCK, space_color, cub3d);
+				draw_filled_square(x * BLOCK, y * BLOCK, BLOCK,
+					space_color, cub3d);
 }
 
 void	clear_image(t_data *cub3d)
 {
-	for (int y = 0; y < HEI; y++)
-		for (int x = 0; x < WID; x++)
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEI)
+	{
+		x = 0;
+		while (x < WID)
+		{
 			put_pixel(x, y, 0, cub3d);
+			x++;
+		}
+		y++;
+	}
 }
