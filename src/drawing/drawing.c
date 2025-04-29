@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/29 16:11:06 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:19:31 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	cast_ray(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
 {
     float	cos_angle;
     float	sin_angle;
-    float	max_ray_length;
+    //float	max_ray_length = BLOCK * 100;
     //float	current_length;
 
     cos_angle = cos(start_x);
@@ -55,7 +55,7 @@ void	cast_ray(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
     // *ray_y = cub3d->player.y + BLOCK / 4;  // Start from middle of player square
 	*ray_x = cub3d->player.x;
     *ray_y = cub3d->player.y;
-    max_ray_length = BLOCK * 100;      // Limit ray to 5 blocks length
+    //max_ray_length = BLOCK * 100;      // Limit ray to 5 blocks length
     //current_length = 0;
 
     //while (!touch(*ray_x, *ray_y, cub3d) && current_length < max_ray_length)
@@ -196,7 +196,7 @@ void	draw_map(t_data *cub3d)
 	while (map[map_height])
 	{
 		len = 0;
-		while (map[map_height][len])following files would be overwritten 
+		while (map[map_height][len])
 			len++;
 		if (len > map_width)
 			map_width = len;
