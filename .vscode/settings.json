@@ -23,6 +23,10 @@
 		"cub3d.h": "c",
 		"mlx.h": "c",
 		"stdlib.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"mlx_int.h": "c",
+		"memory_resource": "c",
+		"player.h": "c",
+		"get_next_line.h": "c"
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:30 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/25 16:29:58 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:06:37 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,24 @@ void	cast_ray(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
     float	cos_angle;
     float	sin_angle;
     float	max_ray_length;
-    float	current_length;
+    //float	current_length;
 
     cos_angle = cos(start_x);
     sin_angle = sin(start_x);
-    *ray_x = cub3d->player.x + BLOCK / 4;  // Start from middle of player square
-    *ray_y = cub3d->player.y + BLOCK / 4;  // Start from middle of player square
-    max_ray_length = BLOCK * 5;      // Limit ray to 5 blocks length
-    current_length = 0;
+    // *ray_x = cub3d->player.x + BLOCK / 4;  // Start from middle of player square
+    // *ray_y = cub3d->player.y + BLOCK / 4;  // Start from middle of player square
+	*ray_x = cub3d->player.x;
+    *ray_y = cub3d->player.y;
+    max_ray_length = BLOCK * 100;      // Limit ray to 5 blocks length
+    //current_length = 0;
 
-    while (!touch(*ray_x, *ray_y, cub3d) && current_length < max_ray_length)
-    {
+    //while (!touch(*ray_x, *ray_y, cub3d) && current_length < max_ray_length)
+    while (!touch(*ray_x, *ray_y, cub3d))
+	{
         put_pixel(*ray_x, *ray_y, RED, cub3d); // This line handles rays
         *ray_x += cos_angle;
         *ray_y += sin_angle;
-        current_length += 1;
+        //current_length += 1;
     }
 }
 
@@ -140,8 +143,8 @@ int	draw_loop(t_data *cub3d)
 	{
 		cos_angle = cos(ray_angles[i]);
 		sin_angle = sin(ray_angles[i]);
-		ray_x = cub3d->player.x + BLOCK/4;
-		ray_y = cub3d->player.y + BLOCK/4;
+		ray_x = cub3d->player.x;
+		ray_y = cub3d->player.y;
 		current_length = 0;
 		while (!touch(ray_x, ray_y, cub3d) && current_length < max_ray_length)
 		{
@@ -151,7 +154,8 @@ int	draw_loop(t_data *cub3d)
 			current_length += 1;
 		}
 	}
-	draw_filled_square(cub3d->player.x, cub3d->player.y, BLOCK/2, BLU, cub3d);
+	draw_filled_square(cub3d->player.x - (BLOCK/4), cub3d->player.y - (BLOCK/4), BLOCK/2, BLU, cub3d);
+	//put_pixel(cub3d->player.x, cub3d->player.y, BLU, cub3d);
 
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/16 14:57:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:11:22 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data
 	t_player	player;
 	t_map		map_info;
 	t_texture	textures[4];
+	//t_calcs		calculations;
 }	t_data;
 
 #endif

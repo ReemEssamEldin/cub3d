@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:45 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/16 14:56:14 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:34:24 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_cub3d(t_data *cub3d)
 	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WID, HEI, "Prototype");
 	cub3d->img_ptr = mlx_new_image(cub3d->mlx_ptr, WID, HEI);
 	cub3d->addr = mlx_get_data_addr(cub3d->img_ptr, &cub3d->bpp,
-			&cub3d->line_len, &cub3d->endian);
+			&cub3d    ->line_len, &cub3d->endian);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
 } */
