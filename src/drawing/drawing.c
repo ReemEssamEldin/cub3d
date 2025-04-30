@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/30 12:19:48 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:14:19 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	cast_ray(cub3d, start_x, &ray_x, &ray_y);
 	// Handle first-person perspective
 	dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d);
+	//dist = distance(ray_x - player->x, ray_y - player->y);
 	height = (BLOCK / dist) * (WID / 2);
 	start_y = (HEI - height) / 2;
 	end = start_y + height;
@@ -210,7 +211,7 @@ int	draw_loop(t_data *cub3d)
 	// Draw minimap
 	draw_map(cub3d);
 	// Redraw rays on top of minimap
-	max_ray_length = BLOCK * 5;
+	max_ray_length = BLOCK * 3;
 	i = 0;
 	while (i < WID)
 	{
@@ -225,15 +226,15 @@ int	draw_loop(t_data *cub3d)
 			float intensity = 1.0 - (current_length / max_ray_length);
 			if (intensity < 0) intensity = 0;
 	
-			// Adjust the base color (DARK_GREY) to create a gradient
-			int base_color = DARK_GREY;
+			// Adjust the base color (WHITE) to create a gradient
+			int base_color = WHI;
 			int r = ((base_color >> 16) & 0xFF) * intensity;
 			int g = ((base_color >> 8) & 0xFF) * intensity;
 			int b = (base_color & 0xFF) * intensity;
 			int gradient_color = (r << 16) | (g << 8) | b;
 	
 			// Background color of the minimap
-			int background_color = GREY;
+			int background_color = BLA;
 	
 			// Blend the gradient color with the background color
 			int blended_r = ((background_color >> 16) & 0xFF) * (1.0 - intensity) +
@@ -253,10 +254,9 @@ int	draw_loop(t_data *cub3d)
 		}
 		i++;
 	}
-	//draw_filled_square(cub3d->player.x - (BLOCK/4), cub3d->player.y - (BLOCK/4), BLOCK/2, BLU, cub3d);
+	draw_filled_square(cub3d->player.x - (BLOCK/4), cub3d->player.y - (BLOCK/4), BLOCK/2, BLU, cub3d);
 	//draw_filled_circle(cub3d->player.x - (BLOCK/4), cub3d->player.y - (BLOCK/4), BLOCK/4, BLU, cub3d);
 	//put_pixel(cub3d->player.x, cub3d->player.y, BLU, cub3d);
-	put_pixel(cub3d->player.x, cub3d->player.y, BLU, cub3d);
 
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img_ptr, 0, 0);
@@ -325,9 +325,9 @@ void	draw_map(t_data *cub3d)
 	}
 	map_width += map_padding;
 	map_height += map_padding;
-	bg_color = GREY;
-	wall_color = YEL;
-	space_color = GREY;
+	bg_color = BLA;
+	wall_color = BRO;
+	space_color = BLA;
 	// Fill background
 	for (int y = 0; y < map_height * BLOCK; y++)
 		for (int x = 0; x < map_width * BLOCK; x++)

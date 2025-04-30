@@ -131,8 +131,8 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	ray_y = player->y;
 	while (!touch(ray_x, ray_y, game))
 	{
-		if (DEBUG)
-			put_pixel(ray_x, ray_y, 0xFF0000, game);
+		/* if (DEBUG)
+			put_pixel(ray_x, ray_y, 0xFF0000, game); */
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}

@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/29 15:51:18 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:45:52 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	move_player(t_player *player, t_data *cub3d)
 	float	cos_angle;
 	float	sin_angle;
 
-	speed = 1;
+	speed = 0.7;
 	angle_speed = 0.03;
 	collision_buffer = BLOCK * 0.1;
 	handle_rotation(player, angle_speed);
