@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/16 14:54:54 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:15:36 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i);
 int		draw_loop(t_data *cub3d);
 void	draw_square(int x, int y, int size, int color, t_data *cub3d);
 void	draw_filled_square(int x, int y, int size, int color, t_data *cub3d);
-void	draw_triangle(int x, int y, int size, int color, t_data *cub3d);
+void draw_filled_circle(int x, int y, int radius, int color, t_data *cub3d);
 void	draw_map(t_data *cub3d);
 void	clear_image(t_data *cub3d);
 void	draw_maindisplay(int top, int bot, int colour, t_data *cub3d, int i);
