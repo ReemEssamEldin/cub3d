@@ -28,9 +28,9 @@ endif
 ## Sources & headers & others
 SRC-C3				= ./src/cub3d.c \
 						./src/utils/utils.c \
-						./src/map/map_init.c \
-						./src/map/map_header.c \
-						./src/map/map_content.c \
+						./src/map_loading/map_init.c \
+						./src/map_loading/map_header.c \
+						./src/map_loading/map_content.c \
 						./src/audio/audio.c \
 						./src/drawing/drawing.c \
 						./src/drawing/renderer.c \
