@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/29 14:11:22 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:10:21 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_map
 
 	char		*fl_col; //maybe array?
 	char		*ce_col; //maybe array?
+/* 	int			*fl_col;
+	int			*ce_col; */
 	char		**map;
 	int			map_rows;
 	int			map_cols;
