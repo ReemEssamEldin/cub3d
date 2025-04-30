@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/30 12:15:36 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:02:24 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
 
 // draw_floceil.c
 int rgb_to_colour(char *rgb_str);
+bool	number_check(char *str);
 
 // textures.c
 void load_textures(t_data *cub3d);

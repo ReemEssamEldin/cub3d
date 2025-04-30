@@ -40,9 +40,48 @@ int rgb_to_colour(char *rgb_str)
 		free(components);
 		return (-1);
 	}
-	r = ft_atoi(components[0]);
-	g = ft_atoi(components[1]);
-	b = ft_atoi(components[2]);
+	if (!number_check(components[0]))
+	{
+		r = ft_atoi(components[0]);
+		if (r < 0 || r > 255)
+		{
+			err_msg(NULL, "Error\nInvalid color value");
+			exit (-1);
+		}
+	}
+		else
+	{
+		err_msg(NULL, "Error\nInvalid color value");
+		exit (-1);
+	}
+	if (!number_check(components[1]))
+	{
+		g = ft_atoi(components[1]);
+		if (g < 0 || g > 255)
+		{
+			err_msg(NULL, "Error\nInvalid color value");
+			exit (-1);
+		}
+	}
+	else
+	{
+		err_msg(NULL, "Error\nInvalid color value");
+		exit (-1);
+	}
+	if (!number_check(components[2]))
+	{
+		b = ft_atoi(components[2]);
+		if (b < 0 || b > 255)
+		{
+			err_msg(NULL, "Error\nInvalid color value");
+			exit (-1);
+		}
+	}
+	else
+	{
+		err_msg(NULL, "Error\nInvalid color value");
+		exit (-1);
+	}	
 	i = 0;
 	while (components[i])
 		free(components[i++]);
@@ -50,4 +89,20 @@ int rgb_to_colour(char *rgb_str)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (-1);
 	return ((r << 16) | (g << 8) | b);
+}
+
+bool	number_check(char *str)
+{
+	int		i;
+	bool	f_invalid;
+
+	i = 0;
+	f_invalid = true;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 1)
+			f_invalid = false;
+		i++;
+	}
+	return (f_invalid);
 }
