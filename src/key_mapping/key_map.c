@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/30 14:45:52 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:19:46 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,35 @@ void	move_player(t_player *player, t_data *cub3d)
 	}
 }
 
+/* void	mouse_wrap(t_data *cub3d, int x, int y)
+{
+	if (x > WID - DIST_EDGE_MOUSE_WRAP)
+	{
+		x = DIST_EDGE_MOUSE_WRAP;
+		mlx_mouse_move(cub3d->mlx_ptr, cub3d->win_ptr, x, y);
+	}
+	if (x < DIST_EDGE_MOUSE_WRAP)
+	{
+		x = WID - DIST_EDGE_MOUSE_WRAP;
+		mlx_mouse_move(cub3d->mlx_ptr, cub3d->win_ptr, x, y);
+	}
+}
+
+int	mouse_use(int x, int y, t_data *cub3d)
+{
+	int	old_x = WID / 2;
+
+	wrap_mouse_position(data, x, y);
+	if (x == old_x)
+		return (0);
+	else if (x < old_x)
+		cub3d->player.left_rotate += handle_rotation(&cub3d->player, 0.03);
+	else if (x > old_x)
+		cub3d->player.right_rotate += handle_rotation(&cub3d->player, 0.03);
+	old_x = x;
+	return (0);
+} */
+
 void	key_hooks(t_data *cub3d)
 {
 	#ifdef __APPLE__
@@ -203,5 +232,6 @@ void	key_hooks(t_data *cub3d)
 	mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
 	mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask,
 		destroy, cub3d);
+	//mlx_hook(cub3d->win_ptr, MotionNotify, PointerMotionMask, mouse_use, cub3d);
 	#endif
 }

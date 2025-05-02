@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/30 14:27:40 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:43:26 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define HEI 720
 # define PI 3.14159265359
 # define BLOCK 10 //what?
+# define DIST_EDGE_MOUSE_WRAP 20
+# define FOV (PI / 3)
 
 
 /* # define RED 0xFF0000
