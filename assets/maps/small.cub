@@ -1,14 +1,11 @@
-EA ./assets/textures/HW1.png
-NO 		./assets/textures/HW3.png
-
-
-F 220,100,0
-SO ./assets/textures/HW4.png
-
-WE    ./assets/textures/HW2.png
+EA ./assets/textures/Pat1.xpm
+NO 		./assets/textures/Pat3.xpm
+SO ./assets/textures/Pat4.xpm
+WE    ./assets/textures/Pat2.xpm
 //EA ./path_to_the_east_texture2
 
-C 225,30,0
+C 192,192,192
+F 105,105,105
 
 111111111111111
 100000000000001
