@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/30 15:14:19 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:48:11 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	put_pixel(int x, int y, int color, t_data *cub3d)
 	cub3d->addr[idx + 2] = (color >> 16) & 0xFF;
 }
 
-void	cast_ray(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
+/* void	ray_marching(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
 {
     float	cos_angle;
     float	sin_angle;
@@ -66,6 +66,108 @@ void	cast_ray(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
         *ray_y += sin_angle;
         current_length += 1;
     }
+} */
+
+void ray_casting(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
+{
+    float dir_x = cos(start_x);
+    float dir_y = sin(start_x);
+    
+    // Ray starting position (player position)
+    float pos_x = cub3d->player.x / BLOCK;
+    float pos_y = cub3d->player.y / BLOCK;
+    
+    // Current map cell the ray is in
+    int map_x = (int)(pos_x);
+    int map_y = (int)(pos_y);
+    
+    // Length of ray from current position to next x or y-side
+    float side_dist_x;
+    float side_dist_y;
+    
+    // Length of ray from one x or y-side to next x or y-side
+    float delta_dist_x = (dir_x == 0) ? 1e30 : fabs(1 / dir_x);
+    float delta_dist_y = (dir_y == 0) ? 1e30 : fabs(1 / dir_y);
+    
+    // Direction to step in x or y direction (either +1 or -1)
+    int step_x;
+    int step_y;
+    
+    // Calculate step and initial side_dist
+    if (dir_x < 0)
+    {
+        step_x = -1;
+        side_dist_x = (pos_x - map_x) * delta_dist_x;
+    }
+    else
+    {
+        step_x = 1;
+        side_dist_x = (map_x + 1.0 - pos_x) * delta_dist_x;
+    }
+    
+    if (dir_y < 0)
+    {
+        step_y = -1;
+        side_dist_y = (pos_y - map_y) * delta_dist_y;
+    }
+    else
+    {
+        step_y = 1;
+        side_dist_y = (map_y + 1.0 - pos_y) * delta_dist_y;
+    }
+    
+    // Variable to track which side of the wall was hit (0 = NS wall, 1 = EW wall)
+    int side;
+    int hit = 0;
+    
+    // Perform DDA
+    while (hit == 0)
+    {
+        // Jump to next map square, either in x-direction, or in y-direction
+        if (side_dist_x < side_dist_y)
+        {
+            side_dist_x += delta_dist_x;
+            map_x += step_x;
+            side = 0;
+        }
+        else
+        {
+            side_dist_y += delta_dist_y;
+            map_y += step_y;
+            side = 1;
+        }
+        
+        // Check if ray has hit a wall
+        if (map_y < 0 || map_x < 0 || map_y >= cub3d->map_info.map_rows || 
+            map_x >= (int)ft_strlen(cub3d->map_info.map[map_y]) || 
+            cub3d->map_info.map[map_y][map_x] == '1')
+        {
+            hit = 1;
+        }
+    }
+    
+    // Calculate exact hit position
+    float wall_dist;
+    if (side == 0)
+        wall_dist = side_dist_x - delta_dist_x;
+    else
+        wall_dist = side_dist_y - delta_dist_y;
+    
+    // Calculate exact hit coordinates
+    if (side == 0)
+    {
+        *ray_x = map_x * BLOCK;
+        if (step_x > 0)
+            *ray_x -= 0.001; // Adjust for edge case
+        *ray_y = (pos_y + wall_dist * dir_y) * BLOCK;
+    }
+    else
+    {
+        *ray_x = (pos_x + wall_dist * dir_x) * BLOCK;
+        *ray_y = map_y * BLOCK;
+        if (step_y > 0)
+            *ray_y -= 0.001; // Adjust for edge case
+    }
 }
 
 void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
@@ -80,7 +182,8 @@ void	draw_line(t_player *player, t_data *cub3d, float start_x, int i)
 	int		col_ceil;
 	int		col_floo;
 
-	cast_ray(cub3d, start_x, &ray_x, &ray_y);
+	//ray_marching(cub3d, start_x, &ray_x, &ray_y);
+	ray_casting(cub3d, start_x, &ray_x, &ray_y);
 	// Handle first-person perspective
 	dist = fixed_dist(player->x, player->y, ray_x, ray_y, cub3d);
 	//dist = distance(ray_x - player->x, ray_y - player->y);
