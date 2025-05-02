@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   draw_floceil.c									 :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>	+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2025/04/14 16:23:05 by hsetyamu		  #+#	#+#			 */
-/*   Updated: 2025/04/14 16:27:21 by hsetyamu		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_floceil.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 16:23:05 by hsetyamu          #+#    #+#             */
+/*   Updated: 2025/05/02 14:32:53 by hsetyamu         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
@@ -45,13 +45,15 @@ int rgb_to_colour(char *rgb_str)
 		r = ft_atoi(components[0]);
 		if (r < 0 || r > 255)
 		{
-			err_msg(NULL, "Error\nInvalid color value");
+			//err_msg(NULL, "Error\nInvalid color value: %s", components[0]);
+			printf("Error\nInvalid color value: %s", components[0]);
 			exit (-1);
 		}
 	}
 		else
 	{
-		err_msg(NULL, "Error\nInvalid color value");
+		//err_msg(NULL, "Error\nInvalid color value: %s", components[0]);
+		printf("Error\nInvalid color value: %s", components[0]);
 		exit (-1);
 	}
 	if (!number_check(components[1]))
@@ -59,13 +61,15 @@ int rgb_to_colour(char *rgb_str)
 		g = ft_atoi(components[1]);
 		if (g < 0 || g > 255)
 		{
-			err_msg(NULL, "Error\nInvalid color value");
+			//err_msg(NULL, "Error\nInvalid color value: %s", components[1]);
+			printf("Error\nInvalid color value: %s", components[1]);
 			exit (-1);
 		}
 	}
 	else
 	{
-		err_msg(NULL, "Error\nInvalid color value");
+		//err_msg(NULL, "Error\nInvalid color value: %s", components[1]);
+		printf("Error\nInvalid color value: %s", components[1]);
 		exit (-1);
 	}
 	if (!number_check(components[2]))
@@ -73,21 +77,23 @@ int rgb_to_colour(char *rgb_str)
 		b = ft_atoi(components[2]);
 		if (b < 0 || b > 255)
 		{
-			err_msg(NULL, "Error\nInvalid color value");
+			//err_msg(NULL, "Error\nInvalid color value: %s", components[2]);
+			printf("Error\nInvalid color value: %s", components[2]);
 			exit (-1);
 		}
 	}
 	else
 	{
-		err_msg(NULL, "Error\nInvalid color value");
+		//err_msg(NULL, "Error\nInvalid color value: %s", components[2]);
+		printf("Error\nInvalid color value: %s", components[2]);
 		exit (-1);
 	}	
 	i = 0;
 	while (components[i])
 		free(components[i++]);
 	free(components);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (-1);
+/* 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (-1); */
 	return ((r << 16) | (g << 8) | b);
 }
 
@@ -101,7 +107,10 @@ bool	number_check(char *str)
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 1)
+		{
 			f_invalid = false;
+			return (f_invalid);
+		}
 		i++;
 	}
 	return (f_invalid);
