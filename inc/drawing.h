@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/02 16:48:25 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/03 18:41:54 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ float	distance(float x, float y);
 float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
 
 // draw_floceil.c
-int rgb_to_colour(char *rgb_str);
+int		rgb_to_colour(char *rgb_str);
 bool	number_check(char *str);
+char	*trim_string(char *str);
 
 // textures.c
-void load_textures(t_data *cub3d);
+void	load_textures(t_data *cub3d);
 #endif
