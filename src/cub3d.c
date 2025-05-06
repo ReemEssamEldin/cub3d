@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:41:52 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:33:16 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 int	main(int argc, char *argv[])
 {
 	t_data	cub3d;
-	char	*audio_file;
 
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
 	init_player(&cub3d);
-	//audio_file = "assets/audio/mixkit-game-level-music-689.wav";
-	audio_file = "assets/audio/horror-background-tension-build-up-254933.wav";
-	play_audio(audio_file);
+	play_audio(AUDIO_FILE);
 	init_cub3d(&cub3d);
 	init_mlx(&cub3d);
 	key_hooks(&cub3d);
-	mlx_loop_hook(cub3d.mlx_ptr, draw_loop, &cub3d);
+	mlx_loop_hook(cub3d.mlx_ptr, render, &cub3d);
 	mlx_loop(cub3d.mlx_ptr);
 	clean_mapheader(&cub3d.map_info);
 	clean_mapcontent(&cub3d.map_info);

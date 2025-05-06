@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/25 16:51:36 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:44:06 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,12 +200,6 @@ int	header_complete(t_data *cub3d)
  */
 char	*get_comppath(char *line)
 {
-	/* int	len;
-	char	*complete_path;
-
-	len = ft_strlen(line);
-	complete_path = ft_substr(line, 3, len);
-	return (complete_path); */
 	int		i;
 	int		start;
 	char	*complete_path;

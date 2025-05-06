@@ -33,7 +33,9 @@ SRC-C3				= ./src/cub3d.c \
 						./src/map_loading/map_content.c \
 						./src/audio/audio.c \
 						./src/drawing/drawing.c \
-						./src/drawing/renderer.c \
+						./src/drawing/rendering.c \
+						./src/drawing/minimap.c \
+						./src/drawing/minimap_utils.c \
 						./src/drawing/math.c \
 						./src/drawing/draw_floceil.c \
 						./src/drawing/textures.c \

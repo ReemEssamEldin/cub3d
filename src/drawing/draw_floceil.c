@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_floceil.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:23:05 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/03 18:47:39 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:12:07 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char *trim_string(char *str)
  * @param rgb_str The RGB string to convert
  * @return int The color as an integer (0xRRGGBB), or -1 if invalid
  */
-int	rgb_to_colour(char *rgb_str)
+int	rgb_to_colour(char *rgb_str, t_data *cub3d)
 {
 	char	**components;
 	int		i;
@@ -69,14 +69,14 @@ int	rgb_to_colour(char *rgb_str)
 		{
 			// err_msg(NULL, "Error\nInvalid color value: %s", components[0]);
 			fprintf(stderr, "Error\nInvalid color value: %s", components[0]);
-			exit(-1);
+			destroy(cub3d);
 		}
 	}
 	else
 	{
 		// err_msg(NULL, "Error\nInvalid color value: %s", components[0]);
 		printf("Error\nInvalid color value: %s", components[0]);
-		exit(-1);
+		destroy(cub3d);
 	}
 	if (number_check(components[1]))
 	{
@@ -85,14 +85,14 @@ int	rgb_to_colour(char *rgb_str)
 		{
 			// err_msg(NULL, "Error\nInvalid color value: %s", components[1]);
 			fprintf(stderr, "Error\nInvalid color value: %s", components[1]);
-			exit(-1);
+			destroy(cub3d);
 		}
 	}
 	else
 	{
 		// err_msg(NULL, "Error\nInvalid color value: %s", components[1]);
 		printf("Error\nInvalid color value: %s", components[1]);
-		exit(-1);
+		destroy(cub3d);
 	}
 	if (number_check(components[2]))
 	{
@@ -101,14 +101,14 @@ int	rgb_to_colour(char *rgb_str)
 		{
 			// err_msg(NULL, "Error\nInvalid color value: %s", components[2]);
 			fprintf(stderr, "Error\nInvalid color value: %s", components[2]);
-			exit(-1);
+			destroy(cub3d);
 		}
 	}
 	else
 	{
 		// err_msg(NULL, "Error\nInvalid color value: %s", components[2]);
 		printf("Error\nInvalid color value: %s", components[2]);
-		exit(-1);
+		destroy(cub3d);
 	}
 	i = 0;
 	while (components[i])

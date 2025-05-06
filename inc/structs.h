@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/04/30 18:10:21 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:54:59 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_map
 	char		*we_tex;
 	char		*ea_tex;
 
-	char		*fl_col; //maybe array?
-	char		*ce_col; //maybe array?
+	char		*fl_col;
+	char		*ce_col;
 /* 	int			*fl_col;
 	int			*ce_col; */
 	char		**map;
@@ -57,12 +57,47 @@ typedef struct s_texture
 	int		endian;
 }	t_texture;
 
+typedef struct s_calculations
+{
+	// Minimap parameters
+	int		mm_wall_col;		// Wall color on minimap
+	int		mm_space_col;		// Space color on minimap
+	int		mm_padding;			// Padding around minimap
+
+	// Ray calculation variables
+	float	fraction;			// Angle fraction per ray
+	float	start_x;			// Starting ray angle
+	float	mm_rl;				// Maximum ray length for minimap
+	float	ray_angles[WID];	// Store ray angles for later use
+
+	// Minimap ray rendering
+	int		base_col;			// Base color for rays (WHI)
+	int		bg_col;				// Background color (BLA)
+	float	ins;				// Current ray intensity
+	float	cos_angle;			// Cosine of current angle
+	float	sin_angle;			// Sine of current angle
+	float	ray_x;				// Current ray x position
+	float	ray_y;				// Current ray y position
+	float	cur_len;			// Current ray length
+	int		blended_col;		// Resulting blended color
+
+	//
+	float	wall_dist;			// Perpendicular distance to wall
+	int		map_x;				// Map x-coordinate where hit occurred
+	int		map_y;				// Map y-coordinate where hit occurred
+	int		side;				// Which side was hit (0 = NS, 1 = EW)
+	float	wall_x;				// Exact position where wall was hit (for texturing)
+	int		tex_num;			// Which texture to use
+	int		line_height;		// Height of line to draw
+	int		draw_start;			// Starting pixel y-coordinate
+	int		draw_end;			// Ending pixel y-coordinate
+}	t_calc;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	void		*img_ptr_mm; //minimap
 	char		*addr;
 	int			bpp;
 	int			line_len;
@@ -71,7 +106,7 @@ typedef struct s_data
 	t_player	player;
 	t_map		map_info;
 	t_texture	textures[4];
-	//t_calcs		calculations;
+	t_calc		calc;
 }	t_data;
 
 #endif
