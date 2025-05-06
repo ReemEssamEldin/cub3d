@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   audio.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:22 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:12:23 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:36:35 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,3 @@ void	end_audio(void)
 	free(argv[2]);
 	free(argv);
 }
-
-/* void	play_audio(char *audio, int loudness)
-{
-	(void) audio;
-	loudness++;
-}
-
-void	end_audio(void)
-{
-} */

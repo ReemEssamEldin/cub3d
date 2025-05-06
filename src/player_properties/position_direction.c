@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   position_direction.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/06 18:45:41 by hsetyamu          #+#    #+#             */
+/*   Updated: 2025/05/06 18:45:42 by hsetyamu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/player.h"
 
 bool	put_player(t_data *cub3d);
@@ -10,16 +22,13 @@ bool	put_player(t_data *cub3d)
 	int		y;
 	int		found;
 	char	pos;
-	
+
 	found = false;
 	y = 0;
-	//while (y < cub3d->map_info.map_rows)
 	while (y < cub3d->map_info.map_rows && cub3d->map_info.map[y] != NULL)
 	{
 		x = 0;
-		int row_len = ft_strlen(cub3d->map_info.map[y]);
-		//while (x < cub3d->map_info.map_cols)
-		while (x < row_len)
+		while (x < cub3d->map_info.map_cols)
 		{
 			pos = cub3d->map_info.map[y][x];
 			if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
