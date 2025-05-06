@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 19:33:05 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:50:46 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 //maindisplay.c
 void	main_display(t_data *cub3d);
-void draw_md(t_player *player, t_data *cub3d, float start_x, int i);
+void	draw_md(t_player *player, t_data *cub3d, float start_x, int i);
 void	draw_line(int top, int bot, int colour, t_data *cub3d, int i);
 
 //raycasting.c
@@ -45,8 +45,6 @@ void	blend_cols(t_calc *calc);
 
 // math.c
 bool	touch(float px, float py, t_data *cub3d);
-float	distance(float x, float y);
-float	fixed_dist(float x1, float y1, float x2, float y2, t_data *cub3d);
 
 // draw_floceil.c
 int		rgb_to_colour(char *rgb_str, t_data *cub3d);
