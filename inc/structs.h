@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 18:54:59 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:36:24 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_calculations
 	float	cur_len;			// Current ray length
 	int		blended_col;		// Resulting blended color
 
-	//
+	//raycasting calculations
 	float	wall_dist;			// Perpendicular distance to wall
 	int		map_x;				// Map x-coordinate where hit occurred
 	int		map_y;				// Map y-coordinate where hit occurred

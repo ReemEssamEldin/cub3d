@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:45:41 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 18:45:42 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:41:57 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	put_player(t_data *cub3d)
 	while (y < cub3d->map_info.map_rows && cub3d->map_info.map[y] != NULL)
 	{
 		x = 0;
-		while (x < cub3d->map_info.map_cols)
+		while (x < (int) ft_strlen(cub3d->map_info.map[y]))
 		{
 			pos = cub3d->map_info.map[y][x];
 			if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')

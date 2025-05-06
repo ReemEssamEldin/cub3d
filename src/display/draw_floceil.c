@@ -6,13 +6,11 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:23:05 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 15:12:07 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:37:13 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-
 
 char *trim_string(char *str)
 {
@@ -42,12 +40,14 @@ char *trim_string(char *str)
  * @param rgb_str The RGB string to convert
  * @return int The color as an integer (0xRRGGBB), or -1 if invalid
  */
-int	rgb_to_colour(char *rgb_str, t_data *cub3d)
+int	rgb_tocol(char *rgb_str, t_data *cub3d)
 {
 	char	**components;
 	int		i;
+	int		r;
+	int		g;
+	int		b;
 
-	int r, g, b;
 	components = ft_split(trim_string(rgb_str), ',');
 	if (!components)
 		return (-1);
@@ -62,61 +62,26 @@ int	rgb_to_colour(char *rgb_str, t_data *cub3d)
 		free(components);
 		return (-1);
 	}
-	if (number_check(components[0]))
-	{
-		r = ft_atoi(components[0]);
-		if (r < 0 || r > 255)
-		{
-			// err_msg(NULL, "Error\nInvalid color value: %s", components[0]);
-			fprintf(stderr, "Error\nInvalid color value: %s", components[0]);
-			destroy(cub3d);
-		}
-	}
-	else
-	{
-		// err_msg(NULL, "Error\nInvalid color value: %s", components[0]);
-		printf("Error\nInvalid color value: %s", components[0]);
-		destroy(cub3d);
-	}
-	if (number_check(components[1]))
-	{
-		g = ft_atoi(components[1]);
-		if (g < 0 || g > 255)
-		{
-			// err_msg(NULL, "Error\nInvalid color value: %s", components[1]);
-			fprintf(stderr, "Error\nInvalid color value: %s", components[1]);
-			destroy(cub3d);
-		}
-	}
-	else
-	{
-		// err_msg(NULL, "Error\nInvalid color value: %s", components[1]);
-		printf("Error\nInvalid color value: %s", components[1]);
-		destroy(cub3d);
-	}
-	if (number_check(components[2]))
-	{
-		b = ft_atoi(components[2]);
-		if (b < 0 || b > 255)
-		{
-			// err_msg(NULL, "Error\nInvalid color value: %s", components[2]);
-			fprintf(stderr, "Error\nInvalid color value: %s", components[2]);
-			destroy(cub3d);
-		}
-	}
-	else
-	{
-		// err_msg(NULL, "Error\nInvalid color value: %s", components[2]);
-		printf("Error\nInvalid color value: %s", components[2]);
-		destroy(cub3d);
-	}
+	r = validate_col(components[0], cub3d);
+	g = validate_col(components[1], cub3d);
+	b = validate_col(components[2], cub3d);
 	i = 0;
 	while (components[i])
 		free(components[i++]);
 	free(components);
-	/* 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-			return (-1); */
 	return ((r << 16) | (g << 8) | b);
+}
+
+int	validate_col(char *component, t_data *cub3d)
+{
+	int val;
+
+	if (!number_check(component))
+		err_msg(cub3d, "Error\nInvalid color value");
+	val = ft_atoi(component);
+	if (val < 0 || val > 255)
+		err_msg(cub3d, "Error\nInvalid color value");
+	return (val);
 }
 
 bool	number_check(char *str)

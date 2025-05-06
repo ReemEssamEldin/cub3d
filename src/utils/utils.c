@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:41:32 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:38:16 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	err_msg(t_data *cub3d, char *err_msg)
 	printf("%s", err_msg);
 	if (cub3d)
 	{
-		clean_mapheader(&cub3d->map_info);
-		clean_mapcontent(&cub3d->map_info);
+		//clean_mapheader(&cub3d->map_info);
+		//clean_mapcontent(&cub3d->map_info);
+		destroy(cub3d);
 	}
 	//frees/destroys go here;
 	exit(EXIT_FAILURE);
