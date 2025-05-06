@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 16:29:35 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:06:02 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "map.h"
 # include "utils.h"
 # include "audio.h"
-# include "drawing.h"
+# include "display.h"
 # include "key_map.h"
 # include "init.h"
 # include "player.h" //maybe combine with keymapping?
