@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:57:15 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 19:09:05 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:09:48 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ void	main_display(t_data *cub3d)
 	// Calculate and store ray angles while drawing 3D view
 	while (i < WID)
 	{
-		//cub3d->calc.ray_angles[i] = cub3d->calc.start_x;
-		//draw_md(&cub3d->player, cub3d, cub3d->calc.start_x, i);
-		//cub3d->calc.start_x += cub3d->calc.fraction;
+		cub3d->calc.ray_angles[i] = cub3d->calc.start_x;
+		cub3d->calc.start_x += cub3d->calc.fraction;
 		draw_md(&cub3d->player, cub3d, 0, i);
 		i++;
 	}
