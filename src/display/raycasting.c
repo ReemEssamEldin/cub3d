@@ -1,46 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/05/06 19:11:38 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:29:39 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../inc/cub3d.h"
-
-/*
- * put_pixel - Puts a pixel of a specified color
- at a given position in the image.
- * @x: The x-coordinate of the pixel.
- * @y: The y-coordinate of the pixel.
- * @color: The color of the pixel in RGB format.
- * @cub3d: A pointer to the t_data structure containing image data.
- *
- * This function sets the color of the pixel at the specified (x, y) coordinates
- * in the image represented by the t_data structure. If the coordinates are
- * outside the bounds of the image,
- * the function returns without making any changes.
- *
- * The color is specified in RGB format, and the function extracts the individual
- * red, green, and blue components to store them in the image data.
- */
-
-void	put_pixel(int x, int y, int color, t_data *cub3d)
-{
-	int	idx;
-
-	if (x >= WID || y >= HEI || x < 0 || y < 0)
-		return ;
-	idx = y * cub3d->line_len + x * cub3d->bpp / 8;
-	cub3d->addr[idx] = color & 0xFF;
-	cub3d->addr[idx + 1] = (color >> 8) & 0xFF;
-	cub3d->addr[idx + 2] = (color >> 16) & 0xFF;
-}
 
 void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y)
 {
@@ -191,76 +161,6 @@ void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y)
 	cub3d->calc.draw_end = draw_end;
 }
 
-void draw_md(t_player *player, t_data *cub3d, float start_x, int i)
-{
-	float ray_x;
-	float ray_y;
-	//t_ray_hit hit;
-	int col_wall;
-	int col_ceil;
-	int col_floo;
 
-	(void)start_x;
-	float camera_x = 2.0 * i / (float)WID - 1.0;
 
-	// Cast ray and get all hit information
-	ray_casting(cub3d, camera_x, &ray_x, &ray_y);
 
-	// Select wall color based on side and direction
-	//if (hit.side == 0)
-	if (cub3d->calc.side == 0)
-	{
-		if (cub3d->calc.map_x > player->x / BLOCK)
-			col_wall = RED;  // East
-		else
-			col_wall = GRE;  // West
-	}
-	else
-	{
-		if (cub3d->calc.map_y > player->y / BLOCK) 
-			col_wall = BLU;  // South
-		else
-			col_wall = YEL;  // North
-	}
-
-	// Make y-sides darker
-	if (cub3d->calc.side == 1)
-		col_wall = (col_wall >> 1) & 0x7F7F7F;  // Divide RGB components by 2
-
-	// Get ceiling and floor colors
-	col_ceil = rgb_to_colour(cub3d->map_info.ce_col, cub3d);
-	col_floo = rgb_to_colour(cub3d->map_info.fl_col, cub3d);
-
-	// Draw ceiling, wall and floor
-	draw_line(0, cub3d->calc.draw_start, col_ceil, cub3d, i);
-	draw_line(cub3d->calc.draw_start, cub3d->calc.draw_end, col_wall, cub3d, i);
-	draw_line(cub3d->calc.draw_end, HEI, col_floo, cub3d, i);
-}
-
-void	draw_line(int top, int bot, int colour, t_data *cub3d, int i)
-{
-	(void) i;
-	while (top < bot)
-	{
-		put_pixel(i, top, colour, cub3d);
-		top++;
-	}
-}
-
-void	clear_image(t_data *cub3d)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < HEI)
-	{
-		x = 0;
-		while (x < WID)
-		{
-			put_pixel(x, y, 0, cub3d);
-			x++;
-		}
-		y++;
-	}
-}
