@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 21:51:41 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:09:25 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ bool	number_check(char *str);
 char	*trim_string(char *str);
 
 // textures.c
+int get_texture_color(t_texture *texture, int x, int y);
+void draw_textured_line(t_data *cub3d, int x, int tex_x);
 void	load_textures(t_data *cub3d);
 
 #endif
