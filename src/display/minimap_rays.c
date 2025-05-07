@@ -6,14 +6,14 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 18:11:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:51:41 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 void	draw_mmcone(t_data *cub3d);
-void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
+void	draw_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
 
 void	draw_mmcone(t_data *cub3d)
 {
@@ -27,12 +27,12 @@ void	draw_mmcone(t_data *cub3d)
 	{
 		cam_x = 2.0 * i / (float)WID - 1.0;
 		define_raydir(cub3d, cam_x, &ray_dirx, &ray_diry);
-		trace_mmray(cub3d, ray_dirx, ray_diry);
+		draw_mmray(cub3d, ray_dirx, ray_diry);
 		i++;
 	}
 }
 
-void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry)
+void	draw_mmray(t_data *cub3d, float ray_dirx, float ray_diry)
 {
 	cub3d->calc.ray_x = cub3d->player.x;
 	cub3d->calc.ray_y = cub3d->player.y;
