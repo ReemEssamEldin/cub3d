@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:49:12 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
-void	define_raydir(t_data *cub3d, float camera_x, float *ray_dirx, float *ray_diry);
+void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry);
 
 void	put_pixel(int x, int y, int color, t_data *cub3d)
 {
@@ -46,7 +46,7 @@ void	clear_image(t_data *cub3d)
 	}
 }
 
-void	define_raydir(t_data *cub3d, float camera_x, float *ray_dirx, float *ray_diry)
+void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry)
 {
 	float dir_x;
 	float dir_y;
@@ -57,6 +57,6 @@ void	define_raydir(t_data *cub3d, float camera_x, float *ray_dirx, float *ray_di
 	dir_y = sin(cub3d->player.angle);
 	plane_x = -dir_y * 0.66;
 	plane_y = dir_x * 0.66;
-	*ray_dirx = dir_x + plane_x * camera_x;
-	*ray_diry = dir_y + plane_y * camera_x;
+	*ray_dirx = dir_x + plane_x * cam_x;
+	*ray_diry = dir_y + plane_y * cam_x;
 }
