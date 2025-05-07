@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 20:27:51 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:50:01 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ typedef struct s_calculations
 	int		map_y;
 	int		step_x;
 	int		step_y;
-	float	side_dist_x;
-	float	side_dist_y;
+	float	side_distx;
+	float	side_disty;
 	int		side;
 	float	wall_dist;
 	float	wall_x;
@@ -88,12 +88,12 @@ typedef struct s_calculations
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	float	ray_dirx;
+	float	ray_diry;
 	float	pos_x;
 	float	pos_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
+	float	delta_distx;
+	float	delta_disty;
 }	t_calc;
 
 typedef struct s_data

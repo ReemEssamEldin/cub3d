@@ -6,33 +6,33 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 18:11:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 19:43:15 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:49:12 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 void	draw_mmcone(t_data *cub3d);
-void	trace_mmray(t_data *cub3d, float ray_dir_x, float ray_dir_y);
+void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
 
 void	draw_mmcone(t_data *cub3d)
 {
 	int		i;
 	float	camera_x;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	float	ray_dirx;
+	float	ray_diry;
 
 	i = 0;
 	while (i < WID)
 	{
 		camera_x = 2.0 * i / (float)WID - 1.0;
-		define_raydir(cub3d, camera_x, &ray_dir_x, &ray_dir_y);
-		trace_mmray(cub3d, ray_dir_x, ray_dir_y);
+		define_raydir(cub3d, camera_x, &ray_dirx, &ray_diry);
+		trace_mmray(cub3d, ray_dirx, ray_diry);
 		i++;
 	}
 }
 
-void	trace_mmray(t_data *cub3d, float ray_dir_x, float ray_dir_y)
+void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry)
 {
 	cub3d->calc.ray_x = cub3d->player.x;
 	cub3d->calc.ray_y = cub3d->player.y;
@@ -46,8 +46,8 @@ void	trace_mmray(t_data *cub3d, float ray_dir_x, float ray_dir_y)
 		blend_cols(&cub3d->calc);
 		put_pixel(cub3d->calc.ray_x, cub3d->calc.ray_y, 
 			cub3d->calc.blended_col, cub3d);
-		cub3d->calc.ray_x += ray_dir_x;
-		cub3d->calc.ray_y += ray_dir_y;
+		cub3d->calc.ray_x += ray_dirx;
+		cub3d->calc.ray_y += ray_diry;
 		cub3d->calc.cur_len += 1;
 	}
 }
