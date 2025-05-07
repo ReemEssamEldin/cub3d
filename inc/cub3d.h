@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 20:06:02 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:57:10 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,18 @@
 # include "init.h"
 # include "player.h" //maybe combine with keymapping?
 
-enum
-{
-	KEYPRESS = 2,
-	KEYRELEASE = 3,
-	MOUSEDOWN = 4,
-	MOUSEUP = 5,
-	MOUSEMOVE = 6,
-	EXPOSE = 12,
-	DESTROY = 17
-};
+// enum
+// {
+// 	KEYPRESS = 2,
+// 	KEYRELEASE = 3,
+// 	MOUSEDOWN = 4,
+// 	MOUSEUP = 5,
+// 	MOUSEMOVE = 6,
+// 	EXPOSE = 12,
+// 	DESTROY = 17
+// };
 
+//cub3d.c
 int		destroy(t_data *cub3d);
 void	check_args(int argc, char *argv);
 
