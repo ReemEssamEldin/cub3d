@@ -1,45 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_floceil.c                                     :+:      :+:    :+:   */
+/*   maindisplay_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 16:23:05 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 20:37:13 by hsetyamu         ###   ########.fr       */
+/*   Created: 2025/05/07 22:37:49 by hsetyamu          #+#    #+#             */
+/*   Updated: 2025/05/07 22:42:32 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-char *trim_string(char *str)
-{
-	char *end;
+int	rgb_tocol(char *rgb_str, t_data *cub3d);
+int	validate_col(char *component, t_data *cub3d);
 
-	while (ft_isspace(*str))
-		str++;
-
-	if (*str == 0)
-		return str;
-
-	end = str + ft_strlen(str) - 1;
-	while (end > str && ft_isspace(*end))
-		end--;
-
-	end[1] = '\0';
-	return str;
-}
-
-
-/**
- * @brief Converts RGB string to color integer
- *
- * Parses a string in format "R,G,B" or "F R,G,B" or "C R,G,B" and
- * converts to a color integer suitable for MLX functions.
- *
- * @param rgb_str The RGB string to convert
- * @return int The color as an integer (0xRRGGBB), or -1 if invalid
- */
 int	rgb_tocol(char *rgb_str, t_data *cub3d)
 {
 	char	**components;
@@ -74,7 +49,7 @@ int	rgb_tocol(char *rgb_str, t_data *cub3d)
 
 int	validate_col(char *component, t_data *cub3d)
 {
-	int val;
+	int	val;
 
 	if (!number_check(component))
 		err_msg(cub3d, "Error\nInvalid color value");
@@ -83,23 +58,3 @@ int	validate_col(char *component, t_data *cub3d)
 		err_msg(cub3d, "Error\nInvalid color value");
 	return (val);
 }
-
-bool	number_check(char *str)
-{
-	int		i;
-	bool	is_valid;
-
-	i = 0;
-	is_valid = true;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-		{
-			is_valid = false;
-				return (is_valid);
-		}
-		i++;
-	}
-	return (is_valid);
-}
-

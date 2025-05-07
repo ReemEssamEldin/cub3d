@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 21:31:59 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:30:21 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ typedef struct s_map
 
 	char		*fl_col;
 	char		*ce_col;
-/* 	int			*fl_col;
-	int			*ce_col; */
 	char		**map;
 	int			map_rows;
 	int			map_cols;
@@ -69,20 +67,20 @@ typedef struct s_draw
 
 typedef struct s_calculations
 {
-	// Minimap params & Ray calcs
-	int		mm_wall_col;		// Wall color on minimap
-	int		mm_space_col;		// Space color on minimap
-	int		mm_padding;			// Padding around minimap
-	float	mm_raylen;			// Maximum ray length for minimap
+	//minimap params & ray calcs
+	int		mm_wall_col;
+	int		mm_space_col;
+	int		mm_padding;
+	float	mm_raylen;
 	
-	// Minimap ray rendering
-	int		base_col;			// Base color for rays (WHI)
-	int		bg_col;				// Background color (BLA)
-	float	ins;				// Current ray intensity
-	float	ray_x;				// Current ray x position
-	float	ray_y;				// Current ray y position
-	float	cur_len;			// Current ray length
-	int		blended_col;		// Resulting blended color
+	//minimap cone rendering
+	int		base_col;
+	int		bg_col;
+	float	ins;
+	float	ray_x;
+	float	ray_y;
+	float	cur_len;
+	int		blended_col;
 
 	//raycasting calculations
 	int		map_x;

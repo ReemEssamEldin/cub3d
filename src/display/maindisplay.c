@@ -6,14 +6,14 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 22:10:20 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:16:57 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 void	main_display(t_data *cub3d);
-void	draw_md(t_player *player, t_data *cub3d, int i);
+void	draw_md(t_data *cub3d, int i);
 int		assign_wallcol(t_player *player, t_data *cub3d);
 void	prep_line(t_data *cub3d, int top, int bottom, int col);
 void	draw_line(t_data *cub3d);
@@ -25,74 +25,35 @@ void	main_display(t_data *cub3d)
 	i = 0;
 	while (i < WID)
 	{
-		draw_md(&cub3d->player, cub3d, i);
+		draw_md(cub3d, i);
 		i++;
 	}
 }
 
-/* void	draw_md(t_player *player, t_data *cub3d, int i)
+void	draw_md(t_data *cub3d, int i)
 {
 	float	ray_x;
 	float	ray_y;
-	int		col_wall;
 	int		col_ceil;
 	int		col_floo;
+	float	cam_x;
+	int		tex_x;
 
-	float	cam_x = 2.0 * i / (float)WID - 1.0;
+	cam_x = 2.0 * i / (float)WID - 1.0;
 	ray_casting(cub3d, cam_x, &ray_x, &ray_y);
-	col_wall = assign_wallcol(player, cub3d);
-	if (cub3d->calc.side == 1)
-		col_wall = (col_wall >> 1) & 0x7F7F7F;
+	tex_x = (int)(cub3d->calc.wall_x * 
+		cub3d->textures[cub3d->calc.tex_num].width);
+	if ((cub3d->calc.side == 0 && cub3d->calc.ray_dirx > 0) || 
+		(cub3d->calc.side == 1 && cub3d->calc.ray_diry < 0))
+		tex_x = cub3d->textures[cub3d->calc.tex_num].width - tex_x - 1;
 	col_ceil = rgb_tocol(cub3d->map_info.ce_col, cub3d);
 	col_floo = rgb_tocol(cub3d->map_info.fl_col, cub3d);
 	cub3d->draw.x = i;
 	prep_line(cub3d, 0, cub3d->calc.draw_start, col_ceil);
 	draw_line(cub3d);
-	prep_line(cub3d, cub3d->calc.draw_start, cub3d->calc.draw_end, col_wall);
-	draw_line(cub3d);
+	draw_texline(cub3d, i, tex_x);
 	prep_line(cub3d, cub3d->calc.draw_end, HEI, col_floo);
 	draw_line(cub3d);
-} */
-
-// Replace your current draw_md function in src/display/maindisplay.c
-void	draw_md(t_player *player, t_data *cub3d, int i)
-{
-    float	ray_x;
-    float	ray_y;
-    int		col_ceil;
-    int		col_floo;
-    float	cam_x;
-    int		tex_x;
-
-	(void)player;
-    cam_x = 2.0 * i / (float)WID - 1.0;
-    
-    // Cast ray and find wall intersection
-    ray_casting(cub3d, cam_x, &ray_x, &ray_y);
-    
-    // Calculate texture X coordinate
-    tex_x = (int)(cub3d->calc.wall_x * cub3d->textures[cub3d->calc.tex_num].width);
-    
-    // Flip texture X coordinate for certain walls to avoid mirror effect
-    if ((cub3d->calc.side == 0 && cub3d->calc.ray_dirx > 0) || 
-        (cub3d->calc.side == 1 && cub3d->calc.ray_diry < 0))
-        tex_x = cub3d->textures[cub3d->calc.tex_num].width - tex_x - 1;
-    
-    // Get ceiling and floor colors
-    col_ceil = rgb_tocol(cub3d->map_info.ce_col, cub3d);
-    col_floo = rgb_tocol(cub3d->map_info.fl_col, cub3d);
-    
-    // Draw ceiling and floor as solid colors
-    cub3d->draw.x = i;
-    prep_line(cub3d, 0, cub3d->calc.draw_start, col_ceil);
-    draw_line(cub3d);
-    
-    // Draw wall with texture
-    draw_textured_line(cub3d, i, tex_x);
-    
-    // Draw floor
-    prep_line(cub3d, cub3d->calc.draw_end, HEI, col_floo);
-    draw_line(cub3d);
 }
 
 int	assign_wallcol(t_player *player, t_data *cub3d)
