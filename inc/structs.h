@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 18:54:59 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:52:53 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
+	//void		*img_ptr_mm;
 	char		*addr;
 	int			bpp;
 	int			line_len;
