@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 20:34:52 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:21:26 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	assign_wallcol(t_player *player, t_data *cub3d)
 		if (cub3d->calc.map_y > player->y / BLOCK) 
 			col_wall = TEA;
 		else
-			col_wall = NAV;
+			col_wall = GRE;
 	}
 	return (col_wall);
 }
