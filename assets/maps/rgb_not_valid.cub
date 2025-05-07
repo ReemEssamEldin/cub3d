@@ -5,7 +5,7 @@ WE    ./assets/textures/Pat2.xpm
 //EA ./path_to_the_east_texture2
 
 C 192,192,192
-F 105,10f,105
+F 105, ,255
 
 111111111111111
 100000000000001
