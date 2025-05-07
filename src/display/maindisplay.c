@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 12:21:26 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:34:56 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	main_display(t_data *cub3d)
 	int	i;
 
 	i = 0;
-	cub3d->calc.start_x = cub3d->player.angle - PI / 6;
+	//cub3d->calc.start_x = cub3d->player.angle - PI / 6;
 	// Calculate and store ray angles while drawing 3D view
 	while (i < WID)
 	{
-		cub3d->calc.ray_angles[i] = cub3d->calc.start_x; //must integrate better 4 minimap
-		cub3d->calc.start_x += cub3d->calc.fraction; //must integrate better 4 minimap
+		//cub3d->calc.ray_angles[i] = cub3d->calc.start_x; //must integrate better 4 minimap
+		//cub3d->calc.start_x += cub3d->calc.fraction; //must integrate better 4 minimap
 		draw_md(&cub3d->player, cub3d, i);
 		i++;
 	}

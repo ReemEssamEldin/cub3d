@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 20:35:37 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:52:17 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	draw_line(int top, int bot, int colour, t_data *cub3d, int i);
 
 //raycasting.c
 void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y);
+void calculate_ray_dir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y);;
 
 //render_utils.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);

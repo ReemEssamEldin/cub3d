@@ -1,3 +1,18 @@
+Map check:
+1. Files exist/not
+	- Different extensions
+2. Mess around header textures
+	- Non existing textures
+	- Arbitrary order
+	- Empty path
+	- Duplicate entries
+3. Mess around header colours
+	- Unexpected characters
+	- Values beyond limit
+4. Mess around content
+	- Unenclosed map
+	- Unexpected chars in wall & floor area
+
 EA ./assets/textures/Pat1.xpm
 NO 		./assets/textures/Pat3.xpm
 SO ./assets/textures/Pat4.xpm
@@ -6,6 +21,7 @@ WE    ./assets/textures/Pat2.xpm
 
 C 192,192,192
 F 105,105,105
+//F 105,105,105
 
 111111111111111
 100000000000001
