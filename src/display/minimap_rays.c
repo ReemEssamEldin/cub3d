@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 18:11:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:49:12 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
 void	draw_mmcone(t_data *cub3d)
 {
 	int		i;
-	float	camera_x;
+	float	cam_x;
 	float	ray_dirx;
 	float	ray_diry;
 
 	i = 0;
 	while (i < WID)
 	{
-		camera_x = 2.0 * i / (float)WID - 1.0;
-		define_raydir(cub3d, camera_x, &ray_dirx, &ray_diry);
+		cam_x = 2.0 * i / (float)WID - 1.0;
+		define_raydir(cub3d, cam_x, &ray_dirx, &ray_diry);
 		trace_mmray(cub3d, ray_dirx, ray_diry);
 		i++;
 	}

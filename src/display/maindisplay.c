@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 17:56:32 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	draw_md(t_player *player, t_data *cub3d, int i)
 	int col_ceil;
 	int col_floo;
 
-	float camera_x = 2.0 * i / (float)WID - 1.0;
-	ray_casting(cub3d, camera_x, &ray_x, &ray_y);
+	float cam_x = 2.0 * i / (float)WID - 1.0;
+	ray_casting(cub3d, cam_x, &ray_x, &ray_y);
 	col_wall = assign_wallcol(player, cub3d);
 	if (cub3d->calc.side == 1)
 		col_wall = (col_wall >> 1) & 0x7F7F7F;

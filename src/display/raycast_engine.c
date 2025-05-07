@@ -6,21 +6,21 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:52:52 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y);
+void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y);
 void	calc_deltadist(t_data *cub3d);
 void	determine_hitpos(t_data *cub3d, float *ray_x, float *ray_y);
 void	calc_drawparams(t_data *cub3d);
 void	calc_textinfo(t_data *cub3d);
 
-void	ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y)
+void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y)
 {
-	define_raydir(cub3d, camera_x, &cub3d->calc.ray_dirx, &cub3d->calc.ray_diry);
+	define_raydir(cub3d, cam_x, &cub3d->calc.ray_dirx, &cub3d->calc.ray_diry);
 	cub3d->calc.pos_x = cub3d->player.x / BLOCK;
 	cub3d->calc.pos_y = cub3d->player.y / BLOCK;
 	cub3d->calc.map_x = (int)(cub3d->calc.pos_x);
