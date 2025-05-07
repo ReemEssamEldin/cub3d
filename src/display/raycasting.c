@@ -6,13 +6,12 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/05/07 15:49:59 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:54:31 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void calculate_ray_dir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y);
 void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y);
 
 void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y)
@@ -30,7 +29,7 @@ void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y)
 	float ray_dir_y = dir_y + plane_y * camera_x;
  */
 	float ray_dir_x, ray_dir_y;
-	calculate_ray_dir(cub3d, camera_x, &ray_dir_x, &ray_dir_y);
+	define_raydir(cub3d, camera_x, &ray_dir_x, &ray_dir_y);
 
 	// Ray starting position (player position)
 	float pos_x = cub3d->player.x / BLOCK;
@@ -165,17 +164,4 @@ void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y)
 	cub3d->calc.line_height = line_height;
 	cub3d->calc.draw_start = draw_start;
 	cub3d->calc.draw_end = draw_end;
-}
-
-// Add this to a new file or in raycasting.c
-void calculate_ray_dir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y)
-{
-    float dir_x = cos(cub3d->player.angle);
-    float dir_y = sin(cub3d->player.angle);
-    
-    float plane_x = -dir_y * 0.66; // FOV of ~66 degrees
-    float plane_y = dir_x * 0.66;  // Perpendicular to direction
-    
-    *ray_dir_x = dir_x + plane_x * camera_x;
-    *ray_dir_y = dir_y + plane_y * camera_x;
 }

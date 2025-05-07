@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 19:58:57 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:02:45 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,8 @@
 
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
+void	define_raydir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y);
 
-/*
- * put_pixel - Puts a pixel of a specified color
- at a given position in the image.
- * @x: The x-coordinate of the pixel.
- * @y: The y-coordinate of the pixel.
- * @color: The color of the pixel in RGB format.
- * @cub3d: A pointer to the t_data structure containing image data.
- *
- * This function sets the color of the pixel at the specified (x, y) coordinates
- * in the image represented by the t_data structure. If the coordinates are
- * outside the bounds of the image,
- * the function returns without making any changes.
- *
- * The color is specified in RGB format, and the function extracts the individual
- * red, green, and blue components to store them in the image data.
- */
 void	put_pixel(int x, int y, int color, t_data *cub3d)
 {
 	int	idx;
@@ -59,4 +44,19 @@ void	clear_image(t_data *cub3d)
 		}
 		y++;
 	}
+}
+
+void	define_raydir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y)
+{
+	float dir_x;
+	float dir_y;
+	float plane_x;
+	float plane_y;
+
+	dir_x = cos(cub3d->player.angle);
+	dir_y = sin(cub3d->player.angle);
+	plane_x = -dir_y * 0.66;
+	plane_y = dir_x * 0.66;
+	*ray_dir_x = dir_x + plane_x * camera_x;
+	*ray_dir_y = dir_y + plane_y * camera_x;
 }

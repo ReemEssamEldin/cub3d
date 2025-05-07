@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 15:52:17 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:13:10 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,22 @@ int		assign_wallcol(t_player *player, t_data *cub3d);
 void	draw_line(int top, int bot, int colour, t_data *cub3d, int i);
 
 //raycasting.c
-void ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y);
-void calculate_ray_dir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y);;
+void	ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y);
 
 //render_utils.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
+void	define_raydir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y);
 
 //minimap.c
 void	mini_map(t_data *cub3d);
 void	draw_mm(t_data *cub3d);
 void	mm_bg(t_data *cub3d);
 void	mm_walls(t_data *cub3d);
-void	draw_mmrays(t_data *cub3d);
+
+//minimap_rays.c
+void	draw_mmcone(t_data *cub3d);
+void	trace_mmray(t_data *cub3d, float ray_dir_x, float ray_dir_y);
 
 //minimap_utils.c
 void	draw_square(int x, int y, int size, int color, t_data *cub3d);
