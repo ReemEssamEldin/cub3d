@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 20:50:01 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:31:59 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ typedef struct s_texture
 	int		line_len;
 	int		endian;
 }	t_texture;
+
+typedef struct s_draw
+{
+	int	x;
+	int	y;
+	int	size;
+	int	col;
+	int	top;
+	int	bottom;
+}	t_draw;
 
 typedef struct s_calculations
 {
@@ -110,6 +120,7 @@ typedef struct s_data
 	t_map		map_info;
 	t_texture	textures[4];
 	t_calc		calc;
+	t_draw		draw;
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:01:06 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	calc_deltadist(t_data *cub3d)
 		cub3d->calc.delta_distx = 1e30;
 	else
 		cub3d->calc.delta_distx = fabs(1 / cub3d->calc.ray_dirx);
-	
 	if (cub3d->calc.ray_diry == 0)
 		cub3d->calc.delta_disty = 1e30;
 	else
@@ -58,12 +57,12 @@ void	determine_hitpos(t_data *cub3d, float *ray_x, float *ray_y)
 		if (cub3d->calc.step_x > 0)
 			*ray_x -= 0.001;
 		*ray_y = (cub3d->calc.pos_y + cub3d->calc.wall_dist * 
-			cub3d->calc.ray_diry) * BLOCK;
+				cub3d->calc.ray_diry) * BLOCK;
 	}
 	else
 	{
 		*ray_x = (cub3d->calc.pos_x + cub3d->calc.wall_dist * 
-			cub3d->calc.ray_dirx) * BLOCK;
+				cub3d->calc.ray_dirx) * BLOCK;
 		*ray_y = cub3d->calc.map_y * BLOCK;
 		if (cub3d->calc.step_y > 0)
 			*ray_y -= 0.001;
@@ -75,7 +74,7 @@ void	calc_drawparams(t_data *cub3d)
 	cub3d->calc.line_height = (int)(HEI / cub3d->calc.wall_dist);
 	cub3d->calc.draw_start = -cub3d->calc.line_height / 2 + HEI / 2;
 	if (cub3d->calc.draw_start < 0)
-	cub3d->calc.draw_start = 0;
+		cub3d->calc.draw_start = 0;
 	cub3d->calc.draw_end = cub3d->calc.line_height / 2 + HEI / 2;
 	if (cub3d->calc.draw_end >= HEI)
 		cub3d->calc.draw_end = HEI - 1;
@@ -85,7 +84,7 @@ void	calc_textinfo(t_data *cub3d)
 {
 	float	wall_x;
 	int		tex_num;
-	
+
 	if (cub3d->calc.side == 0)
 		wall_x = cub3d->calc.pos_y + cub3d->calc.wall_dist * cub3d->calc.ray_diry;
 	else

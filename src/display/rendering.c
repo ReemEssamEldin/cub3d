@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:57:15 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 19:43:15 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:03:33 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	render(t_data *cub3d)
 	main_display(cub3d);
 	mini_map(cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
-							cub3d->img_ptr, 0, 0);
+		cub3d->img_ptr, 0, 0);
 	return (0);
 }
 
