@@ -1,5 +1,48 @@
 #include "../../inc/cub3d.h"
 
+int get_texture_color(t_texture *texture, int x, int y)
+{
+    char	*dst;
+    int		offset;
+
+    if (x < 0 || y < 0 || x >= texture->width || y >= texture->height)
+        return (0);
+    
+    offset = (y * texture->line_len + x * (texture->bpp / 8));
+    dst = texture->addr + offset;
+    return (*(unsigned int *)dst);
+}
+
+void draw_textured_line(t_data *cub3d, int x, int tex_x)
+{
+    int		y;
+    int		tex_y;
+    double	step;
+    double	tex_pos;
+    int		color;
+    t_texture *texture;
+
+    texture = &cub3d->textures[cub3d->calc.tex_num];
+    step = 1.0 * texture->height / cub3d->calc.line_height;
+    tex_pos = (cub3d->calc.draw_start - HEI / 2 + cub3d->calc.line_height / 2) * step;
+    
+    y = cub3d->calc.draw_start;
+    while (y < cub3d->calc.draw_end)
+    {
+        tex_y = (int)tex_pos & (texture->height - 1);
+        tex_pos += step;
+        
+        color = get_texture_color(texture, tex_x, tex_y);
+        
+        // Apply shading for North/South walls
+        if (cub3d->calc.side == 1)
+            color = (color >> 1) & 0x7F7F7F; // Make darker
+        
+        put_pixel(x, y, color, cub3d);
+        y++;
+    }
+}
+
 void load_textures(t_data *cub3d)
 {
 	int width, height;

@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 21:01:06 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:07:59 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	determine_hitpos(t_data *cub3d, float *ray_x, float *ray_y)
 	}
 }
 
-void	calc_drawparams(t_data *cub3d)
+/* void	calc_drawparams(t_data *cub3d)
 {
 	cub3d->calc.line_height = (int)(HEI / cub3d->calc.wall_dist);
 	cub3d->calc.draw_start = -cub3d->calc.line_height / 2 + HEI / 2;
@@ -78,6 +78,30 @@ void	calc_drawparams(t_data *cub3d)
 	cub3d->calc.draw_end = cub3d->calc.line_height / 2 + HEI / 2;
 	if (cub3d->calc.draw_end >= HEI)
 		cub3d->calc.draw_end = HEI - 1;
+} */
+
+void calc_drawparams(t_data *cub3d)
+{
+    int	line_height;
+    int	draw_start;
+    int	draw_end;
+
+    // Calculate line height proportional to distance
+    line_height = (int)(HEI / cub3d->calc.wall_dist);
+    
+    // Calculate lowest and highest pixel to draw
+    draw_start = -line_height / 2 + HEI / 2;
+    if (draw_start < 0)
+        draw_start = 0;
+    
+    draw_end = line_height / 2 + HEI / 2;
+    if (draw_end >= HEI)
+        draw_end = HEI - 1;
+    
+    // Update calculation struct
+    cub3d->calc.line_height = line_height;
+    cub3d->calc.draw_start = draw_start;
+    cub3d->calc.draw_end = draw_end;
 }
 
 void	calc_textinfo(t_data *cub3d)
