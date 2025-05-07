@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 15:36:16 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:43:15 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_calculations
 	// Ray calculation variables
 	//float	fraction;			// Angle fraction per ray
 	//float	start_x;			// Starting ray angle
-	float	mm_rl;				// Maximum ray length for minimap
+	float	mm_raylen;				// Maximum ray length for minimap
 	//float	ray_angles[WID];	// Store ray angles for later use
 
 	// Minimap ray rendering
@@ -98,7 +98,6 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	//void		*img_ptr_mm;
 	char		*addr;
 	int			bpp;
 	int			line_len;

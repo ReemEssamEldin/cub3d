@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 18:11:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 19:34:14 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:43:15 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	trace_mmray(t_data *cub3d, float ray_dir_x, float ray_dir_y)
 	cub3d->calc.ray_y = cub3d->player.y;
 	cub3d->calc.cur_len = 0;
 	while (!touch(cub3d->calc.ray_x, cub3d->calc.ray_y, cub3d) && 
-		cub3d->calc.cur_len < cub3d->calc.mm_rl)
+		cub3d->calc.cur_len < cub3d->calc.mm_raylen)
 	{
-		cub3d->calc.ins = 1.0 - (cub3d->calc.cur_len / cub3d->calc.mm_rl);
+		cub3d->calc.ins = 1.0 - (cub3d->calc.cur_len / cub3d->calc.mm_raylen);
 		if (cub3d->calc.ins < 0)
 			cub3d->calc.ins = 0;
 		blend_cols(&cub3d->calc);
