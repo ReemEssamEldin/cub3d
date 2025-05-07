@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 21:01:57 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:43:14 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
-void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry);
+void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, 
+			float *ray_diry);
+bool	number_check(char *str);
+char	*trim_string(char *str);
 
 void	put_pixel(int x, int y, int color, t_data *cub3d)
 {
@@ -46,7 +49,8 @@ void	clear_image(t_data *cub3d)
 	}
 }
 
-void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry)
+void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, 
+			float *ray_diry)
 {
 	float	dir_x;
 	float	dir_y;
@@ -59,4 +63,38 @@ void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry)
 	plane_y = dir_x * 0.66;
 	*ray_dirx = dir_x + plane_x * cam_x;
 	*ray_diry = dir_y + plane_y * cam_x;
+}
+
+bool	number_check(char *str)
+{
+	int		i;
+	bool	is_valid;
+
+	i = 0;
+	is_valid = true;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+		{
+			is_valid = false;
+			return (is_valid);
+		}
+		i++;
+	}
+	return (is_valid);
+}
+
+char	*trim_string(char *str)
+{
+	char	*end;
+
+	while (ft_isspace(*str))
+		str++;
+	if (*str == 0)
+		return (str);
+	end = str + ft_strlen(str) - 1;
+	while (end > str && ft_isspace(*end))
+		end--;
+	end[1] = '\0';
+	return (str);
 }
