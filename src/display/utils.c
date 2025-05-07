@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:01:57 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	clear_image(t_data *cub3d)
 
 void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry)
 {
-	float dir_x;
-	float dir_y;
-	float plane_x;
-	float plane_y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
 
 	dir_x = cos(cub3d->player.angle);
 	dir_y = sin(cub3d->player.angle);

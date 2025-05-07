@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 20:58:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:33:50 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_render(t_data *cub3d);
 void	main_display(t_data *cub3d);
 void	draw_md(t_player *player, t_data *cub3d, int i);
 int		assign_wallcol(t_player *player, t_data *cub3d);
-void	draw_line(int top, int bot, int colour, t_data *cub3d, int i);
+void	draw_line(t_data *cub3d);
 
 //raycast_engine.c
 void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y);
@@ -52,7 +52,7 @@ void	draw_mmcone(t_data *cub3d);
 void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
 
 //minimap_utils.c
-void	draw_square(int x, int y, int size, int color, t_data *cub3d);
+void	draw_square(t_data *cub3d);
 void	blend_cols(t_calc *calc);
 
 // draw_floceil.c
