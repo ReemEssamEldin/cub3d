@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 19:43:15 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:27:51 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,38 +59,41 @@ typedef struct s_texture
 
 typedef struct s_calculations
 {
-	// Minimap parameters
+	// Minimap params & Ray calcs
 	int		mm_wall_col;		// Wall color on minimap
 	int		mm_space_col;		// Space color on minimap
 	int		mm_padding;			// Padding around minimap
-
-	// Ray calculation variables
-	//float	fraction;			// Angle fraction per ray
-	//float	start_x;			// Starting ray angle
-	float	mm_raylen;				// Maximum ray length for minimap
-	//float	ray_angles[WID];	// Store ray angles for later use
-
+	float	mm_raylen;			// Maximum ray length for minimap
+	
 	// Minimap ray rendering
 	int		base_col;			// Base color for rays (WHI)
 	int		bg_col;				// Background color (BLA)
 	float	ins;				// Current ray intensity
-	//float	cos_angle;			// Cosine of current angle
-	//float	sin_angle;			// Sine of current angle
 	float	ray_x;				// Current ray x position
 	float	ray_y;				// Current ray y position
 	float	cur_len;			// Current ray length
 	int		blended_col;		// Resulting blended color
 
 	//raycasting calculations
-	float	wall_dist;			// Perpendicular distance to wall
-	int		map_x;				// Map x-coordinate where hit occurred
-	int		map_y;				// Map y-coordinate where hit occurred
-	int		side;				// Which side was hit (0 = NS, 1 = EW)
-	float	wall_x;				// Exact position where wall was hit (for texturing)
-	int		tex_num;			// Which texture to use
-	int		line_height;		// Height of line to draw
-	int		draw_start;			// Starting pixel y-coordinate
-	int		draw_end;			// Ending pixel y-coordinate
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	int		side;
+	float	wall_dist;
+	float	wall_x;
+	int		tex_num;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	pos_x;
+	float	pos_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
 }	t_calc;
 
 typedef struct s_data

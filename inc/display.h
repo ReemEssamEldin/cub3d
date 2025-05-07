@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 18:13:10 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:43:55 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,16 @@ void	draw_md(t_player *player, t_data *cub3d, int i);
 int		assign_wallcol(t_player *player, t_data *cub3d);
 void	draw_line(int top, int bot, int colour, t_data *cub3d, int i);
 
-//raycasting.c
+//raycast_engine.c
 void	ray_casting(t_data *cub3d, float camera_x, float *ray_x, float *ray_y);
+void	calc_deltadist(t_data *cub3d);
+void	determine_hitpos(t_data *cub3d, float *ray_x, float *ray_y);
+void	calc_drawparams(t_data *cub3d);
+void	calc_textinfo(t_data *cub3d);
+
+//raycast_dda.c
+void	dda_setup(t_data *cub3d);
+void	dda_execute(t_data *cub3d);
 
 //render_utils.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);
