@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   draw_floceil.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:23:05 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 20:37:13 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:07:31 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+bool	is_valid_rgb_format(char *str)
+{
+	int	i;
+	int	comma_count;
+
+	i = 0;
+	comma_count = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			comma_count++;
+		else if (!ft_isdigit(str[i]) && !ft_isspace(str[i]))
+			return (false);
+		i++;
+	}
+	return (comma_count == 2);
+}
 
 char *trim_string(char *str)
 {
@@ -48,6 +66,10 @@ int	rgb_tocol(char *rgb_str, t_data *cub3d)
 	int		g;
 	int		b;
 
+	rgb_str = trim_string(rgb_str);
+	if (!is_valid_rgb_format(rgb_str))
+		err_msg(cub3d, "Error\nInvalid RGB format: Only digits, commas, and spaces are allowed");
+
 	components = ft_split(trim_string(rgb_str), ',');
 	if (!components)
 		return (-1);
@@ -77,10 +99,10 @@ int	validate_col(char *component, t_data *cub3d)
 	int val;
 
 	if (!number_check(component))
-		err_msg(cub3d, "Error\nInvalid color value");
+		err_msg(cub3d, "Error\nInvalid color value: RGB values must be digits");
 	val = ft_atoi(component);
 	if (val < 0 || val > 255)
-		err_msg(cub3d, "Error\nInvalid color value");
+		err_msg(cub3d, "Error\nInvalid color value: RGB values must be between 0 and 255");
 	return (val);
 }
 

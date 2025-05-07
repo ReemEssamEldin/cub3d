@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 20:35:37 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:07:57 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	draw_square(int x, int y, int size, int color, t_data *cub3d);
 void	blend_cols(t_calc *calc);
 
 // draw_floceil.c
+bool	is_valid_rgb_format(char *str);
 int		rgb_tocol(char *rgb_str, t_data *cub3d);
 int		validate_col(char *component, t_data *cub3d);
 bool	number_check(char *str);
