@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 14:08:38 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:36:16 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ typedef struct s_calculations
 	int		mm_padding;			// Padding around minimap
 
 	// Ray calculation variables
-	float	fraction;			// Angle fraction per ray
-	float	start_x;			// Starting ray angle
+	//float	fraction;			// Angle fraction per ray
+	//float	start_x;			// Starting ray angle
 	float	mm_rl;				// Maximum ray length for minimap
-	float	ray_angles[WID];	// Store ray angles for later use
+	//float	ray_angles[WID];	// Store ray angles for later use
 
 	// Minimap ray rendering
 	int		base_col;			// Base color for rays (WHI)
 	int		bg_col;				// Background color (BLA)
 	float	ins;				// Current ray intensity
-	float	cos_angle;			// Cosine of current angle
-	float	sin_angle;			// Sine of current angle
+	//float	cos_angle;			// Cosine of current angle
+	//float	sin_angle;			// Sine of current angle
 	float	ray_x;				// Current ray x position
 	float	ray_y;				// Current ray y position
 	float	cur_len;			// Current ray length
