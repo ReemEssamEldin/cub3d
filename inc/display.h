@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 20:43:55 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:49:12 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	dda_execute(t_data *cub3d);
 //render_utils.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
-void	define_raydir(t_data *cub3d, float camera_x, float *ray_dir_x, float *ray_dir_y);
+void	define_raydir(t_data *cub3d, float camera_x, float *ray_dirx, float *ray_diry);
 
 //minimap.c
 void	mini_map(t_data *cub3d);
@@ -49,7 +49,7 @@ void	mm_walls(t_data *cub3d);
 
 //minimap_rays.c
 void	draw_mmcone(t_data *cub3d);
-void	trace_mmray(t_data *cub3d, float ray_dir_x, float ray_dir_y);
+void	trace_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
 
 //minimap_utils.c
 void	draw_square(int x, int y, int size, int color, t_data *cub3d);
