@@ -33,13 +33,15 @@ SRC-C3				= ./src/cub3d.c \
 						./src/map_loading/map_content.c \
 						./src/audio/audio.c \
 						./src/display/rendering.c \
-						./src/display/raycasting.c \
 						./src/display/maindisplay.c \
+						./src/display/maindisplay_utils.c \
+						./src/display/raycast_engine.c \
+						./src/display/raycast_dda.c \
 						./src/display/minimap.c \
+						./src/display/minimap_rays.c \
 						./src/display/minimap_utils.c \
-						./src/display/draw_floceil.c \
 						./src/display/textures.c \
-						./src/display/render_utils.c \
+						./src/display/display_utils.c \
 						./src/key_mapping/key_map.c \
 						./src/key_mapping/math.c \
 						./src/init/init.c \
