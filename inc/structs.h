@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 14:08:38 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:30:21 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ typedef struct s_map
 
 	char		*fl_col;
 	char		*ce_col;
-/* 	int			*fl_col;
-	int			*ce_col; */
 	char		**map;
 	int			map_rows;
 	int			map_cols;
@@ -57,40 +55,53 @@ typedef struct s_texture
 	int		endian;
 }	t_texture;
 
+typedef struct s_draw
+{
+	int	x;
+	int	y;
+	int	size;
+	int	col;
+	int	top;
+	int	bottom;
+}	t_draw;
+
 typedef struct s_calculations
 {
-	// Minimap parameters
-	int		mm_wall_col;		// Wall color on minimap
-	int		mm_space_col;		// Space color on minimap
-	int		mm_padding;			// Padding around minimap
-
-	// Ray calculation variables
-	float	fraction;			// Angle fraction per ray
-	float	start_x;			// Starting ray angle
-	float	mm_rl;				// Maximum ray length for minimap
-	float	ray_angles[WID];	// Store ray angles for later use
-
-	// Minimap ray rendering
-	int		base_col;			// Base color for rays (WHI)
-	int		bg_col;				// Background color (BLA)
-	float	ins;				// Current ray intensity
-	float	cos_angle;			// Cosine of current angle
-	float	sin_angle;			// Sine of current angle
-	float	ray_x;				// Current ray x position
-	float	ray_y;				// Current ray y position
-	float	cur_len;			// Current ray length
-	int		blended_col;		// Resulting blended color
+	//minimap params & ray calcs
+	int		mm_wall_col;
+	int		mm_space_col;
+	int		mm_padding;
+	float	mm_raylen;
+	
+	//minimap cone rendering
+	int		base_col;
+	int		bg_col;
+	float	ins;
+	float	ray_x;
+	float	ray_y;
+	float	cur_len;
+	int		blended_col;
 
 	//raycasting calculations
-	float	wall_dist;			// Perpendicular distance to wall
-	int		map_x;				// Map x-coordinate where hit occurred
-	int		map_y;				// Map y-coordinate where hit occurred
-	int		side;				// Which side was hit (0 = NS, 1 = EW)
-	float	wall_x;				// Exact position where wall was hit (for texturing)
-	int		tex_num;			// Which texture to use
-	int		line_height;		// Height of line to draw
-	int		draw_start;			// Starting pixel y-coordinate
-	int		draw_end;			// Ending pixel y-coordinate
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	float	side_distx;
+	float	side_disty;
+	int		side;
+	float	wall_dist;
+	float	wall_x;
+	int		tex_num;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	float	ray_dirx;
+	float	ray_diry;
+	float	pos_x;
+	float	pos_y;
+	float	delta_distx;
+	float	delta_disty;
 }	t_calc;
 
 typedef struct s_data
@@ -98,7 +109,6 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	//void		*img_ptr_mm;
 	char		*addr;
 	int			bpp;
 	int			line_len;
@@ -108,6 +118,7 @@ typedef struct s_data
 	t_map		map_info;
 	t_texture	textures[4];
 	t_calc		calc;
+	t_draw		draw;
 }	t_data;
 
 #endif

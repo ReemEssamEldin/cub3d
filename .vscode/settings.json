@@ -33,6 +33,8 @@
 		"string_view": "c",
 		"ranges": "c",
 		"span": "c",
-		"atomic": "c"
+		"atomic": "c",
+		"initializer_list": "c",
+		"utility": "c"
 	}
 }
