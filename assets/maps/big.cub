@@ -1,7 +1,7 @@
-EA ./assets/textures/Pat1.xpm
-NO 		./assets/textures/Pat3.xpm
-SO ./assets/textures/Pat4.xpm
-WE    ./assets/textures/Pat2.xpm
+EA ./assets/textures/texture_05_g.xpm
+NO 		./assets/textures/texture_05_r.xpm
+SO ./assets/textures/texture_05_p.xpm
+WE    ./assets/textures/texture_05_o.xpm
 //EA ./path_to_the_east_texture2
 
 C 192,192,192
