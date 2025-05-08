@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 14:18:23 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:38:24 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	clean_mapcontent(t_map *map_info)
 	trimmed = ft_calloc((end + 1), sizeof(char *));
 	if (!trimmed)
 		return (NULL);
-	ft_strncpy(trimmed, (str + start), end);
+	ft_strncpos_y(trimmed, (str + start), end);
 	free(str);
 	return (trimmed);
 } */
