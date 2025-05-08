@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position_direction.c                               :+:      :+:    :+:   */
+/*   starting_loc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:45:41 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 20:41:57 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:03:56 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/player.h"
+#include "../../inc/cub3d.h"
 
 bool	put_player(t_data *cub3d);
 bool	set_position(t_data *cub3d, int x, int y, int *found);

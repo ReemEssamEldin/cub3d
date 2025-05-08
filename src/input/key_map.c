@@ -3,18 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   key_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/02 15:19:46 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:47:58 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-//experiment with mac key mappings
-//keysym represents the key that was pressed
-//cub3d is a pointer to the main game structure, which stores player data and game state
+void	key_hooks(t_data *cub3d);
+int		key_press(int keysym, t_data *cub3d);
+int		key_release(int keysym, t_data *cub3d);
+
+void	key_hooks(t_data *cub3d)
+{
+	#ifdef __APPLE__
+	mlx_hook(cub3d->win_ptr, KEYPRESS, 1L << 0, key_press, cub3d);
+	mlx_hook(cub3d->win_ptr, KEYRELEASE, 1L << 1, key_release, cub3d);
+	mlx_hook(cub3d->win_ptr, DESTROY, 0, destroy, cub3d);
+	#else
+	mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
+	mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
+	mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask,
+		destroy, cub3d);
+	//mlx_hook(cub3d->win_ptr, MotionNotify, PointerMotionMask, mouse_use, cub3d);
+	#endif
+}
+
 int	key_press(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_Escape || keysym == ESC)
@@ -34,7 +50,6 @@ int	key_press(int keysym, t_data *cub3d)
 	return (0);
 }
 
-//experiment with mac key mappings
 int	key_release(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_W || keysym == XK_w)
@@ -52,17 +67,8 @@ int	key_release(int keysym, t_data *cub3d)
 	return (0);
 }
 
-/* void	move_player(t_player *player)
+/* void	handle_rotation(t_player *player, float angle_speed)
 {
-	int		speed;
-	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
-
-	speed = 1;
-	angle_speed = 0.03;
-	cos_angle = cos(player->angle);
-	sin_angle = sin(player->angle);
 	if (player->left_rotate)
 		player->angle -= angle_speed;
 	if (player->right_rotate)
@@ -71,42 +77,10 @@ int	key_release(int keysym, t_data *cub3d)
 		player->angle = 0;
 	if (player->angle < 0)
 		player->angle = 2 * PI;
-	if (player->key_down)
-	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
-	}
-	if (player->key_up)
-	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
-	}
-	if (player->key_right)
-	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
-	}
-	if (player->key_left)
-	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
-	}
 } */
 
-void	handle_rotation(t_player *player, float angle_speed)
-{
-	if (player->left_rotate)
-		player->angle -= angle_speed;
-	if (player->right_rotate)
-		player->angle += angle_speed;
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
-}
-
 // Try to move player in a direction with collision detection
-void	try_move(t_player *player, float dx, float dy, float dir_x, float dir_y,
+/* void	try_move(t_player *player, float dx, float dy, float dir_x, float dir_y,
 	float collision_buffer, t_data *cub3d)
 {
 	float	new_x;
@@ -120,9 +94,9 @@ void	try_move(t_player *player, float dx, float dy, float dir_x, float dir_y,
 		player->x = new_x;
 		player->y = new_y;
 	}
-}
+} */
 
-void	move_player(t_player *player, t_data *cub3d)
+/* void	move_player(t_player *player, t_data *cub3d)
 {
 	float	speed;
 	float	angle_speed;
@@ -190,7 +164,7 @@ void	move_player(t_player *player, t_data *cub3d)
 		try_move(player, -sin_angle * speed, cos_angle * speed,
 			dir_x, dir_y, collision_buffer, cub3d);
 	}
-}
+} */
 
 /* void	mouse_wrap(t_data *cub3d, int x, int y)
 {
@@ -220,18 +194,3 @@ int	mouse_use(int x, int y, t_data *cub3d)
 	old_x = x;
 	return (0);
 } */
-
-void	key_hooks(t_data *cub3d)
-{
-	#ifdef __APPLE__
-	mlx_hook(cub3d->win_ptr, KEYPRESS, 1L << 0, key_press, cub3d);
-	mlx_hook(cub3d->win_ptr, KEYRELEASE, 1L << 1, key_release, cub3d);
-	mlx_hook(cub3d->win_ptr, DESTROY, 0, destroy, cub3d);
-	#else
-	mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
-	mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
-	mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask,
-		destroy, cub3d);
-	//mlx_hook(cub3d->win_ptr, MotionNotify, PointerMotionMask, mouse_use, cub3d);
-	#endif
-}
