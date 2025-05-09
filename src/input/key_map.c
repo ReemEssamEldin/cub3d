@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 16:47:58 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/09 12:33:51 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		key_release(int keysym, t_data *cub3d);
 void	key_hooks(t_data *cub3d)
 {
 	#ifdef __APPLE__
-	mlx_hook(cub3d->win_ptr, KEYPRESS, 1L << 0, key_press, cub3d);
-	mlx_hook(cub3d->win_ptr, KEYRELEASE, 1L << 1, key_release, cub3d);
-	mlx_hook(cub3d->win_ptr, DESTROY, 0, destroy, cub3d);
+	mlx_hook(cub3d->win_ptr, KeyPress, 1L << 0, key_press, cub3d);
+	mlx_hook(cub3d->win_ptr, KeyRelease, 1L << 1, key_release, cub3d);
+	mlx_hook(cub3d->win_ptr, DestroyNotify, 0, destroy, cub3d);
 	#else
 	mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
 	mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, key_release, cub3d);
