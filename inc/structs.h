@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 22:30:21 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:02:18 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_calculations
 	int		mm_space_col;
 	int		mm_padding;
 	float	mm_raylen;
-	
+
 	//minimap cone rendering
 	int		base_col;
 	int		bg_col;
@@ -104,6 +104,17 @@ typedef struct s_calculations
 	float	delta_disty;
 }	t_calc;
 
+typedef struct s_move
+{
+	float	speed;
+	float	angle_speed;
+	float	collision_buffer;
+	float	dir_x;
+	float	dir_y;
+	float	cos_angle;
+	float	sin_angle;
+}	t_move;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -119,6 +130,7 @@ typedef struct s_data
 	t_texture	textures[4];
 	t_calc		calc;
 	t_draw		draw;
+	t_move		move;
 }	t_data;
 
 #endif

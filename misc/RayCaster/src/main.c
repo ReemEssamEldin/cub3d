@@ -69,12 +69,12 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
 }
 
 // touch function
-bool	touch(float px, float py, t_game *game)
+bool	touch(float pos_x, float py, t_game *game)
 {
 	int	x;
 	int	y;
 
-	x = px / BLOCK;
+	x = pos_x / BLOCK;
 	y = py / BLOCK;
 	if (game->map[y][x] == '1')
 		return (true);
