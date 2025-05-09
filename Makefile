@@ -74,6 +74,9 @@ GREEN				=	\033[1;32m
 YELLOW				=	\033[1;33m
 COLOFF				=	\033[0m
 
+## Compile bonus?
+BONUS = 0
+
 ##------------------------------------------------------------------##
 # Build rules
 
@@ -94,6 +97,9 @@ fclean:				clean
 					fi
 
 re:					fclean all
+
+bonus:
+					make all BONUS=1
 
 test:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME-C3) ./assets/maps/small.cub
@@ -124,9 +130,9 @@ $(NAME-LIBFT):
 $(NAME-C3): $(C3-DEPS)
 		@echo "$(YELLOW)Compiling cub3d.$(COLOFF)"
 ifeq ($(UNAME), Darwin)
-		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) $(NAME-LIBFT) $(MLXFLAGS) -o $(NAME-C3)
+		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) -DBONUS=$(BONUS) $(NAME-LIBFT) $(MLXFLAGS) -o $(NAME-C3)
 else
-		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) $(NAME-LIBFT) $(NAME-MLX) -L${MLXDIR} $(MLXFLAGS) -o $(NAME-C3)
+		@$(CC) $(CFLAGS) $(HEADER) $(SRC-C3) -DBONUS=$(BONUS) $(NAME-LIBFT) $(NAME-MLX) -L${MLXDIR} $(MLXFLAGS) -o $(NAME-C3)
 endif
 		@echo "$(GREEN)cub3d ready!$(COLOFF)"
 
