@@ -6,12 +6,25 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:39 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 17:41:41 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:57:46 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Checks if a position collides with walls in the map
+ *
+ * This function determines if a given position (x,y) intersects with walls (1)
+ * in the map or is outside valid map boundaries.
+ *
+ * @param pos_x X coordinate of the position to check
+ * @param pos_y Y coordinate of the position to check
+ * @param cub3d Pointer to main data structure containing map information
+ *
+ * @return true if position collides with a wall or is out of bounds,
+ *         false if position is valid and empty
+ */
 bool	touch(float pos_x, float pos_y, t_data *cub3d)
 {
 	int	x;
@@ -30,6 +43,19 @@ bool	touch(float pos_x, float pos_y, t_data *cub3d)
 	return (false);
 }
 
+/**
+ * Attempts to move the player to a new position while checking for collisions
+ *
+ * @param player Pointer to the player structure containing position data
+ * @param dx The change in x-coordinate for the movement attempt
+ * @param dy The change in y-coordinate for the movement attempt
+ * @param cub3d Pointer to main game data structure containing collision info
+ *
+ * The function:
+ * 1. Calculates new potential position
+ * 2. Checks for collision using touch() function with a collision buffer
+ * 3. Updates player position only if no collision is detected
+ */
 void	try_move(t_player *player, float dx, float dy, t_data *cub3d)
 {
 	float	new_x;
