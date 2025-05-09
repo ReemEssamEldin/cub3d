@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_engine.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 22:43:33 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:28:55 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,23 @@ void	calc_deltadist(t_data *cub3d)
 void	determine_hitpos(t_data *cub3d, float *ray_x, float *ray_y)
 {
 	if (cub3d->calc.side == 0)
-		cub3d->calc.wall_dist = cub3d->calc.side_distx - cub3d->calc.delta_distx;
+		cub3d->calc.wall_dist = cub3d->calc.side_distx
+			- cub3d->calc.delta_distx;
 	else
-		cub3d->calc.wall_dist = cub3d->calc.side_disty - cub3d->calc.delta_disty;
+		cub3d->calc.wall_dist = cub3d->calc.side_disty
+			- cub3d->calc.delta_disty;
 	if (cub3d->calc.side == 0)
 	{
 		*ray_x = cub3d->calc.map_x * BLOCK;
 		if (cub3d->calc.step_x > 0)
 			*ray_x -= 0.001;
-		*ray_y = (cub3d->calc.pos_y + cub3d->calc.wall_dist * 
-				cub3d->calc.ray_diry) * BLOCK;
+		*ray_y = (cub3d->calc.pos_y + cub3d->calc.wall_dist
+				* cub3d->calc.ray_diry) * BLOCK;
 	}
 	else
 	{
-		*ray_x = (cub3d->calc.pos_x + cub3d->calc.wall_dist * 
-				cub3d->calc.ray_dirx) * BLOCK;
+		*ray_x = (cub3d->calc.pos_x + cub3d->calc.wall_dist
+				* cub3d->calc.ray_dirx) * BLOCK;
 		*ray_y = cub3d->calc.map_y * BLOCK;
 		if (cub3d->calc.step_y > 0)
 			*ray_y -= 0.001;
@@ -104,9 +106,11 @@ void	calc_textinfo(t_data *cub3d)
 	int		tex_num;
 
 	if (cub3d->calc.side == 0)
-		wall_x = cub3d->calc.pos_y + cub3d->calc.wall_dist * cub3d->calc.ray_diry;
+		wall_x = cub3d->calc.pos_y + cub3d->calc.wall_dist
+			* cub3d->calc.ray_diry;
 	else
-		wall_x = cub3d->calc.pos_x + cub3d->calc.wall_dist * cub3d->calc.ray_dirx;
+		wall_x = cub3d->calc.pos_x + cub3d->calc.wall_dist
+			* cub3d->calc.ray_dirx;
 	wall_x -= floor(wall_x);
 	tex_num = 0;
 	if (cub3d->calc.side == 0)

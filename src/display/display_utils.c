@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 22:43:14 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:26:49 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
-void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, 
+void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 			float *ray_diry);
 bool	number_check(char *str);
 char	*trim_string(char *str);
@@ -49,7 +49,7 @@ void	clear_image(t_data *cub3d)
 	}
 }
 
-void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, 
+void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 			float *ray_diry)
 {
 	float	dir_x;
