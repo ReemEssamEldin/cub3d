@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:04 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:24:07 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:33:01 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define INPUT_H
 
 # include "cub3d.h"
-
-# define APPLE 0
-
-# ifdef __APPLE__
-#  define APPLE 1
-# endif
 
 //key_map.c
 void	key_hooks(t_data *cub3d);

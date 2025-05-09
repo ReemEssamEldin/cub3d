@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:12:22 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 17:36:35 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:37:57 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ char	*detect_audioplayer(void)
 {
 	char	*audio_player;
 
-	#ifdef __APPLE__
+	if (APPLE)
 		audio_player = ft_strdup("afplay");
-	#else
+	else
 		audio_player = ft_strdup("aplay");
-	#endif
 	return (audio_player);
 }
 
@@ -66,20 +65,12 @@ void	play_audio(char *audio_file)
 	argv[1] = ft_strdup(audio_file);
 	path = ft_strjoin("/usr/bin/", audio_player);
 	pid = fork();
-	if (pid < 0)
+	if (pid == 0)
 	{
-		perror("fork");
-		return ;
+		execve(path, argv, environ);
+		exit(0);
 	}
-	else if (pid == 0)
-	{
-		if (execve(path, argv, environ) == -1)
-		{
-			perror("execve");
-			exit(1);
-		}
-	}
-	else
+	else if (pid > 0)
 		waitpid(pid, NULL, WNOHANG);
 	free(audio_player);
 	free(argv[0]);
@@ -122,7 +113,7 @@ void	end_audio(void)
 		exit(0);
 	}
 	else if (pid > 0)
-		waitpid(pid, NULL, 0);
+		waitpid(pid, NULL, WNOHANG);
 	free(audio_player);
 	free(argv[0]);
 	free(argv[1]);
