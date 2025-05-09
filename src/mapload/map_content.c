@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 00:07:13 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int	save_grid(t_data *cub3d, char *cub_file)
  * @param line The string to validate as a map line
  * @return 1 if the line contains only valid map characters, 0 otherwise
  */
-
 int	valid_mapline(char *line)
 {
 	int	i;
@@ -137,28 +136,6 @@ int	valid_mapline(char *line)
 	}
 	return (1);
 }
-
-// /**
-//  * @brief Checks if a line is empty or contains only whitespace characters
-//  *
-//  * This function scans through the given line and determines if it's empty.
-//  * A line is considered empty if it:
-//  * - Contains only spaces and/or tabs followed by a newline or
-//  * null terminator
-//  * - Is just a newline or null terminator
-//  *
-//  * @param line The string to check
-//  * @return int 1 (true) if the line is empty, 0 (false) otherwise
-//  */
-// int	empty_line(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-// 		i++;
-// 	return (line[i] == '\n' || line[i] == '\0');
-// }
 
 /**
  * @brief Validates if the map is properly enclosed by walls
