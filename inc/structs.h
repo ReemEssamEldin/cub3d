@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:48:14 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:52:34 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_map
 	char		**map;
 	int			map_rows;
 	int			map_cols;
+
+	int			col_ceil;
+	int			col_floo;
 }	t_map;
 
 typedef struct s_texture
