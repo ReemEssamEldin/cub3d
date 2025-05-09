@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:51:26 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/10 00:01:05 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@ void	key_hooks(t_data *cub3d);
 int		key_press(int keysym, t_data *cub3d);
 int		key_release(int keysym, t_data *cub3d);
 
+/**
+ * @brief Sets up key event hooks for the cub3d window
+ *
+ * Configures window event hooks for key press, key release and window destroy
+ * events. Uses different event masks depending on whether code is running on
+ * Apple or other platforms.
+ *
+ * @param cub3d Pointer to main program data structure containing window pointer
+ *
+ * For Apple systems:
+ * - Key press: event 2 with mask 1L << 0
+ * - Key release: event 3 with mask 1L << 1
+ * - Destroy notify: event 17 with mask 0
+ *
+ * For other systems:
+ * - Uses KeyPressMask, KeyReleaseMask and StructureNotifyMask
+ */
 void	key_hooks(t_data *cub3d)
 {
 	if (APPLE)
@@ -34,6 +51,19 @@ void	key_hooks(t_data *cub3d)
 	}
 }
 
+/**
+ * @brief Handles key press events for player movement and game control
+ *
+ * Maps keyboard inputs to player movement and rotation controls:
+ * - ESC: Exits the game
+ * - W/S: Forward/Backward movement
+ * - A/D: Left/Right movement
+ * - Left/Right arrows: Rotation control
+ *
+ * @param keysym The key code of the pressed key
+ * @param cub3d Pointer to the main game data structure
+ * @return Returns 0 after setting the appropriate movement flags
+ */
 int	key_press(int keysym, t_data *cub3d)
 {
 	if (keysym == XK_Escape || keysym == ESC)

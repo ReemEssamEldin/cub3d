@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 00:03:00 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@ int		destroy(t_data *cub3d);
 void	terminate(t_data *cub3d, char *terminate);
 char	*remove_trailing(char *str, char *c);
 
+/**
+ * @brief Clean up resources and exit the program
+ *
+ * Performs cleanup operations in the following order:
+ * 1. If BONUS is enabled, stops audio playback
+ * 2. Cleans up all allocated resources via clean_all()
+ * 3. Destroys MLX image if it exists
+ * 4. Destroys MLX window if it exists
+ * 5. Destroys MLX display and frees MLX pointer if it exists
+ * 6. Exits program with status code 0
+ *
+ * @param cub3d Pointer to main program data structure
+ * @return Always returns 0 (though function exits before return)
+ */
 int	destroy(t_data *cub3d)
 {
 	if (BONUS)
@@ -33,6 +47,15 @@ int	destroy(t_data *cub3d)
 	exit(0);
 }
 
+/**
+ * @brief Terminates the program with an error message and cleans up resources
+ *
+ * This function prints an error message, frees allocated memory for map data
+ * structures if they exist, and exits the program with failure status.
+ *
+ * @param cub3d Pointer to main program data structure, can be NULL
+ * @param terminate Error message string to display before terminating
+ */
 void	terminate(t_data *cub3d, char *terminate)
 {
 	printf("%s", terminate);
@@ -44,6 +67,17 @@ void	terminate(t_data *cub3d, char *terminate)
 	exit(EXIT_FAILURE);
 }
 
+/**
+ * Removes trailing characters specified in 'c' from the end of a string
+ *
+ * @param str The string to be modified
+ * @param c String containing characters to be removed from the end
+ * @return The modified string with trailing characters removed
+ *
+ * This function removes any trailing characters that match those in 'c'
+ * from the end of 'str'. It modifies the original string by replacing
+ * matching characters with null terminators.
+ */
 char	*remove_trailing(char *str, char *c)
 {
 	int	len;
