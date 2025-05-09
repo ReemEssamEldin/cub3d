@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 13:45:31 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:57:34 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	blend_cols(t_calc *calc);
 //textures.c
 void	load_multitexs(t_data *cub3d);
 int		load_singletex(t_data *cub3d, char *tex_path, int tex_idx);
-int		get_texcol(t_texture *texture, int x, int y);
 void	draw_texline(t_data *cub3d, int x, int tex_x);
+int		get_texcol(t_texture *texture, int x, int y);
 
 #endif
