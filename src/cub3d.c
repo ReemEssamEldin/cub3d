@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 19:19:31 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:53:17 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char *argv[])
 {
 	t_data	cub3d;
 
-	printf("Bonus: %d\n", BONUS);
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
 	init_player(&cub3d);
@@ -38,13 +37,13 @@ void	check_args(int argc, char *argv)
 	int		j;
 
 	if (argc != 2)
-		err_msg(NULL, "Error\nInvalid number of arguments.");
+		terminate(NULL, "Error\nInvalid number of arguments.");
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		err_msg(NULL, "Error\nFile does not exist.");
+		terminate(NULL, "Error\nFile does not exist.");
 	close(fd);
 	i = ft_strlen(argv) - 4;
 	j = ft_strncmp(".cub", &argv[i], 4);
 	if (j != 0)
-		err_msg(NULL, "Error\nOnly accepts .cub files.");
+		terminate(NULL, "Error\nOnly accepts .cub files.");
 }

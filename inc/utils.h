@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:20 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 19:00:52 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 //utils.c
 int		destroy(t_data *cub3d);
-void	err_msg(t_data *cub3d, char *err_msg);
+void	terminate(t_data *cub3d, char *terminate);
 char	*remove_trailing(char *str, char *c);
 
 //cleaning.c
