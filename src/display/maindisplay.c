@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maindisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 22:16:57 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:33:36 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	draw_md(t_data *cub3d, int i)
 
 	cam_x = 2.0 * i / (float)WID - 1.0;
 	ray_casting(cub3d, cam_x, &ray_x, &ray_y);
-	tex_x = (int)(cub3d->calc.wall_x * 
-		cub3d->textures[cub3d->calc.tex_num].width);
-	if ((cub3d->calc.side == 0 && cub3d->calc.ray_dirx > 0) || 
-		(cub3d->calc.side == 1 && cub3d->calc.ray_diry < 0))
+	tex_x = (int)(cub3d->calc.wall_x
+			* cub3d->textures[cub3d->calc.tex_num].width);
+	if ((cub3d->calc.side == 0 && cub3d->calc.ray_dirx > 0)
+		|| (cub3d->calc.side == 1 && cub3d->calc.ray_diry < 0))
 		tex_x = cub3d->textures[cub3d->calc.tex_num].width - tex_x - 1;
 	col_ceil = rgb_tocol(cub3d->map_info.ce_col, cub3d);
 	col_floo = rgb_tocol(cub3d->map_info.fl_col, cub3d);
@@ -69,7 +69,7 @@ int	assign_wallcol(t_player *player, t_data *cub3d)
 	}
 	else
 	{
-		if (cub3d->calc.map_y > player->y / BLOCK) 
+		if (cub3d->calc.map_y > player->y / BLOCK)
 			col_wall = TEA;
 		else
 			col_wall = GRE;

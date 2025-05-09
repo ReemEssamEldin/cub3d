@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:20:03 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 22:43:59 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:34:24 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ int	get_texcol(t_texture *texture, int x, int y)
 
 void	draw_texline(t_data *cub3d, int x, int tex_x)
 {
-	int		y;
-	int		tex_y;
-	double	step;
-	double	tex_pos;
-	int		color;
+	int			y;
+	int			tex_y;
+	double		step;
+	double		tex_pos;
+	int			color;
 	t_texture	*texture;
 
 	texture = &cub3d->textures[cub3d->calc.tex_num];
 	step = 1.0 * texture->height / cub3d->calc.line_height;
-	tex_pos = (cub3d->calc.draw_start - HEI / 2 + cub3d->calc.line_height / 2) 
+	tex_pos = (cub3d->calc.draw_start - HEI / 2 + cub3d->calc.line_height / 2)
 		* step;
 	y = cub3d->calc.draw_start;
 	while (y < cub3d->calc.draw_end)
