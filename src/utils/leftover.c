@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   leftover.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 13:53:42 by reldahli          #+#    #+#             */
+/*   Updated: 2025/05/09 13:53:43 by reldahli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* void	ray_marching(t_data *cub3d, float start_x, float *ray_x, float *ray_y)
 {
     float	cos_angle;
@@ -7,8 +19,10 @@
 
     cos_angle = cos(start_x);
     sin_angle = sin(start_x);
-    // *ray_x = cub3d->player.x + BLOCK / 4;  // Start from middle of player square
-    // *ray_y = cub3d->player.y + BLOCK / 4;  // Start from middle of player square
+    // *ray_x = cub3d->player.x + BLOCK / 4;
+	// Start from middle of player square
+    // *ray_y = cub3d->player.y + BLOCK / 4;
+	// Start from middle of player square
 	*ray_x = cub3d->player.x;
     *ray_y = cub3d->player.y;
     max_ray_length = BLOCK * 100;      // Limit ray to 5 blocks length
@@ -23,7 +37,7 @@
         current_length += 1;
     }
 } */
-texture mapping (previously in draw_line)
+//texture mapping (previously in draw_line)
 /* //--------------------------------------------------------------------------
 	// Define variables for texture mapping
 	int tex_num = 0;        // Which texture to use (N,S,E,W)
@@ -36,7 +50,8 @@ texture mapping (previously in draw_line)
 	//int map_y = (int)(ray_y / BLOCK);
 
 	// Check if we hit a vertical or horizontal wall
-	if (fabs(ray_x - map_x * BLOCK) < 0.01 || fabs(ray_x - (map_x+1) * BLOCK) < 0.01)
+	if (fabs(ray_x - map_x * BLOCK) < 0.01
+	|| fabs(ray_x - (map_x+1) * BLOCK) < 0.01)
 	{
 		// Hit vertical wall
 		wall_x = ray_y - floor(ray_y / BLOCK) * BLOCK;
@@ -65,7 +80,8 @@ texture mapping (previously in draw_line)
 	end = start_y + height;
 
 	// Draw ceiling
-	draw_maindisplay(0, start_y, rgb_to_colour(cub3d->map_info.ce_col), cub3d, i);
+	draw_maindisplay(0, start_y, rgb_to_colour
+	(cub3d->map_info.ce_col), cub3d, i);
 
 	// Draw textured wall
 	double step = cub3d->textures[tex_num].height / (double)height;
@@ -99,21 +115,22 @@ texture mapping (previously in draw_line)
 	}
 
 	// Draw floor
-	draw_maindisplay(end, HEI, rgb_to_colour(cub3d->map_info.fl_col), cub3d, i); */
+	draw_maindisplay(end, HEI, rgb_to_colour
+		(cub3d->map_info.fl_col), cub3d, i); */
 
-	void draw_filled_circle(int x, int y, int radius, int color, t_data *cub3d)
-{
-	int i, j;
+// void draw_filled_circle(int x, int y, int radius, int color, t_data *cub3d)
+// {
+// 	int i, j;
 
-	for (j = -radius; j <= radius; j++)
-	{
-		for (i = -radius; i <= radius; i++)
-		{
-			// Check if the pixel is within the circle's radius
-			if (i * i + j * j <= radius * radius)
-			{
-				put_pixel(x + i, y + j, color, cub3d);
-			}
-		}
-	}
-}
+// 	for (j = -radius; j <= radius; j++)
+// 	{
+// 		for (i = -radius; i <= radius; i++)
+// 		{
+// 			// Check if the pixel is within the circle's radius
+// 			if (i * i + j * j <= radius * radius)
+// 			{
+// 				put_pixel(x + i, y + j, color, cub3d);
+// 			}
+// 		}
+// 	}
+// }
