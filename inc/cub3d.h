@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 16:49:55 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/09 14:33:51 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# define APPLE 0
 
 # include <stdlib.h>
 # include <string.h>
@@ -22,6 +24,7 @@
 # include <X11/keysym.h> //keys
 # include <math.h>
 # ifdef __APPLE__
+#  define APPLE 1
 #  include <mlx.h>
 # else
 #  include "../lib/minilibx-linux/mlx.h"
