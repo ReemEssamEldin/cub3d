@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:37:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/08 22:28:39 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:45:12 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,17 @@ bool	is_valid_rgb_format(char *str)
 	return (comma_count == 2);
 }
 
-int	rgb_tocol(char *rgb_str, t_data *cub3d);
-int	validate_col(char *component, t_data *cub3d);
-
-int	rgb_tocol(char *rgb_str, t_data *cub3d)
+static char	**split_rgb_components(char *rgb_str, t_data *cub3d)
 {
 	char	**components;
 	int		i;
-	int		r;
-	int		g;
-	int		b;
 
 	rgb_str = trim_string(rgb_str);
 	if (!is_valid_rgb_format(rgb_str))
-		err_msg(cub3d, "Error\nInvalid RGB format: Only digits, commas, and spaces are allowed");
-
+		err_msg(cub3d, "Error\nOnly digits, commas, and spaces are allowed");
 	components = ft_split(trim_string(rgb_str), ',');
 	if (!components)
-		return (-1);
+		return (NULL);
 	i = 0;
 	while (components[i])
 		i++;
@@ -57,8 +50,22 @@ int	rgb_tocol(char *rgb_str, t_data *cub3d)
 		while (components[i])
 			free(components[i++]);
 		free(components);
-		return (-1);
+		return (NULL);
 	}
+	return (components);
+}
+
+int	rgb_tocol(char *rgb_str, t_data *cub3d)
+{
+	char	**components;
+	int		i;
+	int		r;
+	int		g;
+	int		b;
+
+	components = split_rgb_components(rgb_str, cub3d);
+	if (!components)
+		return (-1);
 	r = validate_col(components[0], cub3d);
 	g = validate_col(components[1], cub3d);
 	b = validate_col(components[2], cub3d);
@@ -77,6 +84,6 @@ int	validate_col(char *component, t_data *cub3d)
 		err_msg(cub3d, "Error\nInvalid color value: RGB values must be digits");
 	val = ft_atoi(component);
 	if (val < 0 || val > 255)
-		err_msg(cub3d, "Error\nInvalid color value: RGB values must be between 0 and 255");
+		err_msg(cub3d, "Error\nRGB values must be between 0 and 255");
 	return (val);
 }
