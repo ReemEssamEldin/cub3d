@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 23:42:16 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 00:13:13 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	put_pixel(int x, int y, int color, t_data *cub3d)
  * @brief Clears the entire image by setting all pixels to black
  *
  * This function iterates through each pixel in the image defined by WID and HEI
- * constants and sets each pixel to color value 0 (black) using put_pixel function
+ * constants & sets each pixel to color value 0 (black) using put_pixel function
  *
  * @param cub3d Pointer to the main data structure containing image information
  * @return void
