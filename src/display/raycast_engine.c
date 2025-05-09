@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 23:52:49 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 00:12:47 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	calc_deltadist(t_data *cub3d)
  * Calculates the perpendicular wall distance and exact x,y coordinates where
  * ray hits
  *
- * @param cub3d    Main data structure containing raycasting calculation variables
+ * @param cub3d    Main data structure containing raycasting calculation vars
  * @param ray_x    Pointer to store the x-coordinate of ray hit position
  * @param ray_y    Pointer to store the y-coordinate of ray hit position
  *

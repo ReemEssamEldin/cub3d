@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:37:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 23:32:53 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 00:13:50 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int		rgb_tocol(char *rgb_str, t_data *cub3d);
 int		validate_col(char *component, t_data *cub3d);
 
 /**
- * @brief Validates if a string contains valid color format (digits, commas and spaces only)
+ * @brief Validates if a string contains valid color format (digits, commas and
+ * spaces only)
  *
  * @param str String to validate
- * @return true if format is valid (contains exactly 2 commas and only allowed characters)
+ * @return true if format is valid (contains exactly 2 commas and only allowed
+ * characters)
  * @return false if format is invalid
  */
 bool	valid_colformat(char *str)
@@ -115,7 +117,8 @@ int	validate_col(char *component, t_data *cub3d)
 	int	val;
 
 	if (!number_check(component))
-		terminate(cub3d, "Error\nInvalid color value: RGB values must be digits");
+		terminate(cub3d,
+			"Error\nInvalid color value: RGB values must be digits");
 	val = ft_atoi(component);
 	if (val < 0 || val > 255)
 		terminate(cub3d, "Error\nRGB values must be between 0 and 255");
