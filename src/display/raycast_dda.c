@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:41:07 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:55:24 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:49:36 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 void	dda_setup(t_data *cub3d);
 void	dda_execute(t_data *cub3d);
 
+/**
+ * Sets up the DDA (Digital Differential Analysis) parameters for raycasting
+ *
+ * Calculates step and side distance values for both X and Y directions based on
+ * the ray direction. These values are used in the DDA algorithm to determine
+ * which grid cell the ray intersects with.
+ *
+ * For X direction:
+ * - If ray points left (negative), step_x = -1 and calculate side distance from
+ * 		current position
+ * - If ray points right (positive), step_x = 1 and calculate side distance to
+ * 		next grid line
+ *
+ * For Y direction:
+ * - If ray points up (negative), step_y = -1 and calculate side distance from
+ * 		current position
+ * - If ray points down (positive), step_y = 1 and calculate side distance to
+ * 		next grid line
+ *
+ * @param cub3d Pointer to main data structure containing raycasting calculation
+ * 				variables
+ */
 void	dda_setup(t_data *cub3d)
 {
 	if (cub3d->calc.ray_dirx < 0)
@@ -43,6 +65,22 @@ void	dda_setup(t_data *cub3d)
 	}
 }
 
+/**
+ * @brief Executes the DDA (Digital Differential Analysis) algorithm for
+ * 			raycasting
+ *
+ * This function implements the DDA algorithm to find wall intersections in a 2D
+ * map. It iteratively steps through the map grid either horizontally or
+ * vertically (depending on which distance is shorter) until a wall ('1') is hit
+ * or map bounds are exceeded.
+ *
+ * The algorithm updates:
+ * - side_distx/y: Distance to next horizontal/vertical grid line
+ * - map_x/y: Current grid position
+ * - side: Which wall face was hit (0 for x-side, 1 for y-side)
+ *
+ * @param cub3d Pointer to main data structure containing map & calculation info
+ */
 void	dda_execute(t_data *cub3d)
 {
 	int	hit_flag;

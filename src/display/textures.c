@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:20:03 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:44:21 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,24 @@ int	load_singletex(t_data *cub3d, char *tex_path, int tex_idx)
 	return (1);
 }
 
+/**
+ * @brief Draws a vertical line of texture on the screen
+ *
+ * This draws a vertical line of texture pixels at a given x coordinate.
+ * It handles texture mapping, including calculations for texture coordinates,
+ * scaling, and shading effects for walls hit on different sides.
+ *
+ * @param cub3d    Pointer to the main game data structure
+ * @param x        X coordinate where the texture line will be drawn
+ * @param tex_x    X coordinate in the texture to sample from
+ *
+ * The function performs the following steps:
+ * 1. Calculates texture step size based on line height
+ * 2. Determines initial texture position
+ * 3. Iterates through vertical pixels from draw_start to draw_end
+ * 4. Maps texture coordinates and applies shading for side walls
+ * 5. Draws each pixel of the texture line
+ */
 void	draw_texline(t_data *cub3d, int x, int tex_x)
 {
 	t_texture	*texture;
@@ -69,6 +87,19 @@ void	draw_texline(t_data *cub3d, int x, int tex_x)
 	}
 }
 
+/**
+ * Get the color value from a texture at specified coordinates
+ *
+ * @param texture Pointer to texture structure containing image data
+ * @param x X coordinate in the texture
+ * @param y Y coordinate in the texture
+ * @return Color value at the specified coordinates, 0 if invalid
+ *
+ * This calculates the memory offset for the requested pixel coordinates and
+ * returns the color value stored at that location. The color is returned as an
+ * unsigned integer representing the pixel data in the texture's color format.
+ * Returns 0 if the coordinates are outside the texture boundaries.
+ */
 int	get_texcol(t_texture *texture, int x, int y)
 {
 	char	*dst;

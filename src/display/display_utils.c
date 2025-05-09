@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:26:49 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:42:16 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 bool	number_check(char *str);
 char	*trim_string(char *str);
 
+/**
+ * @brief Puts a pixel of specified color at given coordinates in the window
+ *
+ * This function writes a single pixel with the specified RGB color to the
+ * display buffer at the given (x,y) coordinates. It performs bounds checking
+ * to ensure the coordinates are within the window dimensions.
+ *
+ * @param x The x coordinate of the pixel (must be within window width)
+ * @param y The y coordinate of the pixel (must be within window height)
+ * @param color The RGB color value to set (24-bit format)
+ * @param cub3d Pointer to the main data structure containing display
+ * 				information
+ *
+ * @return void
+ * @note Color is written in BGR format in memory (little endian)
+ */
 void	put_pixel(int x, int y, int color, t_data *cub3d)
 {
 	int	idx;
@@ -31,6 +47,15 @@ void	put_pixel(int x, int y, int color, t_data *cub3d)
 	cub3d->addr[idx + 2] = (color >> 16) & 0xFF;
 }
 
+/**
+ * @brief Clears the entire image by setting all pixels to black
+ *
+ * This function iterates through each pixel in the image defined by WID and HEI
+ * constants and sets each pixel to color value 0 (black) using put_pixel function
+ *
+ * @param cub3d Pointer to the main data structure containing image information
+ * @return void
+ */
 void	clear_image(t_data *cub3d)
 {
 	int	x;
@@ -49,6 +74,22 @@ void	clear_image(t_data *cub3d)
 	}
 }
 
+/**
+ * Calculates ray direction vector components for raycasting
+ * based on player angle and camera position
+ *
+ * @param cub3d    Main game data structure containing player info
+ * @param cam_x    Camera x position in screen space (-1 to 1)
+ * @param ray_dirx Pointer to store calculated x component of ray direction
+ * @param ray_diry Pointer to store calculated y component of ray direction
+ *
+ * The function:
+ * 1. Calculates direction vector from player angle
+ * 2. Computes camera plane vector perpendicular to direction
+ * 3. Determines final ray direction by combining direction and plane vectors
+ *
+ * Uses 0.66 as camera plane length for ~66° FOV
+ */
 void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 			float *ray_diry)
 {
@@ -65,6 +106,17 @@ void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 	*ray_diry = dir_y + plane_y * cam_x;
 }
 
+/**
+ * Checks if a string contains only numeric digits.
+ *
+ * @param str The string to be checked
+ * @return Returns true if the string contains only digits (0-9),
+ *         false otherwise. An empty string is considered valid.
+ *
+ * The function iterates through each character of the string and
+ * uses ft_isdigit to verify if it's a numeric digit. It stops and
+ * returns false at the first non-digit character encountered.
+ */
 bool	number_check(char *str)
 {
 	int		i;
@@ -84,6 +136,21 @@ bool	number_check(char *str)
 	return (is_valid);
 }
 
+/**
+ * Removes leading and trailing whitespace from a string
+ *
+ * The function modifies the input string by advancing the pointer past leading
+ * whitespace and adding a null terminator after the last non-whitespace
+ * character. The internal whitespace is preserved.
+ *
+ * @param str The string to be trimmed
+ * @return A pointer to the first non-whitespace character in the trimmed string
+ *			If the string contains only whitespace, returns pointer to null
+ * 			terminator
+ *
+ * @note This function modifies the original string
+ * @note The function depends on ft_isspace() and ft_strlen() functions
+ */
 char	*trim_string(char *str)
 {
 	char	*end;
