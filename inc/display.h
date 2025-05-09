@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 22:26:39 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:45:31 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	prep_line(t_data *cub3d, int top, int bottom, int col);
 void	draw_line(t_data *cub3d);
 
 //maindisplay_utils.c
-int	rgb_tocol(char *rgb_str, t_data *cub3d);
-int	validate_col(char *component, t_data *cub3d);
+int		rgb_tocol(char *rgb_str, t_data *cub3d);
+int		validate_col(char *component, t_data *cub3d);
+bool	is_valid_rgb_format(char *str);
 
 //raycast_engine.c
 void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y);
