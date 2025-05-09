@@ -1,5 +1,5 @@
 #ifndef MOVEMENT_H
-# define MOEVEMENT_H
+# define MOVEMENT_H
 
 # include "cub3d.h"
 
