@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maindisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:33:36 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:58:13 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	draw_md(t_data *cub3d, int i)
 {
 	float	ray_x;
 	float	ray_y;
-	int		col_ceil;
-	int		col_floo;
 	float	cam_x;
 	int		tex_x;
 
@@ -46,13 +44,13 @@ void	draw_md(t_data *cub3d, int i)
 	if ((cub3d->calc.side == 0 && cub3d->calc.ray_dirx > 0)
 		|| (cub3d->calc.side == 1 && cub3d->calc.ray_diry < 0))
 		tex_x = cub3d->textures[cub3d->calc.tex_num].width - tex_x - 1;
-	col_ceil = rgb_tocol(cub3d->map_info.ce_col, cub3d);
-	col_floo = rgb_tocol(cub3d->map_info.fl_col, cub3d);
+	cub3d->map_info.col_ceil = rgb_tocol(cub3d->map_info.ce_col, cub3d);
+	cub3d->map_info.col_floo = rgb_tocol(cub3d->map_info.fl_col, cub3d);
 	cub3d->draw.x = i;
-	prep_line(cub3d, 0, cub3d->calc.draw_start, col_ceil);
+	prep_line(cub3d, 0, cub3d->calc.draw_start, cub3d->map_info.col_ceil);
 	draw_line(cub3d);
 	draw_texline(cub3d, i, tex_x);
-	prep_line(cub3d, cub3d->calc.draw_end, HEI, col_floo);
+	prep_line(cub3d, cub3d->calc.draw_end, HEI, cub3d->map_info.col_floo);
 	draw_line(cub3d);
 }
 

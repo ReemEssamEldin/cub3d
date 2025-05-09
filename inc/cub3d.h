@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:33:51 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:56:23 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <X11/keysym.h> //keys
 # include <math.h>
 # ifdef __APPLE__
-#  define APPLE 1
+#  APPLE = 1
 #  include <mlx.h>
 # else
 #  include "../lib/minilibx-linux/mlx.h"
