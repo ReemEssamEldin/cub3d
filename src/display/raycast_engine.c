@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:47:59 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:54:29 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	calc_textinfo(t_data *cub3d);
 void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y)
 {
 	define_raydir(cub3d, cam_x, &cub3d->calc.ray_dirx, &cub3d->calc.ray_diry);
-	cub3d->calc.pos_x = cub3d->player.x / BLOCK;
-	cub3d->calc.pos_y = cub3d->player.y / BLOCK;
-	cub3d->calc.map_x = (int)(cub3d->calc.pos_x);
-	cub3d->calc.map_y = (int)(cub3d->calc.pos_y);
+	cub3d->calc.posx = cub3d->player.x / BLOCK;
+	cub3d->calc.posy = cub3d->player.y / BLOCK;
+	cub3d->calc.map_x = (int)(cub3d->calc.posx);
+	cub3d->calc.map_y = (int)(cub3d->calc.posy);
 	calc_deltadist(cub3d);
 	dda_setup(cub3d);
 	dda_execute(cub3d);
@@ -58,12 +58,12 @@ void	determine_hitpos(t_data *cub3d, float *ray_x, float *ray_y)
 		*ray_x = cub3d->calc.map_x * BLOCK;
 		if (cub3d->calc.step_x > 0)
 			*ray_x -= 0.001;
-		*ray_y = (cub3d->calc.pos_y + cub3d->calc.wall_dist
+		*ray_y = (cub3d->calc.posy + cub3d->calc.wall_dist
 				* cub3d->calc.ray_diry) * BLOCK;
 	}
 	else
 	{
-		*ray_x = (cub3d->calc.pos_x + cub3d->calc.wall_dist
+		*ray_x = (cub3d->calc.posx + cub3d->calc.wall_dist
 				* cub3d->calc.ray_dirx) * BLOCK;
 		*ray_y = cub3d->calc.map_y * BLOCK;
 		if (cub3d->calc.step_y > 0)
