@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 18:54:05 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:00:12 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 	key_hooks(&cub3d);
 	mlx_loop_hook(cub3d.mlx_ptr, render, &cub3d);
 	mlx_loop(cub3d.mlx_ptr);
-	clean_all(&cub3d);
+	destroy(&cub3d);
 	return (0);
 }
 
@@ -45,20 +45,4 @@ void	check_args(int argc, char *argv)
 	j = ft_strncmp(".cub", &argv[i], 4);
 	if (j != 0)
 		err_msg(NULL, "Error\nOnly accepts .cub files.");
-}
-
-int	destroy(t_data *cub3d)
-{
-	end_audio();
-	clean_all(cub3d);
-	if (cub3d->img_ptr)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img_ptr);
-	if (cub3d->win_ptr)
-		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
-	if (cub3d->mlx_ptr)
-	{
-		mlx_destroy_display(cub3d->mlx_ptr);
-		free(cub3d->mlx_ptr);
-	}
-	exit(0);
 }
