@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:36:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:28:55 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:47:59 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,14 @@ void	calc_drawparams(t_data *cub3d)
 
 void	calc_textinfo(t_data *cub3d)
 {
-	float	wall_x;
+	float	wal_x;
 	int		tex_num;
 
 	if (cub3d->calc.side == 0)
-		wall_x = cub3d->calc.pos_y + cub3d->calc.wall_dist
-			* cub3d->calc.ray_diry;
+		wal_x = cub3d->calc.posy + cub3d->calc.wall_dist * cub3d->calc.ray_diry;
 	else
-		wall_x = cub3d->calc.pos_x + cub3d->calc.wall_dist
-			* cub3d->calc.ray_dirx;
-	wall_x -= floor(wall_x);
+		wal_x = cub3d->calc.posx + cub3d->calc.wall_dist * cub3d->calc.ray_dirx;
+	wal_x -= floor(wal_x);
 	tex_num = 0;
 	if (cub3d->calc.side == 0)
 	{
@@ -127,6 +125,6 @@ void	calc_textinfo(t_data *cub3d)
 		else
 			tex_num = 3;
 	}
-	cub3d->calc.wall_x = wall_x;
+	cub3d->calc.wall_x = wal_x;
 	cub3d->calc.tex_num = tex_num;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 17:02:18 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/09 14:48:14 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ typedef struct s_calculations
 	int		draw_end;
 	float	ray_dirx;
 	float	ray_diry;
-	float	pos_x;
-	float	pos_y;
+	float	posx;
+	float	posy;
 	float	delta_distx;
 	float	delta_disty;
 }	t_calc;
