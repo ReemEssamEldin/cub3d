@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 19:00:32 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:20:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*remove_trailing(char *str, char *c);
 
 int	destroy(t_data *cub3d)
 {
-	end_audio();
+	if (BONUS)
+		end_audio();
 	clean_all(cub3d);
 	if (cub3d->img_ptr)
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img_ptr);

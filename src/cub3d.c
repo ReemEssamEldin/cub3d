@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 19:00:12 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:19:31 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	main(int argc, char *argv[])
 {
 	t_data	cub3d;
 
+	printf("Bonus: %d\n", BONUS);
 	check_args(argc, argv[1]);
 	init_map(&cub3d, argv[1]);
 	init_player(&cub3d);
-	play_audio(AUDIO_FILE);
+	if (BONUS)
+		play_audio(AUDIO_FILE);
 	init_cub3d(&cub3d);
 	init_mlx(&cub3d);
 	key_hooks(&cub3d);

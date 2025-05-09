@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:27:29 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/06 17:32:51 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:18:52 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 # define WID 1280
 # define HEI 720
 # define PI 3.14159265359
-# define BLOCK 10 //what?
+# define BLOCK 10
 # define DIST_EDGE_MOUSE_WRAP 20
 # define FOV (PI / 3)
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 # define AUDIO_FILE "assets/audio/horror-background-tension-build-up-254933.wav"
 
