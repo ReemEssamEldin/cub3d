@@ -6,7 +6,7 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/03/13 13:33:09 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:37:07 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,29 +214,23 @@ int	verify_boundaries(t_data *cub3d)
 		j = 0;
 		while (j < (int)ft_strlen(cub3d->map_info.map[i]))
 		{
-			// Check only walkable spaces and player positions
 			if (cub3d->map_info.map[i][j] == '0' ||
 				cub3d->map_info.map[i][j] == 'N' ||
 				cub3d->map_info.map[i][j] == 'S' ||
 				cub3d->map_info.map[i][j] == 'E' ||
 				cub3d->map_info.map[i][j] == 'W')
 			{
-				// Check if position is at map edge
 				if (i == 0 || i == cub3d->map_info.map_rows - 1 || j == 0
 					|| j == (int)ft_strlen(cub3d->map_info.map[i]) - 1)
-					return (0); // Map has opening at edge
-				// Check all adjacent cells (including diagonals)
-				// Top row
+					return (0);
 				if (j >= (int)ft_strlen(cub3d->map_info.map[i - 1])
 					|| cub3d->map_info.map[i - 1][j - 1] == ' '
 					|| cub3d->map_info.map[i - 1][j] == ' '
 					|| cub3d->map_info.map[i - 1][j + 1] == ' ')
 					return (0);
-				// Middle row
 				if (cub3d->map_info.map[i][j - 1] == ' '
 					|| cub3d->map_info.map[i][j + 1] == ' ')
 					return (0);
-				// Bottom row
 				if (j >= (int)ft_strlen(cub3d->map_info.map[i + 1])
 					|| cub3d->map_info.map[i + 1][j - 1] == ' '
 					|| cub3d->map_info.map[i + 1][j] == ' '
@@ -247,5 +241,5 @@ int	verify_boundaries(t_data *cub3d)
 		}
 		i++;
 	}
-	return (1); // Map boundaries are valid
+	return (1);
 }
