@@ -30,6 +30,7 @@ SRC-C3				= ./src/cub3d.c \
 						./src/utils/utils.c \
 						./src/mapload/map_init.c \
 						./src/mapload/map_header.c \
+						./src/mapload/map_header_utils.c \
 						./src/mapload/map_content.c \
 						./src/audio/audio.c \
 						./src/display/rendering.c \
