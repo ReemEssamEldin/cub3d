@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 15:57:34 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:33:55 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	prep_line(t_data *cub3d, int top, int bottom, int col);
 void	draw_line(t_data *cub3d);
 
 //maindisplay_utils.c
+bool	valid_colformat(char *str);
+char	**split_col(char *rgb_str, t_data *cub3d);
 int		rgb_tocol(char *rgb_str, t_data *cub3d);
 int		validate_col(char *component, t_data *cub3d);
-bool	is_valid_rgb_format(char *str);
 
 //raycast_engine.c
 void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y);
@@ -62,12 +63,6 @@ void	draw_mmray(t_data *cub3d, float ray_dirx, float ray_diry);
 //minimap_utils.c
 void	draw_square(t_data *cub3d);
 void	blend_cols(t_calc *calc);
-
-//draw_floceil.c
-// int		rgb_tocol(char *rgb_str, t_data *cub3d);
-// int		validate_col(char *component, t_data *cub3d);
-// bool	number_check(char *str);
-// char	*trim_string(char *str);
 
 //textures.c
 void	load_multitexs(t_data *cub3d);
