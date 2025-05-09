@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:45 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:55:47 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ void	init_cub3d(t_data *cub3d)
 	cub3d->img_ptr = NULL;
 }
 
+/**
+ * Initialize MLX (graphics library) and create window
+ * Sets up the graphical environment for the game
+ *
+ * @param cub3d Pointer to main data structure containing MLX-related variables
+ *
+ * The function:
+ * - Initializes MLX connection
+ * - Creates a new window of size WID x HEI titled "Cub3D"
+ * - Creates a new image for double buffering
+ * - Gets the image data address and info (bits per pixel, line length, endian)
+ * - Loads multiple textures needed for the game
+ *
+ * @note Terminates program with message if MLX init or window creation fails
+ */
 void	init_mlx(t_data *cub3d)
 {
 	cub3d->mlx_ptr = mlx_init();
@@ -37,6 +52,15 @@ void	init_mlx(t_data *cub3d)
 	load_multitexs(cub3d);
 }
 
+/**
+ * @brief Initialize player data structure
+ *
+ * Sets up initial player state including position and movement flags.
+ * Verifies valid player position & initializes movement control flags to false.
+ *
+ * @param cub3d Pointer to main game data structure
+ * @throws Terminates program with error if player position is invalid/missing
+ */
 void	init_player(t_data *cub3d)
 {
 	if (!put_player(cub3d))
