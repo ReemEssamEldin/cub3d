@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:20:03 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:34:24 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:05:27 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,21 @@ int	get_texcol(t_texture *texture, int x, int y)
 
 void	draw_texline(t_data *cub3d, int x, int tex_x)
 {
-	int			y;
-	int			tex_y;
-	double		step;
-	double		tex_pos;
-	int			color;
 	t_texture	*texture;
 
 	texture = &cub3d->textures[cub3d->calc.tex_num];
-	step = 1.0 * texture->height / cub3d->calc.line_height;
-	tex_pos = (cub3d->calc.draw_start - HEI / 2 + cub3d->calc.line_height / 2)
-		* step;
-	y = cub3d->calc.draw_start;
-	while (y < cub3d->calc.draw_end)
+	cub3d->calc.step = 1.0 * texture->height / cub3d->calc.line_height;
+	cub3d->calc.tex_pos = (cub3d->calc.draw_start - HEI / 2
+			+ cub3d->calc.line_height / 2) * cub3d->calc.step;
+	cub3d->calc.y = cub3d->calc.draw_start;
+	while (cub3d->calc.y < cub3d->calc.draw_end)
 	{
-		tex_y = (int)tex_pos & (texture->height - 1);
-		tex_pos += step;
-		color = get_texcol(texture, tex_x, tex_y);
+		cub3d->calc.tex_y = (int)cub3d->calc.tex_pos & (texture->height - 1);
+		cub3d->calc.tex_pos += cub3d->calc.step;
+		cub3d->calc.color = get_texcol(texture, tex_x, cub3d->calc.tex_y);
 		if (cub3d->calc.side == 1)
-			color = (color >> 1) & 0x7F7F7F;
-		put_pixel(x, y, color, cub3d);
-		y++;
+			cub3d->calc.color = (cub3d->calc.color >> 1) & 0x7F7F7F;
+		put_pixel(x, cub3d->calc.y, cub3d->calc.color, cub3d);
+		cub3d->calc.y++;
 	}
 }
