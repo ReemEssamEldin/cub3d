@@ -6,18 +6,11 @@
 /*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:37:07 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:05:05 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	read_content(t_data *cub3d, char *cub_file);
-int		check_grid(t_data *cub3d, char *cub_file);
-int		save_grid(t_data *cub3d, char *cub_file);
-int		valid_mapline(char *line);
-int		empty_line(char *line);
-int		verify_boundaries(t_data *cub3d);
 
 /**
  * @brief Reads and processes the map content from a file
@@ -47,10 +40,8 @@ void	read_content(t_data *cub3d, char *cub_file)
 /**
  * @brief Checks the map grid in a .cub file and counts valid rows
  *
- * This function reads a .cub file line by line to validate the map section.
- * It counts the number of valid map lines and ensures that once the map
- * section begins (after finding the first valid map line), all subsequent
- * lines are also valid map lines with no empty lines or invalid symbols.
+ * Validates each line of the map section, ensuring no invalid lines
+ * appear after the map section begins.
  *
  * @param cub3d Pointer to the main data structure
  * @param cub_file Path to the .cub file to be checked
@@ -65,23 +56,12 @@ int	check_grid(t_data *cub3d, char *cub_file)
 
 	rows = 0;
 	in_map_section = 0;
-	file = open(cub_file, O_RDONLY);
-	if (file == -1)
-		perror("Error\nMap opening failed");
+	file = open_mapfile(cub_file);
 	line = get_next_line(file);
 	while (line)
 	{
-		if (valid_mapline(line))
-		{
-			in_map_section = 1;
-			rows++;
-		}
-		else if (in_map_section)
-		{
-			free(line);
-			close(file);
-			err_msg(cub3d, "Error\nNon map line (Empty line or invalid symbol");
-		}
+		if (!process_mapline(line, &in_map_section, &rows))
+			grid_cleanup(file, line, cub3d);
 		free(line);
 		line = get_next_line(file);
 	}
@@ -92,48 +72,35 @@ int	check_grid(t_data *cub3d, char *cub_file)
 /**
  * @brief Loads map data from a file into the cub3d structure's map grid
  *
- * This function reads a map file line by line, validates each line using
- * valid_mapline(), and saves valid lines to the map grid in cub3d->map_info.map.
- * It also determines the length of the longest line in the map, which is
- * returned as the column count.
+ * Reads and processes map lines, storing valid lines in the map grid.
+ * Tracks the length of the longest line to determine column count.
  *
- * @param cub3d Pointer to the main data structure containing map information
- * @param cub_file Path to the map file to be read
- * @return The length of the longest line in the map (number of columns)
- *		 or -1 if the file could not be opened
+ * @param cub3d Pointer to the main data structure
+ * @param cub_file Path to the map file to read
+ * @return Length of the longest line (columns) or -1 on error
  */
 int	save_grid(t_data *cub3d, char *cub_file)
 {
-	int		file;
 	char	*line;
 	int		i;
-	int		line_len;
-	int		line_lentemp;
+	int		max_len;
+	int		file;
 
 	i = 0;
-	file = open(cub_file, O_RDONLY);
-	if (file == -1)
-		perror("Error\nMap opening failed");
-	cub3d->map_info.map_cols = 0;
+	max_len = 0;
+	file = open_mapfile(cub_file);
 	line = get_next_line(file);
-	line_len = 0;
 	while (line)
 	{
 		if (valid_mapline(line))
-		{
-			line = remove_trailing(line, "\n");
-			cub3d->map_info.map[i++] = line;
-			line_lentemp = ft_strlen(line);
-			if (line_len < line_lentemp)
-				line_len = line_lentemp;
-		}
+			process_valline(cub3d, line, &i, &max_len);
 		else
 			free(line);
 		line = get_next_line(file);
 	}
 	cub3d->map_info.map[i] = NULL;
 	close(file);
-	return (line_len);
+	return (max_len);
 }
 
 /**
@@ -171,33 +138,33 @@ int	valid_mapline(char *line)
 	return (1);
 }
 
-/**
- * @brief Checks if a line is empty or contains only whitespace characters
- *
- * This function scans through the given line and determines if it's empty.
- * A line is considered empty if it:
- * - Contains only spaces and/or tabs followed by a newline or null terminator
- * - Is just a newline or null terminator
- *
- * @param line The string to check
- * @return int 1 (true) if the line is empty, 0 (false) otherwise
- */
-int	empty_line(char *line)
-{
-	int	i;
+// /**
+//  * @brief Checks if a line is empty or contains only whitespace characters
+//  *
+//  * This function scans through the given line and determines if it's empty.
+//  * A line is considered empty if it:
+//  * - Contains only spaces and/or tabs followed by a newline or
+//  * null terminator
+//  * - Is just a newline or null terminator
+//  *
+//  * @param line The string to check
+//  * @return int 1 (true) if the line is empty, 0 (false) otherwise
+//  */
+// int	empty_line(char *line)
+// {
+// 	int	i;
 
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	return (line[i] == '\n' || line[i] == '\0');
-}
+// 	i = 0;
+// 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+// 		i++;
+// 	return (line[i] == '\n' || line[i] == '\0');
+// }
 
 /**
  * @brief Validates if the map is properly enclosed by walls
  *
- * This function checks that all walkable areas (represented by '0' or player
- * start positions 'N', 'S', 'E', 'W') are completely surrounded by walls ('1').
- * It also ensures that there are no walkable areas adjacent to map boundaries
+ * Ensures all walkable areas (empty spaces and player positions) are
+ * completely surrounded by walls and not adjacent to map boundaries
  * or spaces.
  *
  * @param cub3d Pointer to the main data structure
@@ -214,29 +181,8 @@ int	verify_boundaries(t_data *cub3d)
 		j = 0;
 		while (j < (int)ft_strlen(cub3d->map_info.map[i]))
 		{
-			if (cub3d->map_info.map[i][j] == '0' ||
-				cub3d->map_info.map[i][j] == 'N' ||
-				cub3d->map_info.map[i][j] == 'S' ||
-				cub3d->map_info.map[i][j] == 'E' ||
-				cub3d->map_info.map[i][j] == 'W')
-			{
-				if (i == 0 || i == cub3d->map_info.map_rows - 1 || j == 0
-					|| j == (int)ft_strlen(cub3d->map_info.map[i]) - 1)
-					return (0);
-				if (j >= (int)ft_strlen(cub3d->map_info.map[i - 1])
-					|| cub3d->map_info.map[i - 1][j - 1] == ' '
-					|| cub3d->map_info.map[i - 1][j] == ' '
-					|| cub3d->map_info.map[i - 1][j + 1] == ' ')
-					return (0);
-				if (cub3d->map_info.map[i][j - 1] == ' '
-					|| cub3d->map_info.map[i][j + 1] == ' ')
-					return (0);
-				if (j >= (int)ft_strlen(cub3d->map_info.map[i + 1])
-					|| cub3d->map_info.map[i + 1][j - 1] == ' '
-					|| cub3d->map_info.map[i + 1][j] == ' '
-					|| cub3d->map_info.map[i + 1][j + 1] == ' ')
-					return (0);
-			}
+			if (!validate_position(cub3d, i, j))
+				return (0);
 			j++;
 		}
 		i++;
