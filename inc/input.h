@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_map.h                                          :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:04 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/06 19:56:17 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:38:24 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_MAP_H
-# define KEY_MAP_H
+#ifndef INPUT_H
+# define INPUT_H
 
 # include "cub3d.h"
 
+//key_map.c
+void	key_hooks(t_data *cub3d);
 int		key_press(int keysym, t_data *cub3d);
 int		key_release(int keysym, t_data *cub3d);
-//void	move_player(t_player *player);
-void	move_player(t_player *player, t_data *cub3d);
-void	key_hooks(t_data *cub3d);
 
 // math.c
-bool	touch(float px, float py, t_data *cub3d);
+bool	touch(float pos_x, float pos_y, t_data *cub3d);
 
 #endif

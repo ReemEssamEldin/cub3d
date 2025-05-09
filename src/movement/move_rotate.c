@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   move_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 11:39:59 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 16:27:08 by hsetya           ###   ########.fr       */
+/*   Created: 2025/05/08 17:44:05 by hsetya            #+#    #+#             */
+/*   Updated: 2025/05/08 17:45:04 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include "../../inc/cub3d.h"
 
-# include "cub3d.h"
-
-void		init_cub3d(t_data *cub3d);
-void		init_mlx(t_data *cub3d);
-void		init_player(t_data *cub3d);
-#endif
+void	move_rotate(t_player *player, float angle_speed)
+{
+	if (player->left_rotate)
+		player->angle -= angle_speed;
+	if (player->right_rotate)
+		player->angle += angle_speed;
+	if (player->angle > 2 * PI)
+		player->angle = 0;
+	if (player->angle < 0)
+		player->angle = 2 * PI;
+}

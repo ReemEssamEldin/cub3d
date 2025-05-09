@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:50 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/07 21:57:10 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:49:55 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@
 # include "utils.h"
 # include "audio.h"
 # include "display.h"
-# include "key_map.h"
+# include "input.h"
 # include "init.h"
-# include "player.h" //maybe combine with keymapping?
+# include "movement.h" //maybe combine with keymapping?
 
 // enum
 // {
