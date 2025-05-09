@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 18:46:43 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:54:05 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	main(int argc, char *argv[])
 	key_hooks(&cub3d);
 	mlx_loop_hook(cub3d.mlx_ptr, render, &cub3d);
 	mlx_loop(cub3d.mlx_ptr);
-	// clean_mapheader(&cub3d.map_info);
-	// clean_mapcontent(&cub3d.map_info);
-	// clean_textures(&cub3d);
 	clean_all(&cub3d);
 	return (0);
 }
