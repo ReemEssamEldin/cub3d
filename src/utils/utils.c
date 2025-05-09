@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 19:20:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		destroy(t_data *cub3d);
-void	err_msg(t_data *cub3d, char *err_msg);
+void	terminate(t_data *cub3d, char *terminate);
 char	*remove_trailing(char *str, char *c);
 
 int	destroy(t_data *cub3d)
@@ -33,11 +33,14 @@ int	destroy(t_data *cub3d)
 	exit(0);
 }
 
-void	err_msg(t_data *cub3d, char *err_msg)
+void	terminate(t_data *cub3d, char *terminate)
 {
-	printf("%s", err_msg);
+	printf("%s", terminate);
 	if (cub3d)
-		destroy(cub3d);
+	{
+		clean_mapheader(&cub3d->map_info);
+		clean_mapcontent(&cub3d->map_info);
+	}
 	exit(EXIT_FAILURE);
 }
 

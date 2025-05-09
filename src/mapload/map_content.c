@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 16:05:05 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	read_content(t_data *cub3d, char *cub_file)
 		perror("Map allocation failed");
 	cub3d->map_info.map_cols = save_grid(cub3d, cub_file);
 	if (!verify_boundaries(cub3d))
-		err_msg(cub3d, "Error\nMap is not enclosed by walls");
+		terminate(cub3d, "Error\nMap is not enclosed by walls");
 }
 
 /**
