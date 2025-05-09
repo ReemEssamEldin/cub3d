@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:20:03 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 15:05:27 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:57:14 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	load_multitexs(t_data *cub3d);
 int		load_singletex(t_data *cub3d, char *tex_path, int tex_idx);
-int		get_texcol(t_texture *texture, int x, int y);
 void	draw_texline(t_data *cub3d, int x, int tex_x);
+int		get_texcol(t_texture *texture, int x, int y);
 
 void	load_multitexs(t_data *cub3d)
 {
@@ -48,18 +48,6 @@ int	load_singletex(t_data *cub3d, char *tex_path, int tex_idx)
 	return (1);
 }
 
-int	get_texcol(t_texture *texture, int x, int y)
-{
-	char	*dst;
-	int		offset;
-
-	if (x < 0 || y < 0 || x >= texture->width || y >= texture->height)
-		return (0);
-	offset = (y * texture->line_len + x * (texture->bpp / 8));
-	dst = texture->addr + offset;
-	return (*(unsigned int *)dst);
-}
-
 void	draw_texline(t_data *cub3d, int x, int tex_x)
 {
 	t_texture	*texture;
@@ -79,4 +67,16 @@ void	draw_texline(t_data *cub3d, int x, int tex_x)
 		put_pixel(x, cub3d->calc.y, cub3d->calc.color, cub3d);
 		cub3d->calc.y++;
 	}
+}
+
+int	get_texcol(t_texture *texture, int x, int y)
+{
+	char	*dst;
+	int		offset;
+
+	if (x < 0 || y < 0 || x >= texture->width || y >= texture->height)
+		return (0);
+	offset = (y * texture->line_len + x * (texture->bpp / 8));
+	dst = texture->addr + offset;
+	return (*(unsigned int *)dst);
 }
