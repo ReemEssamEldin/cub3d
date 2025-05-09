@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:20:06 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 21:32:20 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:35:13 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	blend_cols(t_calc *calc)
 	int	g;
 	int	b;
 
-	r = ((calc->bg_col >> 16) & 0xFF) * (1.0 - calc->ins) 
+	r = ((calc->bg_col >> 16) & 0xFF) * (1.0 - calc->ins)
 		+ ((calc->base_col >> 16) & 0xFF) * calc->ins;
-	g = ((calc->bg_col >> 8) & 0xFF) * (1.0 - calc->ins) 
+	g = ((calc->bg_col >> 8) & 0xFF) * (1.0 - calc->ins)
 		+ ((calc->base_col >> 8) & 0xFF) * calc->ins;
-	b = (calc->bg_col & 0xFF) * (1.0 - calc->ins) 
+	b = (calc->bg_col & 0xFF) * (1.0 - calc->ins)
 		+ (calc->base_col & 0xFF) * calc->ins;
 	calc->blended_col = (r << 16) | (g << 8) | b;
 }
