@@ -35,6 +35,12 @@
 		"span": "c",
 		"atomic": "c",
 		"initializer_list": "c",
-		"utility": "c"
+		"utility": "c",
+		"audio.h": "c",
+		"input.h": "c",
+		"ft_printf.h": "c",
+		"libft.h": "c",
+		"keysym.h": "c",
+		"stdbool.h": "c"
 	}
 }
