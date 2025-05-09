@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:29:18 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:51:26 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	key_hooks(t_data *cub3d)
 	else
 	{
 		mlx_hook(cub3d->win_ptr, KeyPress, KeyPressMask, key_press, cub3d);
-		mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask, 
+		mlx_hook(cub3d->win_ptr, KeyRelease, KeyReleaseMask,
 			key_release, cub3d);
 		mlx_hook(cub3d->win_ptr, DestroyNotify, StructureNotifyMask,
 			destroy, cub3d);
