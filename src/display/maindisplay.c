@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 14:55:26 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:58:13 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	assign_wallcol(t_player *player, t_data *cub3d)
 	}
 	return (col_wall);
 }
-unction has more than 25 lines
+
 void	prep_line(t_data *cub3d, int top, int bottom, int col)
 {
 	cub3d->draw.top = top;

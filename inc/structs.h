@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 14:52:34 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:03:22 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,13 @@ typedef struct s_calculations
 	float	posy;
 	float	delta_distx;
 	float	delta_disty;
+
+	//texture calcs
+	int			y;
+	int			tex_y;
+	double		step;
+	double		tex_pos;
+	int			color;
 }	t_calc;
 
 typedef struct s_move
