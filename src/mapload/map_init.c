@@ -6,7 +6,7 @@
 /*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:40:01 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 00:06:21 by hsetya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 void	init_map(t_data *cub3d, char *argv);
 void	init_struct(t_data *cub3d);
 
+/**
+ * @brief Initializes the map structure and loads map data from file
+ *
+ * This function performs the complete map initialization process by:
+ * 1. Initializing the main data structure
+ * 2. Reading and parsing the map header
+ * 3. Validating header completeness
+ * 4. Reading the actual map content
+ *
+ * @param cub3d Pointer to the main data structure
+ * @param argv Path to the map file
+ *
+ * @throws Terminates program with error message if header is incomplete
+ */
 void	init_map(t_data *cub3d, char *argv)
 {
 	init_struct(cub3d);
