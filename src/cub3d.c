@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 17:43:33 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:46:43 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	check_args(int argc, char *argv)
 
 int	destroy(t_data *cub3d)
 {
+	end_audio();
+	clean_all(cub3d);
 	if (cub3d->img_ptr)
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img_ptr);
 	if (cub3d->win_ptr)
@@ -61,8 +63,5 @@ int	destroy(t_data *cub3d)
 		mlx_destroy_display(cub3d->mlx_ptr);
 		free(cub3d->mlx_ptr);
 	}
-	clean_mapheader(&cub3d->map_info);
-	clean_mapcontent(&cub3d->map_info);
-	end_audio();
 	exit(0);
 }
