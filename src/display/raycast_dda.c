@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:41:07 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/07 20:50:01 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:34:48 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	dda_execute(t_data *cub3d)
 			cub3d->calc.map_y += cub3d->calc.step_y;
 			cub3d->calc.side = 1;
 		}
-		if (cub3d->calc.map_y < 0 || cub3d->calc.map_x < 0 || 
-			cub3d->calc.map_y >= cub3d->map_info.map_rows || 
-			cub3d->calc.map_x >= (int)ft_strlen(
-				cub3d->map_info.map[cub3d->calc.map_y]) || 
-			cub3d->map_info.map[cub3d->calc.map_y][cub3d->calc.map_x] == '1')
+		if (cub3d->calc.map_y < 0 || cub3d->calc.map_x < 0
+			|| cub3d->calc.map_y >= cub3d->map_info.map_rows
+			|| cub3d->calc.map_x >= (int)ft_strlen
+			(cub3d->map_info.map[cub3d->calc.map_y])
+			|| cub3d->map_info.map[cub3d->calc.map_y][cub3d->calc.map_x] == '1')
 			hit_flag = 1;
 	}
 }
