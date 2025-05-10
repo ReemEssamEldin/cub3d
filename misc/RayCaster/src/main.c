@@ -69,12 +69,12 @@ float	fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
 }
 
 // touch function
-bool	touch(float px, float py, t_game *game)
+bool	touch(float pos_x, float py, t_game *game)
 {
 	int	x;
 	int	y;
 
-	x = px / BLOCK;
+	x = pos_x / BLOCK;
 	y = py / BLOCK;
 	if (game->map[y][x] == '1')
 		return (true);
@@ -131,8 +131,8 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	ray_y = player->y;
 	while (!touch(ray_x, ray_y, game))
 	{
-		if (DEBUG)
-			put_pixel(ray_x, ray_y, 0xFF0000, game);
+		/* if (DEBUG)
+			put_pixel(ray_x, ray_y, 0xFF0000, game); */
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}

@@ -1,14 +1,11 @@
-EA ./assets/textures/HW1.png
-NO 		./assets/textures/HW3.png
-
-
-F 220,100,0
-SO ./assets/textures/HW4.png
-
-WE    ./assets/textures/HW2.png
+EA ./assets/textures/texture_05_g.xpm
+NO 		./assets/textures/texture_05_r.xpm
+SO ./assets/textures/texture_05_p.xpm
+WE    ./assets/textures/texture_05_o.xpm
 //EA ./path_to_the_east_texture2
 
-C 225,30,0
+C 192,192,192
+F 105,105,105
 
 111111111111111111111111
 100000000000000000000001
@@ -22,7 +19,7 @@ C 225,30,0
 100000000000000000000001
 100000000000000000000001
 100000000000000000000001
-1000000000000S0000000001
+100000000000000000000001
 100000000000000000000001
 100000000000000000000001
 100000000000000000000001

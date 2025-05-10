@@ -1,0 +1,15 @@
+EA ./assets/textures/Pat1.xpm
+NO ./assets/textures/Pat3.xpm
+SO ./assets/textures/Pat4.xpm
+WE ./assets/textures/Pat2.xpm
+
+F 220,100,0
+C 225,30,0
+
+11111111111
+10000000001
+10000000001
+10000N00001
+10000000001
+10000000001
+11111111111

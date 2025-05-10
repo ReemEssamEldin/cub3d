@@ -1,4 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/13 13:20:45 by reldahli          #+#    #+#             */
+/*   Updated: 2025/05/09 23:55:47 by hsetya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
+
+void	init_cub3d(t_data *cub3d);
+void	init_mlx(t_data *cub3d);
+void	init_player(t_data *cub3d);
 
 void	init_cub3d(t_data *cub3d)
 {
@@ -7,21 +23,48 @@ void	init_cub3d(t_data *cub3d)
 	cub3d->img_ptr = NULL;
 }
 
+/**
+ * Initialize MLX (graphics library) and create window
+ * Sets up the graphical environment for the game
+ *
+ * @param cub3d Pointer to main data structure containing MLX-related variables
+ *
+ * The function:
+ * - Initializes MLX connection
+ * - Creates a new window of size WID x HEI titled "Cub3D"
+ * - Creates a new image for double buffering
+ * - Gets the image data address and info (bits per pixel, line length, endian)
+ * - Loads multiple textures needed for the game
+ *
+ * @note Terminates program with message if MLX init or window creation fails
+ */
 void	init_mlx(t_data *cub3d)
 {
 	cub3d->mlx_ptr = mlx_init();
-	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WID, HEI, "Prototype");
+	if (!cub3d->mlx_ptr)
+		terminate(cub3d, "Error\nMLX init failed.");
+	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WID, HEI, "Cub3D");
+	if (!cub3d->win_ptr)
+		terminate(cub3d, "Error\nWindow creation failed.");
 	cub3d->img_ptr = mlx_new_image(cub3d->mlx_ptr, WID, HEI);
 	cub3d->addr = mlx_get_data_addr(cub3d->img_ptr, &cub3d->bpp,
 			&cub3d->line_len, &cub3d->endian);
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
-		cub3d->img_ptr, 0, 0);
+	load_multitexs(cub3d);
 }
 
+/**
+ * @brief Initialize player data structure
+ *
+ * Sets up initial player state including position and movement flags.
+ * Verifies valid player position & initializes movement control flags to false.
+ *
+ * @param cub3d Pointer to main game data structure
+ * @throws Terminates program with error if player position is invalid/missing
+ */
 void	init_player(t_data *cub3d)
 {
 	if (!put_player(cub3d))
-		err_msg(cub3d, "Error\nPlayer position (missing/duplicate)");
+		terminate(cub3d, "Error\nPlayer position (missing/duplicate)");
 	cub3d->player.key_up = false;
 	cub3d->player.key_down = false;
 	cub3d->player.key_right = false;

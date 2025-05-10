@@ -1,70 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
+/*   Updated: 2025/05/10 00:03:00 by hsetya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
-void	err_msg(t_data *cub3d, char *err_msg)
+int		destroy(t_data *cub3d);
+void	terminate(t_data *cub3d, char *terminate);
+char	*remove_trailing(char *str, char *c);
+
+/**
+ * @brief Clean up resources and exit the program
+ *
+ * Performs cleanup operations in the following order:
+ * 1. If BONUS is enabled, stops audio playback
+ * 2. Cleans up all allocated resources via clean_all()
+ * 3. Destroys MLX image if it exists
+ * 4. Destroys MLX window if it exists
+ * 5. Destroys MLX display and frees MLX pointer if it exists
+ * 6. Exits program with status code 0
+ *
+ * @param cub3d Pointer to main program data structure
+ * @return Always returns 0 (though function exits before return)
+ */
+int	destroy(t_data *cub3d)
 {
-	printf("%s", err_msg);
+	if (BONUS)
+		end_audio();
+	clean_all(cub3d);
+	if (cub3d->img_ptr)
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img_ptr);
+	if (cub3d->win_ptr)
+		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
+	if (cub3d->mlx_ptr)
+	{
+		mlx_destroy_display(cub3d->mlx_ptr);
+		free(cub3d->mlx_ptr);
+	}
+	exit(0);
+}
+
+/**
+ * @brief Terminates the program with an error message and cleans up resources
+ *
+ * This function prints an error message, frees allocated memory for map data
+ * structures if they exist, and exits the program with failure status.
+ *
+ * @param cub3d Pointer to main program data structure, can be NULL
+ * @param terminate Error message string to display before terminating
+ */
+void	terminate(t_data *cub3d, char *terminate)
+{
+	printf("%s", terminate);
 	if (cub3d)
 	{
 		clean_mapheader(&cub3d->map_info);
 		clean_mapcontent(&cub3d->map_info);
 	}
-	//frees/destroys go here;
 	exit(EXIT_FAILURE);
 }
 
-void	clean_mapheader(t_map *map_info)
-{
-	if (map_info->no_tex)
-		free(map_info->no_tex);
-	if (map_info->so_tex)
-		free(map_info->so_tex);
-	if (map_info->ea_tex)
-		free(map_info->ea_tex);
-	if (map_info->we_tex)
-		free(map_info->we_tex);
-	if (map_info->fl_col)
-		free(map_info->fl_col);
-	if (map_info->ce_col)
-		free(map_info->ce_col);
-}
-
-void	clean_mapcontent(t_map *map_info)
-{
-	int	i;
-
-	if (map_info->map == NULL)
-		return;
-	i = 0;
-	while (map_info->map[i] != NULL)
-	{
-		free(map_info->map[i]);
-		i++;
-	}
-	free(map_info->map);
-}
-
-/* char	*remove_trailing(char *str, char const *c)
-{
-	int		start;
-	int		end;
-	char	*trimmed;
-
-	if (!c || !str)
-		return (NULL);
-	start = 0;
-	while (str[start] != '\0' && ft_strchr(c, str[start]) != NULL)
-		start++;
-	end = ft_strlen(str + start);
-	while (end > start && ft_strchr(c, str[(start + end) - 1]) != NULL)
-		end--;
-	trimmed = ft_calloc((end + 1), sizeof(char *));
-	if (!trimmed)
-		return (NULL);
-	ft_strncpy(trimmed, (str + start), end);
-	free(str);
-	return (trimmed);
-} */
-
+/**
+ * Removes trailing characters specified in 'c' from the end of a string
+ *
+ * @param str The string to be modified
+ * @param c String containing characters to be removed from the end
+ * @return The modified string with trailing characters removed
+ *
+ * This function removes any trailing characters that match those in 'c'
+ * from the end of 'str'. It modifies the original string by replacing
+ * matching characters with null terminators.
+ */
 char	*remove_trailing(char *str, char *c)
 {
 	int	len;
