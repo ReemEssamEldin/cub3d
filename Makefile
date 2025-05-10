@@ -48,7 +48,7 @@ SRC-C3				= ./src/cub3d.c \
 						./src/display/display_utils.c \
 						./src/input/key_map.c \
 						./src/init/init.c \
-						./src/movement/starting_loc.c \
+						./src/init/starting_loc.c \
 						./src/movement/move_player.c \
 						./src/movement/move_rotate.c \
 						./src/movement/coll_detect.c \

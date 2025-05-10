@@ -3,11 +3,6 @@
 
 # include "cub3d.h"
 
-//starting_loc.c
-bool	put_player(t_data *cub3d);
-bool	set_position(t_data *cub3d, int x, int y, int *found);
-void	set_direction(t_data *cub3d, char pos);
-
 //move_player.c
 void	move_player(t_player *player, t_data *cub3d);
 void	move_down(t_player *player, t_data *cub3d);
