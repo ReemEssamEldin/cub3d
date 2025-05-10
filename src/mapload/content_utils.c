@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   content_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:45:47 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 16:03:33 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/10 22:37:17 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /**
- * @brief Checks if a position is a walkable space or player start
+ * @brief Determines if a character represents a walkable tile on the map
+ *
+ * @param c The character to check
+ * @return int 1 (true) if the character represents a walkable tile, 0 (false) 
+ * otherwise
  */
 int	is_walkable(char c)
 {
@@ -21,7 +25,18 @@ int	is_walkable(char c)
 }
 
 /**
- * @brief Checks if a position is at the map boundary
+ * @brief Checks if a position (i, j) is on the boundary of the map
+ *
+ * This function determines whether the given coordinates represent a position
+ * on the outer edge of the map. It checks if the position is on the first row,
+ * last row, first column, or last column of its row.
+ *
+ * @param cub3d Pointer to the main data structure containing map information
+ * @param i     Row index to check
+ * @param j     Column index to check
+ * 
+ * @return int  Returns 1 (true) if the position is on a boundary, 0 (false) 
+ * otherwise
  */
 int	is_boundpos(t_data *cub3d, int i, int j)
 {
@@ -30,7 +45,19 @@ int	is_boundpos(t_data *cub3d, int i, int j)
 }
 
 /**
- * @brief Validates that surrounding cells don't contain spaces
+ * @brief Checks if all 8 neighboring cells around position (i,j) are valid
+ *
+ * This function examines all 8 cells surrounding the position (i,j) in the map
+ * to ensure none of them are spaces (' ') or out of bounds. It checks the
+ * cells above, below, to the sides, and diagonally adjacent to the given 
+ * position.
+ *
+ * @param cub3d  Pointer to the main data structure
+ * @param i      Row index in the map
+ * @param j      Column index in the map
+ *
+ * @return 1 if all neighboring cells are valid, 0 if any neighbor is a space or
+ * out of bounds
  */
 int	check_neighbours(t_data *cub3d, int i, int j)
 {
@@ -51,7 +78,18 @@ int	check_neighbours(t_data *cub3d, int i, int j)
 }
 
 /**
- * @brief Validates a single position in the map
+ * @brief Validates if a position on the map is valid for player movement
+ *
+ * This function checks if the position at coordinates (i, j) is valid by:
+ * 1. Checking if the position is walkable
+ * 2. Checking if the position is at a boundary
+ * 3. Checking the neighboring positions
+ *
+ * @param cub3d Pointer to the main data structure
+ * @param i Row index in the map
+ * @param j Column index in the map
+ *
+ * @return 1 if the position is invalid, 0 if the position is valid
  */
 int	validate_position(t_data *cub3d, int i, int j)
 {
