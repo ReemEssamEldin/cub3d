@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:53:17 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:54:42 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char *argv[])
 	init_player(&cub3d);
 	if (BONUS)
 		play_audio(AUDIO_FILE);
-	init_cub3d(&cub3d);
 	init_mlx(&cub3d);
 	key_hooks(&cub3d);
 	mlx_loop_hook(cub3d.mlx_ptr, render, &cub3d);

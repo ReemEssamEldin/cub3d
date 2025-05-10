@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:59 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/08 16:27:08 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:54:20 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 
 # include "cub3d.h"
 
-void		init_cub3d(t_data *cub3d);
+//init.c
 void		init_mlx(t_data *cub3d);
 void		init_player(t_data *cub3d);
+
+//starting_loc.c
+bool	put_player(t_data *cub3d);
+bool	set_position(t_data *cub3d, int x, int y, int *found);
+void	set_direction(t_data *cub3d, char pos);
+
 #endif

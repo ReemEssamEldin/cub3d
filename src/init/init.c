@@ -3,25 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:45 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 23:55:47 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:55:11 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	init_cub3d(t_data *cub3d);
 void	init_mlx(t_data *cub3d);
 void	init_player(t_data *cub3d);
-
-void	init_cub3d(t_data *cub3d)
-{
-	cub3d->mlx_ptr = NULL;
-	cub3d->win_ptr = NULL;
-	cub3d->img_ptr = NULL;
-}
 
 /**
  * Initialize MLX (graphics library) and create window
@@ -40,6 +32,9 @@ void	init_cub3d(t_data *cub3d)
  */
 void	init_mlx(t_data *cub3d)
 {
+	cub3d->mlx_ptr = NULL;
+	cub3d->win_ptr = NULL;
+	cub3d->img_ptr = NULL;
 	cub3d->mlx_ptr = mlx_init();
 	if (!cub3d->mlx_ptr)
 		terminate(cub3d, "Error\nMLX init failed.");
