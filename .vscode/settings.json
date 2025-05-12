@@ -41,6 +41,7 @@
 		"ft_printf.h": "c",
 		"libft.h": "c",
 		"keysym.h": "c",
-		"stdbool.h": "c"
+		"stdbool.h": "c",
+		"random": "c"
 	}
 }
