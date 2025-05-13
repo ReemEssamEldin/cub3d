@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:27:29 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 19:18:52 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:56:08 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PI 3.14159265359
 # define BLOCK 10
 # define DIST_EDGE_MOUSE_WRAP 20
-# define FOV (PI / 3)
+# define FOV (PI * 0.21)
 
 # ifndef BONUS
 #  define BONUS 0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/10 00:13:13 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 13:56:28 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 
 	dir_x = cos(cub3d->player.angle);
 	dir_y = sin(cub3d->player.angle);
-	plane_x = -dir_y * 0.66;
-	plane_y = dir_x * 0.66;
+	plane_x = -dir_y * FOV;
+	plane_y = dir_x * FOV;
 	*ray_dirx = dir_x + plane_x * cam_x;
 	*ray_diry = dir_y + plane_y * cam_x;
 }
