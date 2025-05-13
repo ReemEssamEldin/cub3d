@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:37:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/13 15:54:39 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:10:01 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ char	**split_col(char *rgb_str, t_data *cub3d)
 
 	rgb_str = trim_string(rgb_str);
 	if (!valid_colformat(rgb_str))
-		terminate(cub3d, "Error\nOnly digits, commas, and spaces are allowed", true);
+		terminate(cub3d, "Error\nOnly digits, commas, and spaces are allowed",
+			true);
 	components = ft_split(trim_string(rgb_str), ',');
 	if (!components)
 		return (NULL);
