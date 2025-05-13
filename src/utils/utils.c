@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/10 00:03:00 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:48:31 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	destroy(t_data *cub3d)
  * structures if they exist, and exits the program with failure status.
  *
  * @param cub3d Pointer to main program data structure, can be NULL
- * @param terminate Error message string to display before terminating
+ * @param msg Error message string to display before terminating
  */
-void	terminate(t_data *cub3d, char *terminate)
+void	terminate(t_data *cub3d, char *msg)
 {
-	printf("%s", terminate);
+	printf("%s", msg);
 	if (cub3d)
 	{
 		clean_mapheader(&cub3d->map_info);
