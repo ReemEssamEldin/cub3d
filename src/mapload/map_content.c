@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/10 00:07:13 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:39:48 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,14 @@ int	check_grid(t_data *cub3d, char *cub_file)
 	while (line)
 	{
 		if (!process_mapline(line, &in_map_section, &rows))
+		{
+			while (line)
+			{
+				free(line);
+				line = get_next_line(file);
+			}
 			grid_cleanup(file, line, cub3d);
+		}
 		free(line);
 		line = get_next_line(file);
 	}
