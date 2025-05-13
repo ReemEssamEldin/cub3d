@@ -5,7 +5,7 @@ WE    ./assets/textures/texture_05_o.xpm
 //EA ./path_to_the_east_texture2
 
 C 192,192,192
-F 105,105,105
+F 105,105
 
 111111111111111111111111
 100000000000000000000001

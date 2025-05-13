@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:20:03 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 23:44:21 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:54:59 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int		get_texcol(t_texture *texture, int x, int y);
 void	load_multitexs(t_data *cub3d)
 {
 	if (!load_singletex(cub3d, cub3d->map_info.no_tex, 0))
-		terminate(cub3d, "Error\nFailed to load north texture");
+		terminate(cub3d, "Error\nFailed to load north texture", false);
 	if (!load_singletex(cub3d, cub3d->map_info.so_tex, 1))
-		terminate(cub3d, "Error\nFailed to load south texture");
+		terminate(cub3d, "Error\nFailed to load south texture", false);
 	if (!load_singletex(cub3d, cub3d->map_info.ea_tex, 2))
-		terminate(cub3d, "Error\nFailed to load east texture");
+		terminate(cub3d, "Error\nFailed to load east texture", false);
 	if (!load_singletex(cub3d, cub3d->map_info.we_tex, 3))
-		terminate(cub3d, "Error\nFailed to load west texture");
+		terminate(cub3d, "Error\nFailed to load west texture", false);
 }
 
 int	load_singletex(t_data *cub3d, char *tex_path, int tex_idx)
