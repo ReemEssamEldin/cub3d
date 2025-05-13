@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maindisplay_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:37:49 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/10 00:13:50 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:54:39 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	**split_col(char *rgb_str, t_data *cub3d)
 
 	rgb_str = trim_string(rgb_str);
 	if (!valid_colformat(rgb_str))
-		terminate(cub3d, "Error\nOnly digits, commas, and spaces are allowed");
+		terminate(cub3d, "Error\nOnly digits, commas, and spaces are allowed", true);
 	components = ft_split(trim_string(rgb_str), ',');
 	if (!components)
 		return (NULL);
@@ -118,9 +118,9 @@ int	validate_col(char *component, t_data *cub3d)
 
 	if (!number_check(component))
 		terminate(cub3d,
-			"Error\nInvalid color value: RGB values must be digits");
+			"Error\nInvalid color value: RGB values must be digits", false);
 	val = ft_atoi(component);
 	if (val < 0 || val > 255)
-		terminate(cub3d, "Error\nRGB values must be between 0 and 255");
+		terminate(cub3d, "Error\nRGB values must be between 0 and 255", false);
 	return (val);
 }

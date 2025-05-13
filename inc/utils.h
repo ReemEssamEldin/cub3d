@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:20 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/13 15:48:37 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:57:38 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 //utils.c
 int		destroy(t_data *cub3d);
-void	terminate(t_data *cub3d, char *msg);
+void	terminate(t_data *cub3d, char *msg, bool flag);
 char	*remove_trailing(char *str, char *c);
 
 //cleaning.c

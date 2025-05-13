@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_header.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:55:31 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 	if (*tex_field != NULL)
 	{
 		printf("%s\n", code);
-		terminate(cub3d, "Error\nRefilling texture");
+		terminate(cub3d, "Error\nRefilling texture", false);
 		return (0);
 	}
 	complete_path = get_comppath(line);
@@ -63,7 +63,7 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 	if (*col_field != NULL)
 	{
 		printf("%s\n", code);
-		terminate(cub3d, "Error\nRefilling color");
+		terminate(cub3d, "Error\nRefilling color", false);
 		return (0);
 	}
 	while (*line && !ft_isdigit(*line))

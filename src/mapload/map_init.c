@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:40:01 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/10 00:06:21 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:55:37 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_map(t_data *cub3d, char *argv)
 	init_struct(cub3d);
 	read_header(cub3d, argv);
 	if (header_complete(cub3d) != 1)
-		terminate(cub3d, "Error\nIncomplete header.");
+		terminate(cub3d, "Error\nIncomplete header.", false);
 	read_content(cub3d, argv);
 }
 

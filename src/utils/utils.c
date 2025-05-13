@@ -6,14 +6,14 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/13 15:48:31 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:57:44 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		destroy(t_data *cub3d);
-void	terminate(t_data *cub3d, char *terminate);
+void	terminate(t_data *cub3d, char *terminate, bool destroy);
 char	*remove_trailing(char *str, char *c);
 
 /**
@@ -56,15 +56,20 @@ int	destroy(t_data *cub3d)
  * @param cub3d Pointer to main program data structure, can be NULL
  * @param msg Error message string to display before terminating
  */
-void	terminate(t_data *cub3d, char *msg)
+void	terminate(t_data *cub3d, char *msg, bool flag)
 {
 	printf("%s", msg);
+	if (flag)
+	{
+		destroy(cub3d);
+		exit(EXIT_FAILURE);
+	}
 	if (cub3d)
 	{
 		clean_mapheader(&cub3d->map_info);
 		clean_mapcontent(&cub3d->map_info);
+		exit(EXIT_FAILURE);
 	}
-	exit(EXIT_FAILURE);
 }
 
 /**

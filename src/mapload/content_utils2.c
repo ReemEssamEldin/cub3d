@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:49:44 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 21:52:56 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/13 15:55:16 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	grid_cleanup(int file, char *line, t_data *cub3d)
 {
 	free(line);
 	close(file);
-	terminate(cub3d, "Error\nNon map line (Empty line or invalid symbol");
+	terminate(cub3d, "Error\nNon map line (Empty line or invalid symbol", false);
 }

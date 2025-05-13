@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:51 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/10 22:54:42 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:54:22 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	check_args(int argc, char *argv)
 	int		j;
 
 	if (argc != 2)
-		terminate(NULL, "Error\nInvalid number of arguments.");
+		terminate(NULL, "Error\nInvalid number of arguments.", false);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		terminate(NULL, "Error\nFile does not exist.");
+		terminate(NULL, "Error\nFile does not exist.", false);
 	close(fd);
 	i = ft_strlen(argv) - 4;
 	j = ft_strncmp(".cub", &argv[i], 4);
 	if (j != 0)
-		terminate(NULL, "Error\nOnly accepts .cub files.");
+		terminate(NULL, "Error\nOnly accepts .cub files.", false);
 }
