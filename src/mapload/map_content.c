@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/13 15:55:23 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:00:27 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int	check_grid(t_data *cub3d, char *cub_file)
 	int		file;
 	char	*line;
 	int		rows;
-	int		in_map_section;
+	int		inside_map;
 
 	rows = 0;
-	in_map_section = 0;
+	inside_map = 0;
 	file = open_mapfile(cub_file);
 	line = get_next_line(file);
 	while (line)
 	{
-		if (!process_mapline(line, &in_map_section, &rows))
+		if (!process_mapline(line, &inside_map, &rows))
 		{
 			while (line)
 			{

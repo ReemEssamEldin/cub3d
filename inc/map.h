@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:09 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 16:02:44 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:00:27 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		validate_position(t_data *cub3d, int i, int j);
 //content_utils2.c
 void	process_valline(t_data *cub3d, char *line, int *i, int *max_len);
 int		open_mapfile(char *cub_file);
-int		process_mapline(char *line, int *in_map_section, int *rows);
+int		process_mapline(char *line, int *inside_map, int *rows);
 void	grid_cleanup(int file, char *line, t_data *cub3d);
 
 #endif
