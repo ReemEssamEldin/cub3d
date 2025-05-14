@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:27:29 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/13 13:56:08 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:16:22 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define BONUS 0
 # endif
 
-# define AUDIO_FILE "assets/audio/horror-background-tension-build-up-254933.wav"
+# define AUDIO_FILE "assets/audio/horror-bg.wav"
 
 #define WHI		0xFFFFFF  // White
 #define BLA		0x000000  // Black
