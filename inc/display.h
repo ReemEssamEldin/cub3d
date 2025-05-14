@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 23:33:55 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:21:20 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_render(t_data *cub3d);
 //maindisplay.c
 void	main_display(t_data *cub3d);
 void	draw_md(t_data *cub3d, int i);
-int		assign_wallcol(t_player *player, t_data *cub3d);
 void	prep_line(t_data *cub3d, int top, int bottom, int col);
 void	draw_line(t_data *cub3d);
 
