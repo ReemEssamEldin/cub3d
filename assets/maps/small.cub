@@ -1,11 +1,12 @@
-EA ./assets/textures/HW1.xpm
+F 		105,105,105     
+
+EA 	./assets/textures/HW1.xpm
 NO 		./assets/textures/HW3.xpm
 SO ./assets/textures/HW4.xpm
 WE    ./assets/textures/HW2.xpm
-//EA ./path_to_the_east_texture2
+//EA ./assets/textures/HW1.xpm
 
 C 192,192,192
-F 105,105,105
 
 111111111111111
 100000000000001
@@ -18,3 +19,5 @@ F 105,105,105
     1000000W0000001
     100000000000001
     111111111111111
+
+

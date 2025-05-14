@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/13 15:55:31 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:27:49 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,11 @@ int	verify_file(char *complete_path)
 	ext = ft_strrchr(complete_path, '.');
 	if (!ext)
 	{
-		printf("File has no extension: %s\n", complete_path);
+		printf("Error\nFile has no extension: %s\n", complete_path);
 		return (0);
 	}
 	if (ft_strncmp(ext, ".xpm", 4) == 0)
 		return (1);
-	printf("Invalid file extension: %s\n", complete_path);
+	printf("Error\nInvalid file extension: %s\n", complete_path);
 	return (0);
 }
