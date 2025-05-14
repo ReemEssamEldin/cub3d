@@ -37,7 +37,7 @@
    - `,,,` (no digits)
    - `123,45.67` (decimal point not allowed)
 
-F 		105,105,105
+F 		103,104,    
 C 192,192,192
 
 EA 	./assets/textures/HW1.xpm

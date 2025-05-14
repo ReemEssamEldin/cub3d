@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 16:01:57 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:49:06 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		destroy(t_data *cub3d);
 void	terminate(t_data *cub3d, char *msg);
 char	*remove_trailing(char *str, char *c);
+char	*trim_string(char *str);
 
 /**
  * @brief Clean up resources and exit the program
@@ -59,18 +60,12 @@ int	destroy(t_data *cub3d)
 void	terminate(t_data *cub3d, char *msg)
 {
 	printf("%s", msg);
-	// if (flag)
-	// {
-	// 	destroy(cub3d);
-	// 	exit(EXIT_FAILURE);
-	// }
 	if (cub3d)
 	{
 		clean_mapheader(&cub3d->map_info);
 		clean_mapcontent(&cub3d->map_info);
 		exit(EXIT_FAILURE);
 	}
-	// exit(EXIT_FAILURE);
 }
 
 /**
@@ -94,5 +89,35 @@ char	*remove_trailing(char *str, char *c)
 		str[len - 1] = '\0';
 		len--;
 	}
+	return (str);
+}
+
+/**
+ * Removes leading and trailing whitespace from a string
+ *
+ * The function modifies the input string by advancing the pointer past leading
+ * whitespace and adding a null terminator after the last non-whitespace
+ * character. The internal whitespace is preserved.
+ *
+ * @param str The string to be trimmed
+ * @return A pointer to the first non-whitespace character in the trimmed string
+ *			If the string contains only whitespace, returns pointer to null
+ * 			terminator
+ *
+ * @note This function modifies the original string
+ * @note The function depends on ft_isspace() and ft_strlen() functions
+ */
+char	*trim_string(char *str)
+{
+	char	*end;
+
+	while (ft_isspace(*str))
+		str++;
+	if (*str == 0)
+		return (str);
+	end = str + ft_strlen(str) - 1;
+	while (end > str && ft_isspace(*end))
+		end--;
+	end[1] = '\0';
 	return (str);
 }
