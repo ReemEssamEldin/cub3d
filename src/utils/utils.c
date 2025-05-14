@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/13 15:57:44 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:36:57 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	terminate(t_data *cub3d, char *msg, bool flag)
 		clean_mapcontent(&cub3d->map_info);
 		exit(EXIT_FAILURE);
 	}
+	exit(EXIT_FAILURE);
 }
 
 /**
