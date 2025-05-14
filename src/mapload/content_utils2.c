@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:49:44 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 15:00:27 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:03:24 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ void	grid_cleanup(int file, char *line, t_data *cub3d)
 {
 	free(line);
 	close(file);
-	terminate(cub3d, "Error\nNon map line (Empty line or invalid symbol)", 
-		false);
+	terminate(cub3d, "Error\nNon map line (Empty line or invalid symbol)");
 }

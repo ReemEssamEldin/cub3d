@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:02:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 15:48:48 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:05:57 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	read_header(t_data *cub3d, char *cub_file)
 		line = get_next_line(file);
 	}
 	close(file);
-	free(line);
+	if (line)
+		free(line);
 }
 
 /**

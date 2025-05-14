@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_header.c                                       :+:      :+:    :+:   */
+/*   header_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 14:27:49 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:03:33 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 	if (*tex_field != NULL)
 	{
 		printf("%s\n", code);
-		terminate(cub3d, "Error\nRefilling texture", false);
+		terminate(cub3d, "Error\nRefilling texture");
 		return (0);
 	}
 	complete_path = get_comppath(line);
@@ -63,12 +63,16 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 	if (*col_field != NULL)
 	{
 		printf("%s\n", code);
-		terminate(cub3d, "Error\nRefilling color", false);
+		terminate(cub3d, "Error\nRefilling color");
 		return (0);
 	}
 	while (*line && !ft_isdigit(*line))
 		line++;
 	*col_field = ft_strdup(line);
+	if (ft_strncmp(code, "F", 1) == 0)
+		cub3d->map_info.col_floo = rgb_tocol(*col_field, cub3d);
+	else if (ft_strncmp(code, "C", 1) == 0)
+		cub3d->map_info.col_ceil = rgb_tocol(*col_field, cub3d);
 	return (1);
 }
 

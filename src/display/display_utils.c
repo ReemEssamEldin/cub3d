@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/13 13:56:28 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:48:15 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,24 @@ void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
  * uses ft_isdigit to verify if it's a numeric digit. It stops and
  * returns false at the first non-digit character encountered.
  */
-bool	number_check(char *str)
-{
-	int		i;
-	bool	is_valid;
+// bool	number_check(char *str)
+// {
+// 	int		i;
+// 	bool	is_valid;
 
-	i = 0;
-	is_valid = true;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-		{
-			is_valid = false;
-			return (is_valid);
-		}
-		i++;
-	}
-	return (is_valid);
-}
+// 	i = 0;
+// 	is_valid = true;
+// 	while (str[i])
+// 	{
+// 		if (!ft_isdigit(str[i]))
+// 		{
+// 			is_valid = false;
+// 			return (is_valid);
+// 		}
+// 		i++;
+// 	}
+// 	return (is_valid);
+// }
 
 /**
  * Removes leading and trailing whitespace from a string
@@ -151,7 +151,7 @@ bool	number_check(char *str)
  * @note This function modifies the original string
  * @note The function depends on ft_isspace() and ft_strlen() functions
  */
-char	*trim_string(char *str)
+/* char	*trim_string(char *str)
 {
 	char	*end;
 
@@ -164,4 +164,40 @@ char	*trim_string(char *str)
 		end--;
 	end[1] = '\0';
 	return (str);
+} */
+char *trim_string(char *str)
+{
+    static char trimmed[256]; // Static buffer for the result
+    int i = 0, j = 0;
+    bool previous_was_comma = false;
+    
+    // Skip leading spaces
+    while (str[i] && ft_isspace(str[i]))
+        i++;
+    
+    // Process the string
+    while (str[i] && j < 255)
+    {
+        if (ft_isdigit(str[i])) {
+            trimmed[j++] = str[i];
+            previous_was_comma = false;
+        }
+        else if (str[i] == ',') {
+            trimmed[j++] = str[i];
+            previous_was_comma = true;
+        }
+        else if (ft_isspace(str[i]) && !previous_was_comma) {
+            // Skip spaces that are not after a comma
+            // (spaces after commas will be eliminated by the loop)
+        }
+        else {
+            // Invalid character
+            trimmed[j] = '\0';
+            return trimmed;
+        }
+        i++;
+    }
+    
+    trimmed[j] = '\0';
+    return trimmed;
 }
