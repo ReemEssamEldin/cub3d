@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 15:21:20 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:40:52 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	prep_line(t_data *cub3d, int top, int bottom, int col);
 void	draw_line(t_data *cub3d);
 
 //maindisplay_utils.c
-bool	valid_colformat(char *str);
-char	**split_col(char *rgb_str, t_data *cub3d);
-int		rgb_tocol(char *rgb_str, t_data *cub3d);
-int		validate_col(char *component, t_data *cub3d);
+// bool	valid_colformat(char *str);
+// char	**split_col(char *rgb_str, t_data *cub3d);
+// int		rgb_tocol(char *rgb_str, t_data *cub3d);
+// int		validate_col(char *component, t_data *cub3d);
 
 //raycast_engine.c
 void	ray_casting(t_data *cub3d, float cam_x, float *ray_x, float *ray_y);
@@ -46,7 +46,7 @@ void	dda_execute(t_data *cub3d);
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
 void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry);
-bool	number_check(char *str);
+//bool	number_check(char *str);
 char	*trim_string(char *str);
 
 //minimap.c

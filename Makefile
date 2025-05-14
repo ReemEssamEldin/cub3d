@@ -33,12 +33,12 @@ SRC-C3				= ./src/cub3d.c \
 						./src/mapload/map_header.c \
 						./src/mapload/map_content.c \
 						./src/mapload/header_utils.c \
+						./src/mapload/header_utils2.c \
 						./src/mapload/content_utils.c \
 						./src/mapload/content_utils2.c \
 						./src/audio/audio.c \
 						./src/display/rendering.c \
 						./src/display/maindisplay.c \
-						./src/display/maindisplay_utils.c \
 						./src/display/raycast_engine.c \
 						./src/display/raycast_dda.c \
 						./src/display/minimap.c \

@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:40:01 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/13 15:55:37 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:06:40 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_map(t_data *cub3d, char *argv)
 	init_struct(cub3d);
 	read_header(cub3d, argv);
 	if (header_complete(cub3d) != 1)
-		terminate(cub3d, "Error\nIncomplete header.", false);
+		terminate(cub3d, "Error\nIncomplete header.");
 	read_content(cub3d, argv);
 }
 
@@ -49,4 +49,6 @@ void	init_struct(t_data *cub3d)
 	cub3d->map_info.map = NULL;
 	cub3d->map_info.map_rows = 0;
 	cub3d->map_info.map_cols = 0;
+	cub3d->map_info.col_ceil = 0;
+	cub3d->map_info.col_ceil = 0;
 }

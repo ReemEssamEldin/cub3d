@@ -1,4 +1,44 @@
-F 		105,105,105     
+## Valid Formats:
+1. **Standard RGB format**
+   - `123,45,67`
+   - `255,255,255`
+   - `0,0,0`
+2. **With spaces after commas**
+   - `123, 45, 67`
+   - `123,45, 67`
+   - `123, 45,67`
+3. **With spaces/tabs before numbers**
+   - `   123,45,67`
+   - `123,   45,67`
+   - `123,45,   67`
+4. **With spaces/tabs after numbers**
+   - `123   ,45,67` (Invalid! Spaces directly before commas not allowed)
+   - `123,45   ,67` (Invalid! Spaces directly before commas not allowed)
+   - `123,45,67   ` (Valid - trailing spaces after the last number)
+5. **Mixed spacing (but no spaces before commas)**
+   - `  123, 45,  67`
+   - `123,  45, 67  `
+## Invalid Formats (would return false):
+1. **Missing components**
+   - `123,45`
+   - `123`
+   - `,45,67`
+   - `123,45,`
+2. **Invalid characters**
+   - `123,45,A7`
+   - `123,45.6,78`
+   - `123;45;67`
+3. **Spaces in wrong positions**
+   - `123 ,45,67` (space directly before comma)
+   - `123, ,67` (missing digit between commas)
+   - `123,,67` (missing digit between commas)
+4. **Format problems**
+   - `123 45 67` (missing commas)
+   - `,,,` (no digits)
+   - `123,45.67` (decimal point not allowed)
+
+F 		105,105,105
+C 192,192,192
 
 EA 	./assets/textures/HW1.xpm
 NO 		./assets/textures/HW3.xpm
@@ -6,7 +46,6 @@ SO ./assets/textures/HW4.xpm
 WE    ./assets/textures/HW2.xpm
 //EA ./assets/textures/HW1.xpm
 
-C 192,192,   
 
 111111111111111
 100000000000001

@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:09 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 15:00:27 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:41:09 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ void	read_header(t_data *cub3d, char *cub_file);
 int		check_header(char *line);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
+
+//header_utils2.c
+int		rgb_tocol(char *rgb_str, t_data *cub3d);
+char	**split_col(char *rgb_str, t_data *cub3d);
+bool	valid_colformat(char *str);
+int		validate_col(char *component, t_data *cub3d);
+bool	number_check(char *str);
 
 //content_utils.c
 int		is_walkable(char c);
