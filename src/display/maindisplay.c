@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maindisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:24:27 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/09 23:24:47 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:21:12 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	main_display(t_data *cub3d);
 void	draw_md(t_data *cub3d, int i);
-int		assign_wallcol(t_player *player, t_data *cub3d);
 void	prep_line(t_data *cub3d, int top, int bottom, int col);
 void	draw_line(t_data *cub3d);
 
@@ -68,38 +67,6 @@ void	draw_md(t_data *cub3d, int i)
 	draw_texline(cub3d, i, tex_x);
 	prep_line(cub3d, cub3d->calc.draw_end, HEI, cub3d->map_info.col_floo);
 	draw_line(cub3d);
-}
-
-/**
- * @brief Determines wall color based on which wall face is hit
- * @param player Player data structure containing position
- * @param cub3d Main data structure containing game information
- * @return Returns the color value for the wall
- *
- * Colors are assigned based on:
- * - North/South facing walls (side == 0)
- * - East/West facing walls (side == 1)
- * - Relative position to player
- */
-int	assign_wallcol(t_player *player, t_data *cub3d)
-{
-	int	col_wall;
-
-	if (cub3d->calc.side == 0)
-	{
-		if (cub3d->calc.map_x > player->x / BLOCK)
-			col_wall = PIN;
-		else
-			col_wall = MAG;
-	}
-	else
-	{
-		if (cub3d->calc.map_y > player->y / BLOCK)
-			col_wall = TEA;
-		else
-			col_wall = GRE;
-	}
-	return (col_wall);
 }
 
 /**
