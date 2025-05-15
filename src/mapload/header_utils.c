@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 16:54:40 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:15:29 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 {
 	char	*complete_path;
 
+	(void)cub3d;
 	if (*tex_field != NULL)
 	{
-		printf("%s\n", code);
-		terminate(cub3d, "Error\nRefilling texture");
+		free(*tex_field);
+		*tex_field = NULL;
+		printf("Error\nRefilling texture: %s\n", code);
 		return (0);
 	}
 	complete_path = get_comppath(line);
