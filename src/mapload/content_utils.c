@@ -6,11 +6,39 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:45:47 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/10 22:37:17 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:01:54 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	validate_position(t_data *cub3d, int i, int j);
+int	is_walkable(char c);
+int	is_boundpos(t_data *cub3d, int i, int j);
+int	check_neighbours(t_data *cub3d, int i, int j);
+
+/**
+ * @brief Validates if a position on the map is valid for player movement
+ *
+ * This function checks if the position at coordinates (i, j) is valid by:
+ * 1. Checking if the position is walkable
+ * 2. Checking if the position is at a boundary
+ * 3. Checking the neighboring positions
+ *
+ * @param cub3d Pointer to the main data structure
+ * @param i Row index in the map
+ * @param j Column index in the map
+ *
+ * @return 1 if the position is invalid, 0 if the position is valid
+ */
+int	validate_position(t_data *cub3d, int i, int j)
+{
+	if (!is_walkable(cub3d->map_info.map[i][j]))
+		return (1);
+	if (is_boundpos(cub3d, i, j))
+		return (0);
+	return (check_neighbours(cub3d, i, j));
+}
 
 /**
  * @brief Determines if a character represents a walkable tile on the map
@@ -77,25 +105,3 @@ int	check_neighbours(t_data *cub3d, int i, int j)
 	return (1);
 }
 
-/**
- * @brief Validates if a position on the map is valid for player movement
- *
- * This function checks if the position at coordinates (i, j) is valid by:
- * 1. Checking if the position is walkable
- * 2. Checking if the position is at a boundary
- * 3. Checking the neighboring positions
- *
- * @param cub3d Pointer to the main data structure
- * @param i Row index in the map
- * @param j Column index in the map
- *
- * @return 1 if the position is invalid, 0 if the position is valid
- */
-int	validate_position(t_data *cub3d, int i, int j)
-{
-	if (!is_walkable(cub3d->map_info.map[i][j]))
-		return (1);
-	if (is_boundpos(cub3d, i, j))
-		return (0);
-	return (check_neighbours(cub3d, i, j));
-}

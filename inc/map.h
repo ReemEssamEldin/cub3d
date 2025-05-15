@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:09 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 16:41:09 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:02:07 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	read_content(t_data *cub3d, char *cub_file);
 int		check_grid(t_data *cub3d, char *cub_file);
 int		save_grid(t_data *cub3d, char *cub_file);
 int		valid_mapline(char *line);
-int		empty_line(char *line);
 int		verify_boundaries(t_data *cub3d);
 
 //header_utils.c
@@ -47,10 +46,10 @@ int		validate_col(char *component, t_data *cub3d);
 bool	number_check(char *str);
 
 //content_utils.c
-int		is_walkable(char c);
-int		is_boundpos(t_data *cub3d, int i, int j);
-int		check_neighbours(t_data *cub3d, int i, int j);
-int		validate_position(t_data *cub3d, int i, int j);
+int	validate_position(t_data *cub3d, int i, int j);
+int	is_walkable(char c);
+int	is_boundpos(t_data *cub3d, int i, int j);
+int	check_neighbours(t_data *cub3d, int i, int j);
 
 //content_utils2.c
 void	process_valline(t_data *cub3d, char *line, int *i, int *max_len);

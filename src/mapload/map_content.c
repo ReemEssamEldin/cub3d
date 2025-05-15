@@ -6,11 +6,17 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 16:03:38 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:59:56 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+void	read_content(t_data *cub3d, char *cub_file);
+int		check_grid(t_data *cub3d, char *cub_file);
+int		save_grid(t_data *cub3d, char *cub_file);
+int		valid_mapline(char *line);
+int		verify_boundaries(t_data *cub3d);
 
 /**
  * @brief Reads and processes the map content from a file

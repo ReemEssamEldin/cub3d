@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:31:22 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/14 19:11:51 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:56:48 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,17 @@ int	rgb_tocol(char *rgb_str, t_data *cub3d)
 	while (i < 3)
 	{
 		if (components[i] == NULL || components[i][0] == '\0')
+		{
+			free_split(components);
 			terminate(cub3d, "Error\nColor component missing");
+		}
 		i++;
 	}
 	r = convert_col(components[0], cub3d);
 	g = convert_col(components[1], cub3d);
 	b = convert_col(components[2], cub3d);
 	i = 0;
-	while (components[i])
-		free(components[i++]);
-	free(components);
+	free_split(components);
 	return ((r << 16) | (g << 8) | b);
 }
 
@@ -58,7 +59,7 @@ char	**split_col(char *rgb_str, t_data *cub3d)
 	char	**components;
 
 	if (!check_comma(rgb_str))
-		terminate(cub3d, "Error\nInvalid color format");
+		terminate(cub3d, "Error\nInvalid color format (comma)");
 	components = ft_split(rgb_str, ',');
 	if (!components)
 		return (NULL);
@@ -98,14 +99,14 @@ int	convert_col(char *component, t_data *cub3d)
 	char	*trimmed;
 
 	trimmed = trim_string(component);
-	printf("%s\n", trimmed);
+	printf("convert_col %s\n", trimmed);
 	if (!number_check(trimmed))
 		terminate(cub3d,
-			"Error\nInvalid color value: RGB values must be digits");
+			"Error\nInvalid color value: RGB values not digits");
 	val = ft_atoi(component);
 	if (val < 0 || val > 255)
 		terminate(cub3d, 
-			"Error\nInvalid color value: RGB values must be between 0 and 255");
+			"Error\nInvalid color value: RGB values not between 0 and 255");
 	return (val);
 }
 

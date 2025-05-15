@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:48:41 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/14 19:44:31 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
 void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 			float *ray_diry);
-bool	number_check(char *str);
 
 /**
  * @brief Puts a pixel of specified color at given coordinates in the window
