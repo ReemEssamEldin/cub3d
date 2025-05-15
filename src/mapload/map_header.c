@@ -6,14 +6,14 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:02:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 17:05:57 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:49:18 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 void	read_header(t_data *cub3d, char *cub_file);
-int		check_header(char *line);
+int		check_headerid(char *line);
 void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
 
@@ -22,7 +22,7 @@ int		header_complete(t_data *cub3d);
  *
  * This function opens the specified .cub file and reads it line by line,
  * processing header information. For each line that is identified as a header
- * (via check_header()), the information is loaded into the cub3d data structure.
+ * (via check_headerid()), the information is loaded into the cub3d data structure.
  * The function handles file opening/closing and
  * memory management for read lines.
  *
@@ -43,7 +43,7 @@ void	read_header(t_data *cub3d, char *cub_file)
 	line = get_next_line(file);
 	while (line)
 	{
-		if (check_header(line))
+		if (check_headerid(line))
 			load_header(cub3d, line);
 		free(line);
 		line = get_next_line(file);
@@ -70,7 +70,7 @@ void	read_header(t_data *cub3d, char *cub_file)
  * valid header identifier, 0 otherwise
  */
 
-int	check_header(char *line)
+int	check_headerid(char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0
 		|| ft_strncmp(line, "SO ", 3) == 0
@@ -127,7 +127,9 @@ int	header_complete(t_data *cub3d)
 		&& cub3d->map_info.ea_tex != NULL
 		&& cub3d->map_info.we_tex != NULL
 		&& cub3d->map_info.fl_col != NULL
-		&& cub3d->map_info.ce_col != NULL)
+		&& cub3d->map_info.ce_col != NULL
+		&& cub3d->map_info.col_floo != -1
+		&& cub3d->map_info.col_ceil != -1)
 		return (1);
 	return (0);
 }

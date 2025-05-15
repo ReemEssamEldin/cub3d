@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:45:47 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 16:01:54 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:06:20 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,3 @@ int	check_neighbours(t_data *cub3d, int i, int j)
 		return (0);
 	return (1);
 }
-

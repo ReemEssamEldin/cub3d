@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 19:52:24 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:54:40 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,19 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 {
 	if (*col_field != NULL)
 	{
-		printf("%s\n", code);
-		terminate(cub3d, "Error\nRefilling color");
+		if (ft_strcmp(code, "C") == 0)
+			cub3d->map_info.col_ceil = -1;
+		else if (ft_strcmp(code, "F") == 0)
+			cub3d->map_info.col_floo = -1;
+		printf("Error\nRefilling color: %s\n", code);
 		return (0);
 	}
 	while (*line && !ft_isdigit(*line))
 		line++;
 	*col_field = ft_strdup(line);
-	if (ft_strncmp(code, "F", 1) == 0)
+	if (ft_strcmp(code, "F") == 0)
 		cub3d->map_info.col_floo = rgb_tocol(*col_field, cub3d);
-	else if (ft_strncmp(code, "C", 1) == 0)
+	else if (ft_strcmp(code, "C") == 0)
 		cub3d->map_info.col_ceil = rgb_tocol(*col_field, cub3d);
 	return (1);
 }
