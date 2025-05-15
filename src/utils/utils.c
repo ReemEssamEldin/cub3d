@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:41:19 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 19:45:46 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:30:26 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		destroy(t_data *cub3d);
 void	terminate(t_data *cub3d, char *msg);
 char	*remove_trailing(char *str, char *c);
 char	*trim_string(char *str);
-void	free_split(char **arr);
+void	free_split(char **arr); /// remove?
 
 /**
  * @brief Clean up resources and exit the program
@@ -123,13 +123,13 @@ char	*trim_string(char *str)
 	return (str);
 }
 
-void	free_split(char **arr)
+void	free_split(char **arr) //not useful
 {
 	int	i;
 
 	i = 0;
 	if (!arr)
-		return;
+		return ;
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
