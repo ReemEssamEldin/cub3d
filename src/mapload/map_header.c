@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:02:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 16:49:18 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:03:24 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int		header_complete(t_data *cub3d);
  *
  * This function opens the specified .cub file and reads it line by line,
  * processing header information. For each line that is identified as a header
- * (via check_headerid()), the information is loaded into the cub3d data structure.
+ * (via check_headerid()), the information is loaded into the cub3d data 
+ * structure.
  * The function handles file opening/closing and
  * memory management for read lines.
  *
