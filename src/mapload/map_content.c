@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:25:08 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 15:59:56 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:12:49 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	read_content(t_data *cub3d, char *cub_file)
 		perror("Map allocation failed");
 	cub3d->map_info.map_cols = save_grid(cub3d, cub_file);
 	if (!verify_boundaries(cub3d))
-		terminate(cub3d, "Error\nMap is not enclosed by walls");
+		terminate(cub3d, "Error\nMap is not enclosed by walls (vb)");
 }
 
 /**
