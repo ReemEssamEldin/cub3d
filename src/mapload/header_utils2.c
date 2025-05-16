@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:31:22 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/16 13:55:14 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:48:25 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**split_col(char *rgb_str, t_data *cub3d)
 	(void)cub3d;
 	if (!check_comma(rgb_str))
 	{
-		printf("Error\nRGB values cant be processed (sc)");
+		printf("RGB values cant be processed (sc)\n");
 		return (NULL);
 	}
 	components = ft_split(rgb_str, ',');
@@ -98,14 +98,14 @@ int	convert_col(char *component, t_data *cub3d)
 	//printf("convert_col %s\n", trimmed);
 	if (!number_check(trimmed))
 	{
-		printf("Error\nInvalid color value: RGB values cant be processed (cc)");
+		printf("Invalid color value: RGB values cant be processed (cc)\n");
 		return (-1);
 	}
 	val = ft_atoi(component);
 	if (val < 0 || val > 255)
 	{
 		printf(
-			"Error\nInvalid color value: RGB values not between 0 and 255 (cc)"
+			"Invalid color value: RGB values not between 0 and 255 (cc)\n"
 			);
 		return (-1);
 	}

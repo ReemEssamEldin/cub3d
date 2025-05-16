@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 17:15:29 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:49:29 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
 	{
 		free(*tex_field);
 		*tex_field = NULL;
-		printf("Error\nRefilling texture: %s\n", code);
+		printf("Refilling texture: %s\n", code);
 		return (0);
 	}
 	complete_path = get_comppath(line);
@@ -68,7 +68,7 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 			cub3d->map_info.col_ceil = -1;
 		else if (ft_strcmp(code, "F") == 0)
 			cub3d->map_info.col_floo = -1;
-		printf("Error\nRefilling color: %s\n", code);
+		printf("Refilling color: %s\n", code);
 		return (0);
 	}
 	while (*line && !ft_isdigit(*line))
@@ -134,19 +134,18 @@ int	verify_file(char *complete_path)
 	if (file == -1)
 	{
 		close(file);
-		printf("File: %s\n", complete_path);
-		perror("File can't be found.");
+		printf("File can't be found: %s\n", complete_path);
 		return (0);
 	}
 	close(file);
 	ext = ft_strrchr(complete_path, '.');
 	if (!ext)
 	{
-		printf("Error\nFile has no extension: %s\n", complete_path);
+		printf("File has no extension: %s\n", complete_path);
 		return (0);
 	}
 	if (ft_strncmp(ext, ".xpm", 4) == 0)
 		return (1);
-	printf("Error\nInvalid file extension: %s\n", complete_path);
+	printf("Invalid file extension: %s\n", complete_path);
 	return (0);
 }
