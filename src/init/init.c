@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:20:45 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/14 16:03:17 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:12:08 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_mlx(t_data *cub3d)
 void	init_player(t_data *cub3d)
 {
 	if (!put_player(cub3d))
-		terminate(cub3d, "Error\nPlayer position (missing/duplicate)");
+		terminate(cub3d, "Error\nPlayer position (missing/duplicate) (pp)");
 	cub3d->player.key_up = false;
 	cub3d->player.key_down = false;
 	cub3d->player.key_right = false;

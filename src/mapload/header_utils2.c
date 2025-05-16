@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:31:22 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/15 17:09:45 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:55:14 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	rgb_tocol(char *rgb_str, t_data *cub3d)
 	g = convert_col(components[1], cub3d);
 	b = convert_col(components[2], cub3d);
 	free_split(components);
-	return ((r << 16) | (g << 8) | b);
+	if (r == -1 || g == -1 || b == -1)
+		return (-1);
+	else
+		return ((r << 16) | (g << 8) | b);
 }
 
 char	**split_col(char *rgb_str, t_data *cub3d)
