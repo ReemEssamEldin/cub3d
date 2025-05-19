@@ -13,6 +13,9 @@ The bonus included are:
 2. Minimap
 3. Audio play
 
+## Docs
+[[Documentation](./docs/MAIN.md)] for each module. Rather a general overview. Specific function documentation is to be examined on the function's implementation itself.
+
 ## Sources
 #### Tutorial
 - https://lodev.org/cgtutor/
