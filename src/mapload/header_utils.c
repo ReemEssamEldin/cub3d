@@ -3,35 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   header_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:42 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/16 14:49:29 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:09:46 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 int		get_col(t_data *cub3d, char *line, char **col_field, char *code);
-int		get_tex(t_data *cub3d, char *line, char **tex_field, char *code);
+int		get_tex(char *line, char **tex_field, char *code);
 char	*get_comppath(char *line);
 int		verify_file(char *complete_path);
 
 /**
  * @brief Handles loading texture paths for walls
  *
- * @param cub3d Main data structure
  * @param line Current line being processed
  * @param texture_type Type of texture (NO, SO, EA, WE)
  * @param texture_field Pointer to the texture field in map_info
  * @return 1 if successful, 0 otherwise
  */
 
-int	get_tex(t_data *cub3d, char *line, char **tex_field, char *code)
+int	get_tex(char *line, char **tex_field, char *code)
 {
 	char	*complete_path;
 
-	(void)cub3d;
 	if (*tex_field != NULL)
 	{
 		free(*tex_field);
@@ -75,9 +73,9 @@ int	get_col(t_data *cub3d, char *line, char **col_field, char *code)
 		line++;
 	*col_field = ft_strdup(line);
 	if (ft_strcmp(code, "F") == 0)
-		cub3d->map_info.col_floo = rgb_tocol(*col_field, cub3d);
+		cub3d->map_info.col_floo = rgb_tocol(*col_field);
 	else if (ft_strcmp(code, "C") == 0)
-		cub3d->map_info.col_ceil = rgb_tocol(*col_field, cub3d);
+		cub3d->map_info.col_ceil = rgb_tocol(*col_field);
 	return (1);
 }
 

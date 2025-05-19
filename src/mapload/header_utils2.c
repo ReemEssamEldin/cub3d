@@ -6,16 +6,16 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:31:22 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/19 11:39:36 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:09:15 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int		rgb_tocol(char *rgb_str, t_data *cub3d);
-char	**split_col(char *rgb_str, t_data *cub3d);
+int		rgb_tocol(char *rgb_str);
+char	**split_col(char *rgb_str);
 bool	check_comma(char *str);
-int		convert_col(char *component, t_data *cub3d);
+int		convert_col(char *component);
 bool	number_check(char *str);
 
 /**
@@ -25,19 +25,19 @@ bool	number_check(char *str);
  * @param cub3d Main program data structure
  * @return int Color as 24-bit integer (format: 0xRRGGBB), or -1 if error
  */
-int	rgb_tocol(char *rgb_str, t_data *cub3d)
+int	rgb_tocol(char *rgb_str)
 {
 	char	**components;
 	int		r;
 	int		g;
 	int		b;
 
-	components = split_col(rgb_str, cub3d);
+	components = split_col(rgb_str);
 	if (!components)
 		return (-1);
-	r = convert_col(components[0], cub3d);
-	g = convert_col(components[1], cub3d);
-	b = convert_col(components[2], cub3d);
+	r = convert_col(components[0]);
+	g = convert_col(components[1]);
+	b = convert_col(components[2]);
 	free_split(components);
 	if (r == -1 || g == -1 || b == -1)
 		return (-1);
@@ -45,11 +45,10 @@ int	rgb_tocol(char *rgb_str, t_data *cub3d)
 		return ((r << 16) | (g << 8) | b);
 }
 
-char	**split_col(char *rgb_str, t_data *cub3d)
+char	**split_col(char *rgb_str)
 {
 	char	**components;
 
-	(void)cub3d;
 	if (!check_comma(rgb_str))
 	{
 		printf("RGB values cant be processed (sc)\n");
@@ -88,12 +87,11 @@ bool	check_comma(char *rgb_str)
  * @return int Validated color component value (0-255)
  * @note Terminates program if value is invalid
  */
-int	convert_col(char *component, t_data *cub3d)
+int	convert_col(char *component)
 {
 	int		val;
 	char	*trimmed;
 
-	(void)cub3d;
 	trimmed = trim_string(component);
 	//printf("convert_col %s\n", trimmed);
 	if (!number_check(trimmed))

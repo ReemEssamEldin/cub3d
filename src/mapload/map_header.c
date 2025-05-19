@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:02:57 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 17:03:24 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:04:53 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ int	check_headerid(char *line)
 void	load_header(t_data *cub3d, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		get_tex(cub3d, line, &cub3d->map_info.no_tex, "NO");
+		get_tex(line, &cub3d->map_info.no_tex, "NO");
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		get_tex(cub3d, line, &cub3d->map_info.so_tex, "SO");
+		get_tex(line, &cub3d->map_info.so_tex, "SO");
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		get_tex(cub3d, line, &cub3d->map_info.ea_tex, "EA");
+		get_tex(line, &cub3d->map_info.ea_tex, "EA");
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		get_tex(cub3d, line, &cub3d->map_info.we_tex, "WE");
+		get_tex(line, &cub3d->map_info.we_tex, "WE");
 	else if (ft_strncmp(line, "F ", 2) == 0)
 		get_col(cub3d, line, &cub3d->map_info.fl_col, "F");
 	else if (ft_strncmp(line, "C ", 2) == 0)
