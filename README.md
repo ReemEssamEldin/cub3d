@@ -39,3 +39,5 @@
 - https://42-cursus.gitbook.io/guide/rank-04/minirt
 - https://raytracing.github.io/books/RayTracingInOneWeekend.html
 - https://blog.jacobvosmaer.nl/0022-ray-tracing-weekend/
+
+something new
