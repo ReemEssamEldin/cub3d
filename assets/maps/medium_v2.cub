@@ -1,0 +1,39 @@
+Map check:
+1. Files exist/not
+	- Different extensions
+2. Mess around header textures
+	- Non existing textures
+	- Arbitrary order
+	- Empty path
+	- Duplicate entries
+3. Mess around header colours
+	- Unexpected characters
+	- Values beyond limit
+4. Mess around content
+	- Unenclosed map
+	- Unexpected chars in wall & floor area
+
+EA ./assets/textures/bricks1.xpm
+NO ./assets/textures/bricks2.xpm
+SO ./assets/textures/bricks3.xpm
+WE ./assets/textures/bricks4.xpm
+
+C 0,255,247
+F 245,215,171
+
+111111111111111
+100000000000001
+100000000000001
+100000100000001
+1000000000N0001
+100000010000001
+100001000000001
+1111100000000011111
+    100000000000001
+    100001010000001
+    100001010000001
+    100001110000001
+    100000000000001
+    100000000111111
+    1000000001
+    1111111111
