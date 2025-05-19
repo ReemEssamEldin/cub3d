@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:31:22 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/19 12:09:15 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:30:16 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	convert_col(char *component)
 	char	*trimmed;
 
 	trimmed = trim_string(component);
-	//printf("convert_col %s\n", trimmed);
 	if (!number_check(trimmed))
 	{
 		printf("Invalid color value: RGB values cant be processed (cc)\n");
