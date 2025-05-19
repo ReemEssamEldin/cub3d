@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:09 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/15 16:45:06 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:09:21 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_map(t_data *cub3d, char *argv);
 void	init_struct(t_data *cub3d);
 
 //map_header.c
-int		get_tex(t_data *cub3d, char *line, char **tex_field, char *code);
+int		get_tex(char *line, char **tex_field, char *code);
 int		get_col(t_data *cub3d, char *line, char **col_field, char *code);
 char	*get_comppath(char *line);
 int		verify_file(char *complete_path);
@@ -39,10 +39,10 @@ void	load_header(t_data *cub3d, char *line);
 int		header_complete(t_data *cub3d);
 
 //header_utils2.c
-int		rgb_tocol(char *rgb_str, t_data *cub3d);
-char	**split_col(char *rgb_str, t_data *cub3d);
+int		rgb_tocol(char *rgb_str);
+char	**split_col(char *rgb_str);
 bool	valid_colformat(char *str);
-int		validate_col(char *component, t_data *cub3d);
+int	convert_col(char *component);
 bool	number_check(char *str);
 
 //content_utils.c
