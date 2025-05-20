@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:51:41 by hsetya            #+#    #+#             */
-/*   Updated: 2025/05/08 17:49:08 by hsetya           ###   ########.fr       */
+/*   Updated: 2025/05/20 13:51:16 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	move_left(t_player *player, t_data *cub3d);
 
 void	move_player(t_player *player, t_data *cub3d)
 {
-	cub3d->move.speed = 0.7;
-	cub3d->move.angle_speed = 0.03;
-	cub3d->move.collision_buffer = BLOCK * 0.1;
+	cub3d->move.speed = MOVE_SPEED;
+	cub3d->move.angle_speed = ANGLE_SPEED;
+	cub3d->move.collision_buffer = BLOCK * COLBUF_FACTOR;
 	move_rotate(player, cub3d->move.angle_speed);
 	cub3d->move.cos_angle = cos(player->angle);
 	cub3d->move.sin_angle = sin(player->angle);
