@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:59 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/10 22:54:20 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:44:30 by reldahli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 //init.c
 void		init_mlx(t_data *cub3d);
+void		load_multitexs(t_data *cub3d);
+int			load_singletex(t_data *cub3d, char *tex_path, int tex_idx);
 void		init_player(t_data *cub3d);
 
 //starting_loc.c
