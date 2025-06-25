@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:09 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/19 12:09:21 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:14:47 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		header_complete(t_data *cub3d);
 int		rgb_tocol(char *rgb_str);
 char	**split_col(char *rgb_str);
 bool	valid_colformat(char *str);
-int	convert_col(char *component);
+int		convert_col(char *component);
 bool	number_check(char *str);
 
 //content_utils.c

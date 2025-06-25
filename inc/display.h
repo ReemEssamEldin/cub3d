@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reldahli <reldahli@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:39:55 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/20 14:44:41 by reldahli         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:15:44 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	dda_execute(t_data *cub3d);
 //display_utils.c
 void	put_pixel(int x, int y, int color, t_data *cub3d);
 void	clear_image(t_data *cub3d);
-void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx, float *ray_diry);
+void	define_raydir(t_data *cub3d, float cam_x,
+			float *ray_dirx, float *ray_diry);
 
 //minimap.c
 void	mini_map(t_data *cub3d);

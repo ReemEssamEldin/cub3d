@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:40:16 by reldahli          #+#    #+#             */
-/*   Updated: 2025/05/09 15:03:22 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:14:36 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,11 @@ typedef struct s_draw
 
 typedef struct s_calculations
 {
-	//minimap params & ray calcs
 	int		mm_wall_col;
 	int		mm_space_col;
 	int		mm_padding;
 	float	mm_raylen;
 
-	//minimap cone rendering
 	int		base_col;
 	int		bg_col;
 	float	ins;
@@ -85,7 +83,6 @@ typedef struct s_calculations
 	float	cur_len;
 	int		blended_col;
 
-	//raycasting calculations
 	int		map_x;
 	int		map_y;
 	int		step_x;
@@ -106,12 +103,11 @@ typedef struct s_calculations
 	float	delta_distx;
 	float	delta_disty;
 
-	//texture calcs
-	int			y;
-	int			tex_y;
-	double		step;
-	double		tex_pos;
-	int			color;
+	int		y;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+	int		color;
 }	t_calc;
 
 typedef struct s_move

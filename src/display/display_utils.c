@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:26:00 by hsetyamu          #+#    #+#             */
-/*   Updated: 2025/05/14 19:44:31 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:18:52 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,13 @@ void	define_raydir(t_data *cub3d, float cam_x, float *ray_dirx,
 	float	dir_y;
 	float	plane_x;
 	float	plane_y;
+	float	fov;
 
+	fov = PI * 0.21;
 	dir_x = cos(cub3d->player.angle);
 	dir_y = sin(cub3d->player.angle);
-	plane_x = -dir_y * FOV;
-	plane_y = dir_x * FOV;
+	plane_x = -dir_y * fov;
+	plane_y = dir_x * fov;
 	*ray_dirx = dir_x + plane_x * cam_x;
 	*ray_diry = dir_y + plane_y * cam_x;
 }
